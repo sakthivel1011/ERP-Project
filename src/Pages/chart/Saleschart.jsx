@@ -9,6 +9,7 @@ export default function Saleschart({chartData}) {
       <YAxis dataKey="sales"/>                 
       <Tooltip />              
       <div></div>
+      <div></div>
       <Bar dataKey="sales" fill="blue" radius={[6,6,0,0]}/> 
     </BarChart>
 
