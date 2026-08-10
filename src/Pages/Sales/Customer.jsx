@@ -1,4 +1,294 @@
-function Customer(){
-    return <h1>CUSTOMER PAGE</h1>
+import React, { useMemo, useState, useEffect } from "react";
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+} from "material-react-table";
+import { Box, Stack, Typography, Grid } from "@mui/material"; // Normal table creation
+import { Data } from "../../Data/Data";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material"; //popup msg and action button ku
+
+function Customer() {
+  //popup state
+  const [open, setOpen] = useState(false);
+  const [popupTitle, setPopupTitle] = useState("");
+  const [popupData, setPopupData] = useState(null);
+
+  //KPI card
+  const kpicard = useMemo(() => {
+    const rawdata = Data?.customers || [];
+    const total = rawdata.length;
+    const invoicedata = Data?.invoices || [];
+
+    const paid = invoicedata.filter(
+      (i) => i.status?.toLowerCase() == "paid",
+    ).length;
+    const unpaid = invoicedata.filter(
+      (i) => i.status?.toLowerCase() == "unpaid",
+    ).length;
+    const overdue = invoicedata.filter(
+      (i) => i.status?.toLowerCase() == "overdue",
+    ).length;
+    const partiallypaid = invoicedata.filter(
+      (i) => i.status?.toLowerCase() == "partially paid",
+    ).length;
+    return { total, paid, unpaid, overdue, partiallypaid };
+  });
+
+  //function handle button click and popup
+  const handleActionClick = (title, data) => {
+    // user click panra data enga store agum step3
+    setPopupTitle(title);
+    setPopupData(data);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setPopupData(null);
+  };
+
+  //CREATE COLOUMNS NAME FOR TABLE
+  const columns = useMemo(
+    () => [
+      //   {
+      //     accessorKey: "customerId", //DATA TABLE LA ERUKA COLUMN NAME
+      //     header: "Customer ID", //UI LA SHOW AGURA COLOUMN NAME
+      //     size: 100,
+      //   },
+      {
+        accessorKey: "customerCode",
+        header: "Customer Code",
+        size: 100,
+      },
+      {
+        accessorKey: "companyName",
+        header: "Company Name",
+        size: 100,
+      },
+      {
+        accessorKey: "gstNumber",
+        header: "GST Number",
+        size: 100,
+      },
+      {
+        accessorKey: "customerType",
+        header: "Type",
+        size: 100,
+      },
+      {
+        accessorKey: "paymentTerms",
+        header: "Payments Terms",
+        size: 100,
+      },
+      {
+        accessorKey: "creditLimit",
+        header: "Credit Limit",
+        size: 100,
+        Cell: ({ cell, row }) => {
+          const amount = cell.getValue();
+          const currency = row.original.currency || "INR";
+          return new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: currency,
+            maximumFractionDigits: 0,
+          }).format(amount);
+        },
+      },
+
+      // Add new coloumn Action And button
+      {
+        accessorKey: "action",
+        header: "Actions",
+        size: 300,
+        Cell: ({ row }) => {
+          const customer = row.original; //row.original nu kudutha  antha row la eruka compltet data vum vanthurum step1
+          return (
+            <Stack direction="row" spacing={1}>
+              {/* //user click panra button vanthu handleaction (title and data) top l declare panni eruka handle action click ku pogum step2*/}
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                onClick={() =>
+                  handleActionClick("Contact Details", customer.contacts)
+                }
+              >
+                Contact
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                color="secondary"
+                onClick={() =>
+                  handleActionClick("Billing Address", customer.billingAddress)
+                }
+              >
+                Billing
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                color="success"
+                onClick={() =>
+                  handleActionClick(
+                    "Shipping Address",
+                    customer.shippingAddress,
+                  )
+                }
+              >
+                Shipping
+              </Button>
+            </Stack>
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  // TABLE INITIAL INITIALIZATION SETUP AND INSERT DATA INTO TABLE
+  const table = useMaterialReactTable({
+    columns,
+    data: Data?.customers || [],
+    // enableGlobalFilter: true,
+    enablePagination: true,
+    enableHiding: false,
+    enableColumnActions: false,
+    enableFullScreenToggle: false,
+    enableDensityToggle: false,
+    paginationDisplayMode: "pages",
+    initialState: {
+      density: "compact", // Gaps reduction parameters setup
+      pagination: {
+        pageIndex: 0,
+        pageSize: 5,
+      }, // 5 records per page pota height
+    },
+  });
+
+  // popup data show panna
+  const renderPopupcontent = () => {
+    //check data contact or  address ah step4
+    if (!popupData) return null;
+    if (Array.isArray(popupData)) {
+      //Contact data va popup la show panna
+      return popupData.map((contact, index) => (
+        <Box key={index} sx={{ mb: 2 }}>
+          <Typography>
+            <strong>Name:</strong>
+            {contact.name}
+          </Typography>
+          <Typography>
+            <strong>Designation:</strong>
+            {contact.designation}
+          </Typography>
+          <Typography>
+            <strong>Email:</strong>
+            {contact.email}
+          </Typography>
+          <Typography>
+            <strong>Mobile:</strong>
+            {contact.mobile}
+          </Typography>
+        </Box>
+      ));
+    }
+    // pop up data for address
+    return (
+      <Box>
+        <Typography>
+          <strong>Address:</strong> {popupData.address1}
+        </Typography>
+        <Typography>
+          <strong>City:</strong> {popupData.city}
+        </Typography>
+        <Typography>
+          <strong>State:</strong> {popupData.state}
+        </Typography>
+        <Typography>
+          <strong>Country:</strong> {popupData.country}
+        </Typography>
+        <Typography>
+          <strong>Pincode:</strong> {popupData.pincode}
+        </Typography>
+      </Box>
+    );
+  };
+
+  return (
+    <Box
+      sx={{
+        width: "calc(100% - 240px)",
+        marginLeft: "auto",
+        marginRight: "20px",
+        padding: "0px",
+        boxSizing: "border-box",
+      }}
+    >
+      <Typography
+        variant="h5"
+        sx={{ mb: 3, fontWeight: "bold", textAlign: "left" }}
+      >
+        Customer Management
+      </Typography>
+
+      {/*KPI cards*/}
+      <Grid container spacing={19} sx={{ mb: 3 }}>
+        {/* Total Customer*/}
+        <Grid xs={12} sm={3}>
+          <Box>
+            <Typography>Total Customers</Typography>
+            <Typography>{kpicard.total}</Typography>
+          </Box>
+        </Grid>
+
+        <Grid xs={12} sm={3}>
+          <Box>
+            <Typography>Paid</Typography>
+            <Typography>{kpicard.paid}</Typography>
+          </Box>
+        </Grid>
+
+        <Grid xs={12} sm={3}>
+          <Box>
+            <Typography>Unpaid</Typography>
+            <Typography>{kpicard.unpaid}</Typography>
+          </Box>
+        </Grid>
+
+        <Grid xs={12} sm={3}>
+          <Box>
+            <Typography>Overdue</Typography>
+            <Typography>{kpicard.overdue}</Typography>
+          </Box>
+        </Grid>
+        <Grid xs={12} sm={3}>
+          <Box>
+            <Typography>Partially Paid</Typography>
+            <Typography>{kpicard.partiallypaid}</Typography>
+          </Box>
+        </Grid>
+      </Grid>
+
+      <MaterialReactTable table={table} />
+
+      {/*//popup display and popup data show*/}
+      {/*//final ah popup la antha data show agum step5*/}
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
+        <DialogTitle sx={{ fontWeight: "bold" }}>{popupTitle}</DialogTitle>
+        <DialogContent dividers>{renderPopupcontent()}</DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="outlined" color="inherit">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
 }
 export default Customer;
