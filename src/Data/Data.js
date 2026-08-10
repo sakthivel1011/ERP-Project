@@ -1,1418 +1,1416 @@
-export const Data= {
-
-  "customers": [
+export const Data = {
+  customers: [
     {
-      "customerId": "CUS0001",
-      "customerCode": "C0001",
-      "companyName": "ABC Engineering Pvt Ltd",
-      "gstNumber": "33ABCDE1234F1Z5",
-      "panNumber": "ABCDE1234F",
-      "customerType": "Corporate",
-      "creditLimit": 1000000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0001",
+      customerCode: "C0001",
+      companyName: "ABC Engineering Pvt Ltd",
+      gstNumber: "33ABCDE1234F1Z5",
+      panNumber: "ABCDE1234F",
+      customerType: "Corporate",
+      creditLimit: 1000000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0001",
-          "name": "Rajesh Kumar",
-          "designation": "Purchase Manager",
-          "email": "rajesh@abcengineering.com",
-          "mobile": "9876543210"
-        }
+          contactId: "CNT0001",
+          name: "Rajesh Kumar",
+          designation: "Purchase Manager",
+          email: "rajesh@abcengineering.com",
+          mobile: "9876543210",
+        },
       ],
-      "billingAddress": {
-        "address1": "No.12 SIDCO Industrial Estate",
-        "city": "Chennai",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "600098"
+      billingAddress: {
+        address1: "No.12 SIDCO Industrial Estate",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "600098",
       },
-      "shippingAddress": {
-        "address1": "Plant 2, SIPCOT",
-        "city": "Chennai",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "600058"
-      }
+      shippingAddress: {
+        address1: "Plant 2, SIPCOT",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "600058",
+      },
     },
     {
-      "customerId": "CUS0002",
-      "customerCode": "C0002",
-      "companyName": "Precision Industries India",
-      "gstNumber": "22PQRS5678G1Z2",
-      "panNumber": "PQRS5678G",
-      "customerType": "Corporate",
-      "creditLimit": 750000,
-      "paymentTerms": "45 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0002",
+      customerCode: "C0002",
+      companyName: "Precision Industries India",
+      gstNumber: "22PQRS5678G1Z2",
+      panNumber: "PQRS5678G",
+      customerType: "Corporate",
+      creditLimit: 750000,
+      paymentTerms: "45 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0002",
-          "name": "Priya Srinivasan",
-          "designation": "Procurement Head",
-          "email": "priya@precision.ind.in",
-          "mobile": "9823456789"
-        }
+          contactId: "CNT0002",
+          name: "Priya Srinivasan",
+          designation: "Procurement Head",
+          email: "priya@precision.ind.in",
+          mobile: "9823456789",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 7, Phase II, Electronic City",
-        "city": "Bengaluru",
-        "state": "Karnataka",
-        "country": "India",
-        "pincode": "560100"
+      billingAddress: {
+        address1: "Plot 7, Phase II, Electronic City",
+        city: "Bengaluru",
+        state: "Karnataka",
+        country: "India",
+        pincode: "560100",
       },
-      "shippingAddress": {
-        "address1": "Warehouse 4, Bommasandra",
-        "city": "Bengaluru",
-        "state": "Karnataka",
-        "country": "India",
-        "pincode": "560099"
-      }
+      shippingAddress: {
+        address1: "Warehouse 4, Bommasandra",
+        city: "Bengaluru",
+        state: "Karnataka",
+        country: "India",
+        pincode: "560099",
+      },
     },
     {
-      "customerId": "CUS0003",
-      "customerCode": "C0003",
-      "companyName": "Sarang Trading Corporation",
-      "gstNumber": "27STUV9012H1Z6",
-      "panNumber": "STUV9012H",
-      "customerType": "Trader",
-      "creditLimit": 500000,
-      "paymentTerms": "15 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0003",
+      customerCode: "C0003",
+      companyName: "Sarang Trading Corporation",
+      gstNumber: "27STUV9012H1Z6",
+      panNumber: "STUV9012H",
+      customerType: "Trader",
+      creditLimit: 500000,
+      paymentTerms: "15 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0003",
-          "name": "Manoj Shah",
-          "designation": "Proprietor",
-          "email": "manoj@sarangtrading.com",
-          "mobile": "9812345670"
-        }
+          contactId: "CNT0003",
+          name: "Manoj Shah",
+          designation: "Proprietor",
+          email: "manoj@sarangtrading.com",
+          mobile: "9812345670",
+        },
       ],
-      "billingAddress": {
-        "address1": "Shop 8, Lohar Chawl",
-        "city": "Mumbai",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "400002"
+      billingAddress: {
+        address1: "Shop 8, Lohar Chawl",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "400002",
       },
-      "shippingAddress": {
-        "address1": "Shop 8, Lohar Chawl",
-        "city": "Mumbai",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "400002"
-      }
+      shippingAddress: {
+        address1: "Shop 8, Lohar Chawl",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "400002",
+      },
     },
     {
-      "customerId": "CUS0004",
-      "customerCode": "C0004",
-      "companyName": "Reliance Heat Exchangers Ltd",
-      "gstNumber": "24LMNO3456A1Z3",
-      "panNumber": "LMNO3456A",
-      "customerType": "Corporate",
-      "creditLimit": 2500000,
-      "paymentTerms": "60 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0004",
+      customerCode: "C0004",
+      companyName: "Reliance Heat Exchangers Ltd",
+      gstNumber: "24LMNO3456A1Z3",
+      panNumber: "LMNO3456A",
+      customerType: "Corporate",
+      creditLimit: 2500000,
+      paymentTerms: "60 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0004",
-          "name": "Sunil Reddy",
-          "designation": "Vice President - Procurement",
-          "email": "sunil@reliancehe.in",
-          "mobile": "9988776655"
-        }
+          contactId: "CNT0004",
+          name: "Sunil Reddy",
+          designation: "Vice President - Procurement",
+          email: "sunil@reliancehe.in",
+          mobile: "9988776655",
+        },
       ],
-      "billingAddress": {
-        "address1": "H Block, MIDC, Patalganga",
-        "city": "Raigad",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "410206"
+      billingAddress: {
+        address1: "H Block, MIDC, Patalganga",
+        city: "Raigad",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "410206",
       },
-      "shippingAddress": {
-        "address1": "Patalganga Works, H Block",
-        "city": "Raigad",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "410206"
-      }
+      shippingAddress: {
+        address1: "Patalganga Works, H Block",
+        city: "Raigad",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "410206",
+      },
     },
     {
-      "customerId": "CUS0005",
-      "customerCode": "C0005",
-      "companyName": "Thermal Engineering Solutions",
-      "gstNumber": "29WXYZ7890C1Z7",
-      "panNumber": "WXYZ7890C",
-      "customerType": "Corporate",
-      "creditLimit": 1200000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0005",
+      customerCode: "C0005",
+      companyName: "Thermal Engineering Solutions",
+      gstNumber: "29WXYZ7890C1Z7",
+      panNumber: "WXYZ7890C",
+      customerType: "Corporate",
+      creditLimit: 1200000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0005",
-          "name": "Ananya Patel",
-          "designation": "Manager - Supply Chain",
-          "email": "ananya@thermalengg.com",
-          "mobile": "9876501234"
-        }
+          contactId: "CNT0005",
+          name: "Ananya Patel",
+          designation: "Manager - Supply Chain",
+          email: "ananya@thermalengg.com",
+          mobile: "9876501234",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 22, GIDC, Vatva",
-        "city": "Ahmedabad",
-        "state": "Gujarat",
-        "country": "India",
-        "pincode": "382445"
+      billingAddress: {
+        address1: "Plot 22, GIDC, Vatva",
+        city: "Ahmedabad",
+        state: "Gujarat",
+        country: "India",
+        pincode: "382445",
       },
-      "shippingAddress": {
-        "address1": "GIDC Vatva, Unit 2",
-        "city": "Ahmedabad",
-        "state": "Gujarat",
-        "country": "India",
-        "pincode": "382445"
-      }
+      shippingAddress: {
+        address1: "GIDC Vatva, Unit 2",
+        city: "Ahmedabad",
+        state: "Gujarat",
+        country: "India",
+        pincode: "382445",
+      },
     },
     {
-      "customerId": "CUS0006",
-      "customerCode": "C0006",
-      "companyName": "Kerala Industrial Supplies",
-      "gstNumber": "32ABCD4321F1Z2",
-      "panNumber": "ABCD4321F",
-      "customerType": "Corporate",
-      "creditLimit": 600000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0006",
+      customerCode: "C0006",
+      companyName: "Kerala Industrial Supplies",
+      gstNumber: "32ABCD4321F1Z2",
+      panNumber: "ABCD4321F",
+      customerType: "Corporate",
+      creditLimit: 600000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0006",
-          "name": "Thomas George",
-          "designation": "Purchase Manager",
-          "email": "thomas@kis.in",
-          "mobile": "9876123456"
-        }
+          contactId: "CNT0006",
+          name: "Thomas George",
+          designation: "Purchase Manager",
+          email: "thomas@kis.in",
+          mobile: "9876123456",
+        },
       ],
-      "billingAddress": {
-        "address1": "Near KSRTC Depot, Palarivattom",
-        "city": "Kochi",
-        "state": "Kerala",
-        "country": "India",
-        "pincode": "682025"
+      billingAddress: {
+        address1: "Near KSRTC Depot, Palarivattom",
+        city: "Kochi",
+        state: "Kerala",
+        country: "India",
+        pincode: "682025",
       },
-      "shippingAddress": {
-        "address1": "Industrial Zone, Ambalamugal",
-        "city": "Kochi",
-        "state": "Kerala",
-        "country": "India",
-        "pincode": "682302"
-      }
+      shippingAddress: {
+        address1: "Industrial Zone, Ambalamugal",
+        city: "Kochi",
+        state: "Kerala",
+        country: "India",
+        pincode: "682302",
+      },
     },
     {
-      "customerId": "CUS0007",
-      "customerCode": "C0007",
-      "companyName": "Aditya Refrigeration Works",
-      "gstNumber": "08GHIJ5678D1Z4",
-      "panNumber": "GHIJ5678D",
-      "customerType": "SME",
-      "creditLimit": 350000,
-      "paymentTerms": "15 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0007",
+      customerCode: "C0007",
+      companyName: "Aditya Refrigeration Works",
+      gstNumber: "08GHIJ5678D1Z4",
+      panNumber: "GHIJ5678D",
+      customerType: "SME",
+      creditLimit: 350000,
+      paymentTerms: "15 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0007",
-          "name": "Ravi Gupta",
-          "designation": "Owner",
-          "email": "ravi@adityaref.in",
-          "mobile": "9786543210"
-        }
+          contactId: "CNT0007",
+          name: "Ravi Gupta",
+          designation: "Owner",
+          email: "ravi@adityaref.in",
+          mobile: "9786543210",
+        },
       ],
-      "billingAddress": {
-        "address1": "A-45, Mahipalpur Extension",
-        "city": "New Delhi",
-        "state": "Delhi",
-        "country": "India",
-        "pincode": "110037"
+      billingAddress: {
+        address1: "A-45, Mahipalpur Extension",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+        pincode: "110037",
       },
-      "shippingAddress": {
-        "address1": "B-12, Badarpur Industrial Area",
-        "city": "New Delhi",
-        "state": "Delhi",
-        "country": "India",
-        "pincode": "110044"
-      }
+      shippingAddress: {
+        address1: "B-12, Badarpur Industrial Area",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+        pincode: "110044",
+      },
     },
     {
-      "customerId": "CUS0008",
-      "customerCode": "C0008",
-      "companyName": "Bharat Piping Solutions",
-      "gstNumber": "19MNOP3456B1Z1",
-      "panNumber": "MNOP3456B",
-      "customerType": "Corporate",
-      "creditLimit": 900000,
-      "paymentTerms": "45 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0008",
+      customerCode: "C0008",
+      companyName: "Bharat Piping Solutions",
+      gstNumber: "19MNOP3456B1Z1",
+      panNumber: "MNOP3456B",
+      customerType: "Corporate",
+      creditLimit: 900000,
+      paymentTerms: "45 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0008",
-          "name": "Harish Nair",
-          "designation": "Senior Purchase Officer",
-          "email": "harish@bharatpiping.com",
-          "mobile": "9834567891"
-        }
+          contactId: "CNT0008",
+          name: "Harish Nair",
+          designation: "Senior Purchase Officer",
+          email: "harish@bharatpiping.com",
+          mobile: "9834567891",
+        },
       ],
-      "billingAddress": {
-        "address1": "56, Sector 27, MIDC",
-        "city": "Pune",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "411028"
+      billingAddress: {
+        address1: "56, Sector 27, MIDC",
+        city: "Pune",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "411028",
       },
-      "shippingAddress": {
-        "address1": "Plot 7, Chakan MIDC",
-        "city": "Pune",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "410501"
-      }
+      shippingAddress: {
+        address1: "Plot 7, Chakan MIDC",
+        city: "Pune",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "410501",
+      },
     },
     {
-      "customerId": "CUS0009",
-      "customerCode": "C0009",
-      "companyName": "S.R. Enterprises",
-      "gstNumber": "07QRST6789E1Z6",
-      "panNumber": "QRST6789E",
-      "customerType": "Trader",
-      "creditLimit": 300000,
-      "paymentTerms": "7 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0009",
+      customerCode: "C0009",
+      companyName: "S.R. Enterprises",
+      gstNumber: "07QRST6789E1Z6",
+      panNumber: "QRST6789E",
+      customerType: "Trader",
+      creditLimit: 300000,
+      paymentTerms: "7 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0009",
-          "name": "Sunder Ramaswamy",
-          "designation": "Partner",
-          "email": "sunder@srenterprises.in",
-          "mobile": "9845678901"
-        }
+          contactId: "CNT0009",
+          name: "Sunder Ramaswamy",
+          designation: "Partner",
+          email: "sunder@srenterprises.in",
+          mobile: "9845678901",
+        },
       ],
-      "billingAddress": {
-        "address1": "Ward 36, Nehru Market",
-        "city": "Coimbatore",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "641001"
+      billingAddress: {
+        address1: "Ward 36, Nehru Market",
+        city: "Coimbatore",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "641001",
       },
-      "shippingAddress": {
-        "address1": "Ward 36, Nehru Market",
-        "city": "Coimbatore",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "641001"
-      }
+      shippingAddress: {
+        address1: "Ward 36, Nehru Market",
+        city: "Coimbatore",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "641001",
+      },
     },
     {
-      "customerId": "CUS0010",
-      "customerCode": "C0010",
-      "companyName": "AquaCool Technologies",
-      "gstNumber": "36UVWX1234K1Z5",
-      "panNumber": "UVWX1234K",
-      "customerType": "Corporate",
-      "creditLimit": 800000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0010",
+      customerCode: "C0010",
+      companyName: "AquaCool Technologies",
+      gstNumber: "36UVWX1234K1Z5",
+      panNumber: "UVWX1234K",
+      customerType: "Corporate",
+      creditLimit: 800000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0010",
-          "name": "Naresh Gupta",
-          "designation": "VP, Procurement",
-          "email": "naresh@aquacooltech.com",
-          "mobile": "9654321876"
-        }
+          contactId: "CNT0010",
+          name: "Naresh Gupta",
+          designation: "VP, Procurement",
+          email: "naresh@aquacooltech.com",
+          mobile: "9654321876",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 89, Phase III, Panki",
-        "city": "Kanpur",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "208020"
+      billingAddress: {
+        address1: "Plot 89, Phase III, Panki",
+        city: "Kanpur",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "208020",
       },
-      "shippingAddress": {
-        "address1": "Panki Industrial Area, Unit 3",
-        "city": "Kanpur",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "208020"
-      }
+      shippingAddress: {
+        address1: "Panki Industrial Area, Unit 3",
+        city: "Kanpur",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "208020",
+      },
     },
     {
-      "customerId": "CUS0011",
-      "customerCode": "C0011",
-      "companyName": "Eastern Trading Co.",
-      "gstNumber": "19YZAB4567M1Z3",
-      "panNumber": "YZAB4567M",
-      "customerType": "Trader",
-      "creditLimit": 450000,
-      "paymentTerms": "20 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0011",
+      customerCode: "C0011",
+      companyName: "Eastern Trading Co.",
+      gstNumber: "19YZAB4567M1Z3",
+      panNumber: "YZAB4567M",
+      customerType: "Trader",
+      creditLimit: 450000,
+      paymentTerms: "20 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0011",
-          "name": "Debjit Mukherjee",
-          "designation": "Proprietor",
-          "email": "debjit@easterntrading.com",
-          "mobile": "9876512345"
-        }
+          contactId: "CNT0011",
+          name: "Debjit Mukherjee",
+          designation: "Proprietor",
+          email: "debjit@easterntrading.com",
+          mobile: "9876512345",
+        },
       ],
-      "billingAddress": {
-        "address1": "15, Ganesh Chandra Avenue",
-        "city": "Kolkata",
-        "state": "West Bengal",
-        "country": "India",
-        "pincode": "700013"
+      billingAddress: {
+        address1: "15, Ganesh Chandra Avenue",
+        city: "Kolkata",
+        state: "West Bengal",
+        country: "India",
+        pincode: "700013",
       },
-      "shippingAddress": {
-        "address1": "10, Strand Road",
-        "city": "Kolkata",
-        "state": "West Bengal",
-        "country": "India",
-        "pincode": "700001"
-      }
+      shippingAddress: {
+        address1: "10, Strand Road",
+        city: "Kolkata",
+        state: "West Bengal",
+        country: "India",
+        pincode: "700001",
+      },
     },
     {
-      "customerId": "CUS0012",
-      "customerCode": "C0012",
-      "companyName": "Surya Heat Systems",
-      "gstNumber": "29BCDE7890N1Z8",
-      "panNumber": "BCDE7890N",
-      "customerType": "Corporate",
-      "creditLimit": 1100000,
-      "paymentTerms": "60 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0012",
+      customerCode: "C0012",
+      companyName: "Surya Heat Systems",
+      gstNumber: "29BCDE7890N1Z8",
+      panNumber: "BCDE7890N",
+      customerType: "Corporate",
+      creditLimit: 1100000,
+      paymentTerms: "60 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0012",
-          "name": "Ramesh Sharma",
-          "designation": "General Manager - SCM",
-          "email": "ramesh@suryaheat.com",
-          "mobile": "9898989898"
-        }
+          contactId: "CNT0012",
+          name: "Ramesh Sharma",
+          designation: "General Manager - SCM",
+          email: "ramesh@suryaheat.com",
+          mobile: "9898989898",
+        },
       ],
-      "billingAddress": {
-        "address1": "K-15, IDA, Uppal",
-        "city": "Hyderabad",
-        "state": "Telangana",
-        "country": "India",
-        "pincode": "500039"
+      billingAddress: {
+        address1: "K-15, IDA, Uppal",
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+        pincode: "500039",
       },
-      "shippingAddress": {
-        "address1": "IDA Uppal, Unit 9",
-        "city": "Hyderabad",
-        "state": "Telangana",
-        "country": "India",
-        "pincode": "500039"
-      }
+      shippingAddress: {
+        address1: "IDA Uppal, Unit 9",
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+        pincode: "500039",
+      },
     },
     {
-      "customerId": "CUS0013",
-      "customerCode": "C0013",
-      "companyName": "Cool Flow Industries",
-      "gstNumber": "08FGHI4567P1Z2",
-      "panNumber": "FGHI4567P",
-      "customerType": "SME",
-      "creditLimit": 400000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0013",
+      customerCode: "C0013",
+      companyName: "Cool Flow Industries",
+      gstNumber: "08FGHI4567P1Z2",
+      panNumber: "FGHI4567P",
+      customerType: "SME",
+      creditLimit: 400000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0013",
-          "name": "Vijay Kashyap",
-          "designation": "Director",
-          "email": "vijay@coolflow.in",
-          "mobile": "9811112222"
-        }
+          contactId: "CNT0013",
+          name: "Vijay Kashyap",
+          designation: "Director",
+          email: "vijay@coolflow.in",
+          mobile: "9811112222",
+        },
       ],
-      "billingAddress": {
-        "address1": "C-9, Mayapuri Indl Area",
-        "city": "New Delhi",
-        "state": "Delhi",
-        "country": "India",
-        "pincode": "110064"
+      billingAddress: {
+        address1: "C-9, Mayapuri Indl Area",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+        pincode: "110064",
       },
-      "shippingAddress": {
-        "address1": "C-9, Mayapuri Indl Area",
-        "city": "New Delhi",
-        "state": "Delhi",
-        "country": "India",
-        "pincode": "110064"
-      }
+      shippingAddress: {
+        address1: "C-9, Mayapuri Indl Area",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+        pincode: "110064",
+      },
     },
     {
-      "customerId": "CUS0014",
-      "customerCode": "C0014",
-      "companyName": "M/s. Krishna Fabrications",
-      "gstNumber": "33JKLM1234Q1Z5",
-      "panNumber": "JKLM1234Q",
-      "customerType": "SME",
-      "creditLimit": 250000,
-      "paymentTerms": "15 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0014",
+      customerCode: "C0014",
+      companyName: "M/s. Krishna Fabrications",
+      gstNumber: "33JKLM1234Q1Z5",
+      panNumber: "JKLM1234Q",
+      customerType: "SME",
+      creditLimit: 250000,
+      paymentTerms: "15 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0014",
-          "name": "Krishna Moorthy",
-          "designation": "Proprietor",
-          "email": "krishna@krishfab.in",
-          "mobile": "9845098450"
-        }
+          contactId: "CNT0014",
+          name: "Krishna Moorthy",
+          designation: "Proprietor",
+          email: "krishna@krishfab.in",
+          mobile: "9845098450",
+        },
       ],
-      "billingAddress": {
-        "address1": "5A, Mettupalayam Road",
-        "city": "Tiruppur",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "641604"
+      billingAddress: {
+        address1: "5A, Mettupalayam Road",
+        city: "Tiruppur",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "641604",
       },
-      "shippingAddress": {
-        "address1": "5A, Mettupalayam Road",
-        "city": "Tiruppur",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "641604"
-      }
+      shippingAddress: {
+        address1: "5A, Mettupalayam Road",
+        city: "Tiruppur",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "641604",
+      },
     },
     {
-      "customerId": "CUS0015",
-      "customerCode": "C0015",
-      "companyName": "Gujarat Boiler & Heat Exchangers",
-      "gstNumber": "24NOPQ5678R1Z6",
-      "panNumber": "NOPQ5678R",
-      "customerType": "Corporate",
-      "creditLimit": 2000000,
-      "paymentTerms": "45 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0015",
+      customerCode: "C0015",
+      companyName: "Gujarat Boiler & Heat Exchangers",
+      gstNumber: "24NOPQ5678R1Z6",
+      panNumber: "NOPQ5678R",
+      customerType: "Corporate",
+      creditLimit: 2000000,
+      paymentTerms: "45 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0015",
-          "name": "Ketan Shah",
-          "designation": "Director - Procurement",
-          "email": "ketan@gbhe.in",
-          "mobile": "9925001234"
-        }
+          contactId: "CNT0015",
+          name: "Ketan Shah",
+          designation: "Director - Procurement",
+          email: "ketan@gbhe.in",
+          mobile: "9925001234",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 1/2, GIDC, Ankleshwar",
-        "city": "Bharuch",
-        "state": "Gujarat",
-        "country": "India",
-        "pincode": "393002"
+      billingAddress: {
+        address1: "Plot 1/2, GIDC, Ankleshwar",
+        city: "Bharuch",
+        state: "Gujarat",
+        country: "India",
+        pincode: "393002",
       },
-      "shippingAddress": {
-        "address1": "GIDC Ankleshwar, Unit 4",
-        "city": "Bharuch",
-        "state": "Gujarat",
-        "country": "India",
-        "pincode": "393002"
-      }
+      shippingAddress: {
+        address1: "GIDC Ankleshwar, Unit 4",
+        city: "Bharuch",
+        state: "Gujarat",
+        country: "India",
+        pincode: "393002",
+      },
     },
     {
-      "customerId": "CUS0016",
-      "customerCode": "C0016",
-      "companyName": "Pristine Cooling Systems",
-      "gstNumber": "29STUV3456S1Z7",
-      "panNumber": "STUV3456S",
-      "customerType": "Corporate",
-      "creditLimit": 950000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0016",
+      customerCode: "C0016",
+      companyName: "Pristine Cooling Systems",
+      gstNumber: "29STUV3456S1Z7",
+      panNumber: "STUV3456S",
+      customerType: "Corporate",
+      creditLimit: 950000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0016",
-          "name": "Amit Jain",
-          "designation": "Manager - Supply Chain",
-          "email": "amit@pristinecool.in",
-          "mobile": "9876547891"
-        }
+          contactId: "CNT0016",
+          name: "Amit Jain",
+          designation: "Manager - Supply Chain",
+          email: "amit@pristinecool.in",
+          mobile: "9876547891",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 6, Noida Special Economic Zone",
-        "city": "Noida",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "201305"
+      billingAddress: {
+        address1: "Plot 6, Noida Special Economic Zone",
+        city: "Noida",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "201305",
       },
-      "shippingAddress": {
-        "address1": "NSEDZ, Unit 2B",
-        "city": "Noida",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "201305"
-      }
+      shippingAddress: {
+        address1: "NSEDZ, Unit 2B",
+        city: "Noida",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "201305",
+      },
     },
     {
-      "customerId": "CUS0017",
-      "customerCode": "C0017",
-      "companyName": "Southern Pipe Industries",
-      "gstNumber": "33WXYZ2345T1Z1",
-      "panNumber": "WXYZ2345T",
-      "customerType": "Corporate",
-      "creditLimit": 700000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0017",
+      customerCode: "C0017",
+      companyName: "Southern Pipe Industries",
+      gstNumber: "33WXYZ2345T1Z1",
+      panNumber: "WXYZ2345T",
+      customerType: "Corporate",
+      creditLimit: 700000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0017",
-          "name": "Murali Krishnan",
-          "designation": "Purchase Manager",
-          "email": "murali@southernpipe.in",
-          "mobile": "9444012345"
-        }
+          contactId: "CNT0017",
+          name: "Murali Krishnan",
+          designation: "Purchase Manager",
+          email: "murali@southernpipe.in",
+          mobile: "9444012345",
+        },
       ],
-      "billingAddress": {
-        "address1": "18, Thiruvalluvar Street",
-        "city": "Madurai",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "625001"
+      billingAddress: {
+        address1: "18, Thiruvalluvar Street",
+        city: "Madurai",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "625001",
       },
-      "shippingAddress": {
-        "address1": "Industrial Estate, Kappalur",
-        "city": "Madurai",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "625008"
-      }
+      shippingAddress: {
+        address1: "Industrial Estate, Kappalur",
+        city: "Madurai",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "625008",
+      },
     },
     {
-      "customerId": "CUS0018",
-      "customerCode": "C0018",
-      "companyName": "Apex Engineering & Supplies",
-      "gstNumber": "08ABCD6789U1Z9",
-      "panNumber": "ABCD6789U",
-      "customerType": "SME",
-      "creditLimit": 380000,
-      "paymentTerms": "15 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0018",
+      customerCode: "C0018",
+      companyName: "Apex Engineering & Supplies",
+      gstNumber: "08ABCD6789U1Z9",
+      panNumber: "ABCD6789U",
+      customerType: "SME",
+      creditLimit: 380000,
+      paymentTerms: "15 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0018",
-          "name": "Sanjay Bansal",
-          "designation": "Proprietor",
-          "email": "sanjay@apexengg.com",
-          "mobile": "9812345678"
-        }
+          contactId: "CNT0018",
+          name: "Sanjay Bansal",
+          designation: "Proprietor",
+          email: "sanjay@apexengg.com",
+          mobile: "9812345678",
+        },
       ],
-      "billingAddress": {
-        "address1": "A-79, DSIDC Complex, Bawana",
-        "city": "New Delhi",
-        "state": "Delhi",
-        "country": "India",
-        "pincode": "110039"
+      billingAddress: {
+        address1: "A-79, DSIDC Complex, Bawana",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+        pincode: "110039",
       },
-      "shippingAddress": {
-        "address1": "A-79, DSIDC Complex, Bawana",
-        "city": "New Delhi",
-        "state": "Delhi",
-        "country": "India",
-        "pincode": "110039"
-      }
+      shippingAddress: {
+        address1: "A-79, DSIDC Complex, Bawana",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+        pincode: "110039",
+      },
     },
     {
-      "customerId": "CUS0019",
-      "customerCode": "C0019",
-      "companyName": "Tamil Nadu Refrigeration Co.",
-      "gstNumber": "33EFGH7890V1Z3",
-      "panNumber": "EFGH7890V",
-      "customerType": "Corporate",
-      "creditLimit": 550000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0019",
+      customerCode: "C0019",
+      companyName: "Tamil Nadu Refrigeration Co.",
+      gstNumber: "33EFGH7890V1Z3",
+      panNumber: "EFGH7890V",
+      customerType: "Corporate",
+      creditLimit: 550000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0019",
-          "name": "Sivakumar Rajan",
-          "designation": "Manager, Purchase",
-          "email": "sivakumar@tnref.co.in",
-          "mobile": "9790912345"
-        }
+          contactId: "CNT0019",
+          name: "Sivakumar Rajan",
+          designation: "Manager, Purchase",
+          email: "sivakumar@tnref.co.in",
+          mobile: "9790912345",
+        },
       ],
-      "billingAddress": {
-        "address1": "21, Greams Road",
-        "city": "Chennai",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "600006"
+      billingAddress: {
+        address1: "21, Greams Road",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "600006",
       },
-      "shippingAddress": {
-        "address1": "Perungudi Industrial Estate",
-        "city": "Chennai",
-        "state": "Tamil Nadu",
-        "country": "India",
-        "pincode": "600096"
-      }
+      shippingAddress: {
+        address1: "Perungudi Industrial Estate",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        country: "India",
+        pincode: "600096",
+      },
     },
     {
-      "customerId": "CUS0020",
-      "customerCode": "C0020",
-      "companyName": "Raj Process Equipment",
-      "gstNumber": "27JKLM4567W1Z8",
-      "panNumber": "JKLM4567W",
-      "customerType": "SME",
-      "creditLimit": 450000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0020",
+      customerCode: "C0020",
+      companyName: "Raj Process Equipment",
+      gstNumber: "27JKLM4567W1Z8",
+      panNumber: "JKLM4567W",
+      customerType: "SME",
+      creditLimit: 450000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0020",
-          "name": "Rajendra Patil",
-          "designation": "Director",
-          "email": "raj@rajprocess.com",
-          "mobile": "9765234567"
-        }
+          contactId: "CNT0020",
+          name: "Rajendra Patil",
+          designation: "Director",
+          email: "raj@rajprocess.com",
+          mobile: "9765234567",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 45, MIDC, Bhosari",
-        "city": "Pune",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "411026"
+      billingAddress: {
+        address1: "Plot 45, MIDC, Bhosari",
+        city: "Pune",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "411026",
       },
-      "shippingAddress": {
-        "address1": "MIDC Bhosari, Unit 12",
-        "city": "Pune",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "411026"
-      }
+      shippingAddress: {
+        address1: "MIDC Bhosari, Unit 12",
+        city: "Pune",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "411026",
+      },
     },
     {
-      "customerId": "CUS0021",
-      "customerCode": "C0021",
-      "companyName": "Evergreen Heat Transfer LLP",
-      "gstNumber": "24NOPQ2345X1Z2",
-      "panNumber": "NOPQ2345X",
-      "customerType": "Corporate",
-      "creditLimit": 1300000,
-      "paymentTerms": "60 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0021",
+      customerCode: "C0021",
+      companyName: "Evergreen Heat Transfer LLP",
+      gstNumber: "24NOPQ2345X1Z2",
+      panNumber: "NOPQ2345X",
+      customerType: "Corporate",
+      creditLimit: 1300000,
+      paymentTerms: "60 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0021",
-          "name": "Rajesh Menon",
-          "designation": "Partner",
-          "email": "rajesh@evergreenht.com",
-          "mobile": "9876540011"
-        }
+          contactId: "CNT0021",
+          name: "Rajesh Menon",
+          designation: "Partner",
+          email: "rajesh@evergreenht.com",
+          mobile: "9876540011",
+        },
       ],
-      "billingAddress": {
-        "address1": "B-12, Vile Parle East",
-        "city": "Mumbai",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "400057"
+      billingAddress: {
+        address1: "B-12, Vile Parle East",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "400057",
       },
-      "shippingAddress": {
-        "address1": "Unit 5, TTC, Navi Mumbai",
-        "city": "Mumbai",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "400706"
-      }
+      shippingAddress: {
+        address1: "Unit 5, TTC, Navi Mumbai",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "400706",
+      },
     },
     {
-      "customerId": "CUS0022",
-      "customerCode": "C0022",
-      "companyName": "Surabhi Industrial Corporation",
-      "gstNumber": "29QRST8901Y1Z4",
-      "panNumber": "QRST8901Y",
-      "customerType": "Trader",
-      "creditLimit": 280000,
-      "paymentTerms": "10 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0022",
+      customerCode: "C0022",
+      companyName: "Surabhi Industrial Corporation",
+      gstNumber: "29QRST8901Y1Z4",
+      panNumber: "QRST8901Y",
+      customerType: "Trader",
+      creditLimit: 280000,
+      paymentTerms: "10 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0022",
-          "name": "Girish Sharma",
-          "designation": "Proprietor",
-          "email": "girish@surabhiind.com",
-          "mobile": "9822223333"
-        }
+          contactId: "CNT0022",
+          name: "Girish Sharma",
+          designation: "Proprietor",
+          email: "girish@surabhiind.com",
+          mobile: "9822223333",
+        },
       ],
-      "billingAddress": {
-        "address1": "G-9, R.K. Puram, Sector 5",
-        "city": "Jaipur",
-        "state": "Rajasthan",
-        "country": "India",
-        "pincode": "302018"
+      billingAddress: {
+        address1: "G-9, R.K. Puram, Sector 5",
+        city: "Jaipur",
+        state: "Rajasthan",
+        country: "India",
+        pincode: "302018",
       },
-      "shippingAddress": {
-        "address1": "G-9, R.K. Puram, Sector 5",
-        "city": "Jaipur",
-        "state": "Rajasthan",
-        "country": "India",
-        "pincode": "302018"
-      }
+      shippingAddress: {
+        address1: "G-9, R.K. Puram, Sector 5",
+        city: "Jaipur",
+        state: "Rajasthan",
+        country: "India",
+        pincode: "302018",
+      },
     },
     {
-      "customerId": "CUS0023",
-      "customerCode": "C0023",
-      "companyName": "Indus Precision Components",
-      "gstNumber": "36UVWX6789Z1Z5",
-      "panNumber": "UVWX6789Z",
-      "customerType": "Corporate",
-      "creditLimit": 820000,
-      "paymentTerms": "45 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0023",
+      customerCode: "C0023",
+      companyName: "Indus Precision Components",
+      gstNumber: "36UVWX6789Z1Z5",
+      panNumber: "UVWX6789Z",
+      customerType: "Corporate",
+      creditLimit: 820000,
+      paymentTerms: "45 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0023",
-          "name": "Alok Verma",
-          "designation": "Purchase Manager",
-          "email": "alok@indusprecision.in",
-          "mobile": "7896541230"
-        }
+          contactId: "CNT0023",
+          name: "Alok Verma",
+          designation: "Purchase Manager",
+          email: "alok@indusprecision.in",
+          mobile: "7896541230",
+        },
       ],
-      "billingAddress": {
-        "address1": "A-18, Sector 65, Noida",
-        "city": "Noida",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "201301"
+      billingAddress: {
+        address1: "A-18, Sector 65, Noida",
+        city: "Noida",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "201301",
       },
-      "shippingAddress": {
-        "address1": "A-18, Sector 65, Noida",
-        "city": "Noida",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "201301"
-      }
+      shippingAddress: {
+        address1: "A-18, Sector 65, Noida",
+        city: "Noida",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "201301",
+      },
     },
     {
-      "customerId": "CUS0024",
-      "customerCode": "C0024",
-      "companyName": "Coastal Cooling Products",
-      "gstNumber": "32ABCD1234A1Z6",
-      "panNumber": "ABCD1234A",
-      "customerType": "SME",
-      "creditLimit": 420000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0024",
+      customerCode: "C0024",
+      companyName: "Coastal Cooling Products",
+      gstNumber: "32ABCD1234A1Z6",
+      panNumber: "ABCD1234A",
+      customerType: "SME",
+      creditLimit: 420000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0024",
-          "name": "Joseph Antony",
-          "designation": "Managing Partner",
-          "email": "joseph@coastalcool.in",
-          "mobile": "9447123456"
-        }
+          contactId: "CNT0024",
+          name: "Joseph Antony",
+          designation: "Managing Partner",
+          email: "joseph@coastalcool.in",
+          mobile: "9447123456",
+        },
       ],
-      "billingAddress": {
-        "address1": "32, Kaloor-Kadavanthra Road",
-        "city": "Kochi",
-        "state": "Kerala",
-        "country": "India",
-        "pincode": "682017"
+      billingAddress: {
+        address1: "32, Kaloor-Kadavanthra Road",
+        city: "Kochi",
+        state: "Kerala",
+        country: "India",
+        pincode: "682017",
       },
-      "shippingAddress": {
-        "address1": "KINFRA Industrial Park",
-        "city": "Kochi",
-        "state": "Kerala",
-        "country": "India",
-        "pincode": "683501"
-      }
+      shippingAddress: {
+        address1: "KINFRA Industrial Park",
+        city: "Kochi",
+        state: "Kerala",
+        country: "India",
+        pincode: "683501",
+      },
     },
     {
-      "customerId": "CUS0025",
-      "customerCode": "C0025",
-      "companyName": "Hindalco Heat Exchangers Division",
-      "gstNumber": "09EFGH3456B1Z8",
-      "panNumber": "EFGH3456B",
-      "customerType": "Corporate",
-      "creditLimit": 3000000,
-      "paymentTerms": "60 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0025",
+      customerCode: "C0025",
+      companyName: "Hindalco Heat Exchangers Division",
+      gstNumber: "09EFGH3456B1Z8",
+      panNumber: "EFGH3456B",
+      customerType: "Corporate",
+      creditLimit: 3000000,
+      paymentTerms: "60 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0025",
-          "name": "Prakash Singh",
-          "designation": "Head - Raw Materials",
-          "email": "prakash.singh@hindalco.in",
-          "mobile": "9966332211"
-        }
+          contactId: "CNT0025",
+          name: "Prakash Singh",
+          designation: "Head - Raw Materials",
+          email: "prakash.singh@hindalco.in",
+          mobile: "9966332211",
+        },
       ],
-      "billingAddress": {
-        "address1": "Renukoot Works, Sonebhadra",
-        "city": "Renukoot",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "231217"
+      billingAddress: {
+        address1: "Renukoot Works, Sonebhadra",
+        city: "Renukoot",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "231217",
       },
-      "shippingAddress": {
-        "address1": "Renukoot Plant",
-        "city": "Renukoot",
-        "state": "Uttar Pradesh",
-        "country": "India",
-        "pincode": "231217"
-      }
+      shippingAddress: {
+        address1: "Renukoot Plant",
+        city: "Renukoot",
+        state: "Uttar Pradesh",
+        country: "India",
+        pincode: "231217",
+      },
     },
     {
-      "customerId": "CUS0026",
-      "customerCode": "C0026",
-      "companyName": "Srinivasa Refrigeration & AC",
-      "gstNumber": "37IJKL7890C1Z2",
-      "panNumber": "IJKL7890C",
-      "customerType": "SME",
-      "creditLimit": 200000,
-      "paymentTerms": "15 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0026",
+      customerCode: "C0026",
+      companyName: "Srinivasa Refrigeration & AC",
+      gstNumber: "37IJKL7890C1Z2",
+      panNumber: "IJKL7890C",
+      customerType: "SME",
+      creditLimit: 200000,
+      paymentTerms: "15 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0026",
-          "name": "Srinivas Rao",
-          "designation": "Proprietor",
-          "email": "srinivas@srac.in",
-          "mobile": "9393939393"
-        }
+          contactId: "CNT0026",
+          name: "Srinivas Rao",
+          designation: "Proprietor",
+          email: "srinivas@srac.in",
+          mobile: "9393939393",
+        },
       ],
-      "billingAddress": {
-        "address1": "3-4-102, Kothapet",
-        "city": "Hyderabad",
-        "state": "Telangana",
-        "country": "India",
-        "pincode": "500035"
+      billingAddress: {
+        address1: "3-4-102, Kothapet",
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+        pincode: "500035",
       },
-      "shippingAddress": {
-        "address1": "3-4-102, Kothapet",
-        "city": "Hyderabad",
-        "state": "Telangana",
-        "country": "India",
-        "pincode": "500035"
-      }
+      shippingAddress: {
+        address1: "3-4-102, Kothapet",
+        city: "Hyderabad",
+        state: "Telangana",
+        country: "India",
+        pincode: "500035",
+      },
     },
     {
-      "customerId": "CUS0027",
-      "customerCode": "C0027",
-      "companyName": "Atlas Piping & Equipment",
-      "gstNumber": "08MNOP4567D1Z3",
-      "panNumber": "MNOP4567D",
-      "customerType": "Corporate",
-      "creditLimit": 600000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0027",
+      customerCode: "C0027",
+      companyName: "Atlas Piping & Equipment",
+      gstNumber: "08MNOP4567D1Z3",
+      panNumber: "MNOP4567D",
+      customerType: "Corporate",
+      creditLimit: 600000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0027",
-          "name": "Vivek Bhatia",
-          "designation": "Manager Purchase",
-          "email": "vivek@atlaspiping.com",
-          "mobile": "9812345670"
-        }
+          contactId: "CNT0027",
+          name: "Vivek Bhatia",
+          designation: "Manager Purchase",
+          email: "vivek@atlaspiping.com",
+          mobile: "9812345670",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 14, Udyog Vihar, Phase IV",
-        "city": "Gurugram",
-        "state": "Haryana",
-        "country": "India",
-        "pincode": "122015"
+      billingAddress: {
+        address1: "Plot 14, Udyog Vihar, Phase IV",
+        city: "Gurugram",
+        state: "Haryana",
+        country: "India",
+        pincode: "122015",
       },
-      "shippingAddress": {
-        "address1": "Plot 14, Udyog Vihar",
-        "city": "Gurugram",
-        "state": "Haryana",
-        "country": "India",
-        "pincode": "122015"
-      }
+      shippingAddress: {
+        address1: "Plot 14, Udyog Vihar",
+        city: "Gurugram",
+        state: "Haryana",
+        country: "India",
+        pincode: "122015",
+      },
     },
     {
-      "customerId": "CUS0028",
-      "customerCode": "C0028",
-      "companyName": "Om Sai Refrigeration",
-      "gstNumber": "27QRST5678E1Z4",
-      "panNumber": "QRST5678E",
-      "customerType": "SME",
-      "creditLimit": 300000,
-      "paymentTerms": "15 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0028",
+      customerCode: "C0028",
+      companyName: "Om Sai Refrigeration",
+      gstNumber: "27QRST5678E1Z4",
+      panNumber: "QRST5678E",
+      customerType: "SME",
+      creditLimit: 300000,
+      paymentTerms: "15 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0028",
-          "name": "Ravi Shankar",
-          "designation": "Partner",
-          "email": "ravi@omsairef.in",
-          "mobile": "9834567890"
-        }
+          contactId: "CNT0028",
+          name: "Ravi Shankar",
+          designation: "Partner",
+          email: "ravi@omsairef.in",
+          mobile: "9834567890",
+        },
       ],
-      "billingAddress": {
-        "address1": "S-7, M.I.D.C, Satpur",
-        "city": "Nashik",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "422007"
+      billingAddress: {
+        address1: "S-7, M.I.D.C, Satpur",
+        city: "Nashik",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "422007",
       },
-      "shippingAddress": {
-        "address1": "S-7, M.I.D.C, Satpur",
-        "city": "Nashik",
-        "state": "Maharashtra",
-        "country": "India",
-        "pincode": "422007"
-      }
+      shippingAddress: {
+        address1: "S-7, M.I.D.C, Satpur",
+        city: "Nashik",
+        state: "Maharashtra",
+        country: "India",
+        pincode: "422007",
+      },
     },
     {
-      "customerId": "CUS0029",
-      "customerCode": "C0029",
-      "companyName": "Cosmos Heat Exchanger Technologies",
-      "gstNumber": "33UVWX7890F1Z5",
-      "panNumber": "UVWX7890F",
-      "customerType": "Corporate",
-      "creditLimit": 1800000,
-      "paymentTerms": "60 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0029",
+      customerCode: "C0029",
+      companyName: "Cosmos Heat Exchanger Technologies",
+      gstNumber: "33UVWX7890F1Z5",
+      panNumber: "UVWX7890F",
+      customerType: "Corporate",
+      creditLimit: 1800000,
+      paymentTerms: "60 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0029",
-          "name": "Raj Kumar",
-          "designation": "VP - Supply Chain",
-          "email": "raj.kumar@cosmosht.in",
-          "mobile": "9876544444"
-        }
+          contactId: "CNT0029",
+          name: "Raj Kumar",
+          designation: "VP - Supply Chain",
+          email: "raj.kumar@cosmosht.in",
+          mobile: "9876544444",
+        },
       ],
-      "billingAddress": {
-        "address1": "No. 7, Electronics City Phase 2",
-        "city": "Bengaluru",
-        "state": "Karnataka",
-        "country": "India",
-        "pincode": "560100"
+      billingAddress: {
+        address1: "No. 7, Electronics City Phase 2",
+        city: "Bengaluru",
+        state: "Karnataka",
+        country: "India",
+        pincode: "560100",
       },
-      "shippingAddress": {
-        "address1": "Electronics City Phase 2, Unit 5",
-        "city": "Bengaluru",
-        "state": "Karnataka",
-        "country": "India",
-        "pincode": "560100"
-      }
+      shippingAddress: {
+        address1: "Electronics City Phase 2, Unit 5",
+        city: "Bengaluru",
+        state: "Karnataka",
+        country: "India",
+        pincode: "560100",
+      },
     },
     {
-      "customerId": "CUS0030",
-      "customerCode": "C0030",
-      "companyName": "Kalinga Industrial Equipment",
-      "gstNumber": "21YZAB2345G1Z6",
-      "panNumber": "YZAB2345G",
-      "customerType": "SME",
-      "creditLimit": 500000,
-      "paymentTerms": "30 Days",
-      "currency": "INR",
-      "contacts": [
+      customerId: "CUS0030",
+      customerCode: "C0030",
+      companyName: "Kalinga Industrial Equipment",
+      gstNumber: "21YZAB2345G1Z6",
+      panNumber: "YZAB2345G",
+      customerType: "SME",
+      creditLimit: 500000,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [
         {
-          "contactId": "CNT0030",
-          "name": "Santosh Nayak",
-          "designation": "Director",
-          "email": "santosh@kalingaind.in",
-          "mobile": "9861123456"
-        }
+          contactId: "CNT0030",
+          name: "Santosh Nayak",
+          designation: "Director",
+          email: "santosh@kalingaind.in",
+          mobile: "9861123456",
+        },
       ],
-      "billingAddress": {
-        "address1": "Plot 3, Industrial Estate, Mancheswar",
-        "city": "Bhubaneswar",
-        "state": "Odisha",
-        "country": "India",
-        "pincode": "751010"
+      billingAddress: {
+        address1: "Plot 3, Industrial Estate, Mancheswar",
+        city: "Bhubaneswar",
+        state: "Odisha",
+        country: "India",
+        pincode: "751010",
       },
-      "shippingAddress": {
-        "address1": "Mancheswar Industrial Estate",
-        "city": "Bhubaneswar",
-        "state": "Odisha",
-        "country": "India",
-        "pincode": "751010"
-      }
-    }
+      shippingAddress: {
+        address1: "Mancheswar Industrial Estate",
+        city: "Bhubaneswar",
+        state: "Odisha",
+        country: "India",
+        pincode: "751010",
+      },
+    },
   ],
-  "quotations": [
+  quotations: [
     {
-      "quotationId": "QUO0002",
-      "quotationNumber": "QTN-2026-0002",
-      "customerId": "CUS0002",
-      "quotationDate": "2026-04-10",
-      "expiryDate": "2026-05-10",
-      "status": "Sent",
-      "items": [
+      quotationId: "QUO0002",
+      quotationNumber: "QTN-2026-0002",
+      customerId: "CUS0002",
+      quotationDate: "2026-04-10",
+      expiryDate: "2026-05-10",
+      status: "Sent",
+      items: [
         {
-          "itemCode": "PRD003",
-          "description": "Aluminum Fin Tube",
-          "qty": 500,
-          "rate": 850,
-          "discount": 3,
-          "gst": 18,
-          "amount": 412250
-        }
+          itemCode: "PRD003",
+          description: "Aluminum Fin Tube",
+          qty: 500,
+          rate: 850,
+          discount: 3,
+          gst: 18,
+          amount: 412250,
+        },
       ],
-      "subtotal": 412250,
-      "tax": 74205,
-      "grandTotal": 486455
+      subtotal: 412250,
+      tax: 74205,
+      grandTotal: 486455,
     },
     {
-      "quotationId": "QUO0004",
-      "quotationNumber": "QTN-2026-0004",
-      "customerId": "CUS0004",
-      "quotationDate": "2026-04-20",
-      "expiryDate": "2026-05-20",
-      "status": "Converted",
-      "items": [
+      quotationId: "QUO0004",
+      quotationNumber: "QTN-2026-0004",
+      customerId: "CUS0004",
+      quotationDate: "2026-04-20",
+      expiryDate: "2026-05-20",
+      status: "Converted",
+      items: [
         {
-          "itemCode": "PRD002",
-          "description": "Carbon Steel Fin Tube",
-          "qty": 1000,
-          "rate": 950,
-          "discount": 10,
-          "gst": 18,
-          "amount": 855000
-        }
+          itemCode: "PRD002",
+          description: "Carbon Steel Fin Tube",
+          qty: 1000,
+          rate: 950,
+          discount: 10,
+          gst: 18,
+          amount: 855000,
+        },
       ],
-      "subtotal": 855000,
-      "tax": 153900,
-      "grandTotal": 1008900
+      subtotal: 855000,
+      tax: 153900,
+      grandTotal: 1008900,
     },
     {
-      "quotationId": "QUO0010",
-      "quotationNumber": "QTN-2026-0010",
-      "customerId": "CUS0010",
-      "quotationDate": "2026-05-05",
-      "expiryDate": "2026-06-05",
-      "status": "Converted",
-      "items": [
+      quotationId: "QUO0010",
+      quotationNumber: "QTN-2026-0010",
+      customerId: "CUS0010",
+      quotationDate: "2026-05-05",
+      expiryDate: "2026-06-05",
+      status: "Converted",
+      items: [
         {
-          "itemCode": "PRD017",
-          "description": "Carbon Steel Fin Tube, 20 ft",
-          "qty": 1500,
-          "rate": 780,
-          "discount": 12,
-          "gst": 18,
-          "amount": 1029600
-        }
+          itemCode: "PRD017",
+          description: "Carbon Steel Fin Tube, 20 ft",
+          qty: 1500,
+          rate: 780,
+          discount: 12,
+          gst: 18,
+          amount: 1029600,
+        },
       ],
-      "subtotal": 1029600,
-      "tax": 185328,
-      "grandTotal": 1214928
+      subtotal: 1029600,
+      tax: 185328,
+      grandTotal: 1214928,
     },
     {
-      "quotationId": "QUO0013",
-      "quotationNumber": "QTN-2026-0013",
-      "customerId": "CUS0013",
-      "quotationDate": "2026-05-10",
-      "expiryDate": "2026-06-10",
-      "status": "Converted",
-      "items": [
+      quotationId: "QUO0013",
+      quotationNumber: "QTN-2026-0013",
+      customerId: "CUS0013",
+      quotationDate: "2026-05-10",
+      expiryDate: "2026-06-10",
+      status: "Converted",
+      items: [
         {
-          "itemCode": "PRD023",
-          "description": "Extruded Copper Fin Tube",
-          "qty": 85,
-          "rate": 2600,
-          "discount": 5,
-          "gst": 18,
-          "amount": 209950
-        }
+          itemCode: "PRD023",
+          description: "Extruded Copper Fin Tube",
+          qty: 85,
+          rate: 2600,
+          discount: 5,
+          gst: 18,
+          amount: 209950,
+        },
       ],
-      "subtotal": 209950,
-      "tax": 37791,
-      "grandTotal": 247741
+      subtotal: 209950,
+      tax: 37791,
+      grandTotal: 247741,
     },
     {
-      "quotationId": "QUO0017",
-      "quotationNumber": "QTN-2026-0017",
-      "customerId": "CUS0017",
-      "quotationDate": "2026-05-16",
-      "expiryDate": "2026-06-16",
-      "status": "Converted",
-      "items": [
+      quotationId: "QUO0017",
+      quotationNumber: "QTN-2026-0017",
+      customerId: "CUS0017",
+      quotationDate: "2026-05-16",
+      expiryDate: "2026-06-16",
+      status: "Converted",
+      items: [
         {
-          "itemCode": "PRD031",
-          "description": "SS Fin Tube, 304L",
-          "qty": 110,
-          "rate": 3350,
-          "discount": 8,
-          "gst": 18,
-          "amount": 339020
-        }
+          itemCode: "PRD031",
+          description: "SS Fin Tube, 304L",
+          qty: 110,
+          rate: 3350,
+          discount: 8,
+          gst: 18,
+          amount: 339020,
+        },
       ],
-      "subtotal": 339020,
-      "tax": 61023.6,
-      "grandTotal": 400043.6
+      subtotal: 339020,
+      tax: 61023.6,
+      grandTotal: 400043.6,
     },
     {
-      "quotationId": "QUO0020",
-      "quotationNumber": "QTN-2026-0020",
-      "customerId": "CUS0020",
-      "quotationDate": "2026-05-21",
-      "expiryDate": "2026-06-21",
-      "status": "Converted",
-      "items": [
+      quotationId: "QUO0020",
+      quotationNumber: "QTN-2026-0020",
+      customerId: "CUS0020",
+      quotationDate: "2026-05-21",
+      expiryDate: "2026-06-21",
+      status: "Converted",
+      items: [
         {
-          "itemCode": "PRD037",
-          "description": "Aluminum Fin Tube, High Density",
-          "qty": 350,
-          "rate": 1050,
-          "discount": 10,
-          "gst": 18,
-          "amount": 330750
-        }
+          itemCode: "PRD037",
+          description: "Aluminum Fin Tube, High Density",
+          qty: 350,
+          rate: 1050,
+          discount: 10,
+          gst: 18,
+          amount: 330750,
+        },
       ],
-      "subtotal": 330750,
-      "tax": 59535,
-      "grandTotal": 390285
-    }
+      subtotal: 330750,
+      tax: 59535,
+      grandTotal: 390285,
+    },
   ],
-  "invoices": [
+  invoices: [
     {
-      "invoiceId": "INV0002",
-      "invoiceNumber": "INV-2026-0002",
-      "quotationId": "QUO0004",
-      "customerId": "CUS0004",
-      "invoiceDate": "2026-04-25",
-      "paymentTerms": "60 Days",
-      "status": "Unpaid",
-      "items": [
+      invoiceId: "INV0002",
+      invoiceNumber: "INV-2026-0002",
+      quotationId: "QUO0004",
+      customerId: "CUS0004",
+      invoiceDate: "2026-04-25",
+      paymentTerms: "60 Days",
+      status: "Unpaid",
+      items: [
         {
-          "itemCode": "PRD002",
-          "description": "Carbon Steel Fin Tube",
-          "qty": 1000,
-          "rate": 950,
-          "discount": 10,
-          "gst": 18,
-          "amount": 855000
-        }
+          itemCode: "PRD002",
+          description: "Carbon Steel Fin Tube",
+          qty: 1000,
+          rate: 950,
+          discount: 10,
+          gst: 18,
+          amount: 855000,
+        },
       ],
-      "subtotal": 855000,
-      "gstAmount": 153900,
-      "grandTotal": 1008900,
-      "payments": []
+      subtotal: 855000,
+      gstAmount: 153900,
+      grandTotal: 1008900,
+      payments: [],
     },
     {
-      "invoiceId": "INV0003",
-      "invoiceNumber": "INV-2026-0003",
-      "quotationId": "QUO0010",
-      "customerId": "CUS0010",
-      "invoiceDate": "2026-05-08",
-      "paymentTerms": "30 Days",
-      "status": "Partially Paid",
-      "items": [
+      invoiceId: "INV0003",
+      invoiceNumber: "INV-2026-0003",
+      quotationId: "QUO0010",
+      customerId: "CUS0010",
+      invoiceDate: "2026-05-08",
+      paymentTerms: "30 Days",
+      status: "Partially Paid",
+      items: [
         {
-          "itemCode": "PRD017",
-          "description": "Carbon Steel Fin Tube, 20 ft",
-          "qty": 1500,
-          "rate": 780,
-          "discount": 12,
-          "gst": 18,
-          "amount": 1029600
-        }
+          itemCode: "PRD017",
+          description: "Carbon Steel Fin Tube, 20 ft",
+          qty: 1500,
+          rate: 780,
+          discount: 12,
+          gst: 18,
+          amount: 1029600,
+        },
       ],
-      "subtotal": 1029600,
-      "gstAmount": 185328,
-      "grandTotal": 1214928,
-      "payments": [
+      subtotal: 1029600,
+      gstAmount: 185328,
+      grandTotal: 1214928,
+      payments: [
         {
-          "paymentId": "PAY0003",
-          "date": "2026-05-20",
-          "mode": "RTGS",
-          "amount": 500000,
-          "reference": "RTGS123456"
-        }
-      ]
+          paymentId: "PAY0003",
+          date: "2026-05-20",
+          mode: "RTGS",
+          amount: 500000,
+          reference: "RTGS123456",
+        },
+      ],
     },
     {
-      "invoiceId": "INV0004",
-      "invoiceNumber": "INV-2026-0004",
-      "quotationId": "QUO0013",
-      "customerId": "CUS0013",
-      "invoiceDate": "2026-05-15",
-      "paymentTerms": "30 Days",
-      "status": "Paid",
-      "items": [
+      invoiceId: "INV0004",
+      invoiceNumber: "INV-2026-0004",
+      quotationId: "QUO0013",
+      customerId: "CUS0013",
+      invoiceDate: "2026-05-15",
+      paymentTerms: "30 Days",
+      status: "Paid",
+      items: [
         {
-          "itemCode": "PRD023",
-          "description": "Extruded Copper Fin Tube",
-          "qty": 85,
-          "rate": 2600,
-          "discount": 5,
-          "gst": 18,
-          "amount": 209950
-        }
+          itemCode: "PRD023",
+          description: "Extruded Copper Fin Tube",
+          qty: 85,
+          rate: 2600,
+          discount: 5,
+          gst: 18,
+          amount: 209950,
+        },
       ],
-      "subtotal": 209950,
-      "gstAmount": 37791,
-      "grandTotal": 247741,
-      "payments": [
+      subtotal: 209950,
+      gstAmount: 37791,
+      grandTotal: 247741,
+      payments: [
         {
-          "paymentId": "PAY0004",
-          "date": "2026-06-01",
-          "mode": "NEFT",
-          "amount": 247741,
-          "reference": "UTR987654321"
-        }
-      ]
+          paymentId: "PAY0004",
+          date: "2026-06-01",
+          mode: "NEFT",
+          amount: 247741,
+          reference: "UTR987654321",
+        },
+      ],
     },
     {
-      "invoiceId": "INV0005",
-      "invoiceNumber": "INV-2026-0005",
-      "quotationId": "QUO0017",
-      "customerId": "CUS0017",
-      "invoiceDate": "2026-05-22",
-      "paymentTerms": "45 Days",
-      "status": "Overdue",
-      "items": [
+      invoiceId: "INV0005",
+      invoiceNumber: "INV-2026-0005",
+      quotationId: "QUO0017",
+      customerId: "CUS0017",
+      invoiceDate: "2026-05-22",
+      paymentTerms: "45 Days",
+      status: "Overdue",
+      items: [
         {
-          "itemCode": "PRD031",
-          "description": "SS Fin Tube, 304L",
-          "qty": 110,
-          "rate": 3350,
-          "discount": 8,
-          "gst": 18,
-          "amount": 339020
-        }
+          itemCode: "PRD031",
+          description: "SS Fin Tube, 304L",
+          qty: 110,
+          rate: 3350,
+          discount: 8,
+          gst: 18,
+          amount: 339020,
+        },
       ],
-      "subtotal": 339020,
-      "gstAmount": 61023.6,
-      "grandTotal": 400043.6,
-      "payments": []
+      subtotal: 339020,
+      gstAmount: 61023.6,
+      grandTotal: 400043.6,
+      payments: [],
     },
     {
-      "invoiceId": "INV0006",
-      "invoiceNumber": "INV-2026-0006",
-      "quotationId": "QUO0020",
-      "customerId": "CUS0020",
-      "invoiceDate": "2026-05-25",
-      "paymentTerms": "30 Days",
-      "status": "Unpaid",
-      "items": [
+      invoiceId: "INV0006",
+      invoiceNumber: "INV-2026-0006",
+      quotationId: "QUO0020",
+      customerId: "CUS0020",
+      invoiceDate: "2026-05-25",
+      paymentTerms: "30 Days",
+      status: "Unpaid",
+      items: [
         {
-          "itemCode": "PRD037",
-          "description": "Aluminum Fin Tube, High Density",
-          "qty": 350,
-          "rate": 1050,
-          "discount": 10,
-          "gst": 18,
-          "amount": 330750
-        }
+          itemCode: "PRD037",
+          description: "Aluminum Fin Tube, High Density",
+          qty: 350,
+          rate: 1050,
+          discount: 10,
+          gst: 18,
+          amount: 330750,
+        },
       ],
-      "subtotal": 330750,
-      "gstAmount": 59535,
-      "grandTotal": 390285,
-      "payments": []
+      subtotal: 330750,
+      gstAmount: 59535,
+      grandTotal: 390285,
+      payments: [],
     },
     {
-      "invoiceId": "INV0007",
-      "invoiceNumber": "INV-2026-0007",
-      "quotationId": "QUO0011",
-      "customerId": "CUS0011",
-      "invoiceDate": "2026-05-10",
-      "paymentTerms": "15 Days",
-      "status": "Partially Paid",
-      "items": [
+      invoiceId: "INV0007",
+      invoiceNumber: "INV-2026-0007",
+      quotationId: "QUO0011",
+      customerId: "CUS0011",
+      invoiceDate: "2026-05-10",
+      paymentTerms: "15 Days",
+      status: "Partially Paid",
+      items: [
         {
-          "itemCode": "PRD019",
-          "description": "Aluminum Fin Tube, Corrosion Resistant",
-          "qty": 400,
-          "rate": 990,
-          "discount": 7,
-          "gst": 18,
-          "amount": 368280
-        }
+          itemCode: "PRD019",
+          description: "Aluminum Fin Tube, Corrosion Resistant",
+          qty: 400,
+          rate: 990,
+          discount: 7,
+          gst: 18,
+          amount: 368280,
+        },
       ],
-      "subtotal": 368280,
-      "gstAmount": 66290.4,
-      "grandTotal": 434570.4,
-      "payments": [
+      subtotal: 368280,
+      gstAmount: 66290.4,
+      grandTotal: 434570.4,
+      payments: [
         {
-          "paymentId": "PAY0007",
-          "date": "2026-05-25",
-          "mode": "Cheque",
-          "amount": 200000,
-          "reference": "CHQ12345"
-        }
-      ]
+          paymentId: "PAY0007",
+          date: "2026-05-25",
+          mode: "Cheque",
+          amount: 200000,
+          reference: "CHQ12345",
+        },
+      ],
     },
     {
-      "invoiceId": "INV0009",
-      "invoiceNumber": "INV-2026-0009",
-      "quotationId": "QUO0008",
-      "customerId": "CUS0008",
-      "invoiceDate": "2026-05-05",
-      "paymentTerms": "30 Days",
-      "status": "Paid",
-      "items": [
+      invoiceId: "INV0009",
+      invoiceNumber: "INV-2026-0009",
+      quotationId: "QUO0008",
+      customerId: "CUS0008",
+      invoiceDate: "2026-05-05",
+      paymentTerms: "30 Days",
+      status: "Paid",
+      items: [
         {
-          "itemCode": "PRD013",
-          "description": "SS Fin Tube, 304 Grade",
-          "qty": 90,
-          "rate": 3100,
-          "discount": 5,
-          "gst": 18,
-          "amount": 265050
-        }
+          itemCode: "PRD013",
+          description: "SS Fin Tube, 304 Grade",
+          qty: 90,
+          rate: 3100,
+          discount: 5,
+          gst: 18,
+          amount: 265050,
+        },
       ],
-      "subtotal": 265050,
-      "gstAmount": 47709,
-      "grandTotal": 312759,
-      "payments": [
+      subtotal: 265050,
+      gstAmount: 47709,
+      grandTotal: 312759,
+      payments: [
         {
-          "paymentId": "PAY0009",
-          "date": "2026-05-28",
-          "mode": "NEFT",
-          "amount": 312759,
-          "reference": "UTR1122334455"
-        }
-      ]
+          paymentId: "PAY0009",
+          date: "2026-05-28",
+          mode: "NEFT",
+          amount: 312759,
+          reference: "UTR1122334455",
+        },
+      ],
     },
     {
-      "invoiceId": "INV0010",
-      "invoiceNumber": "INV-2026-0010",
-      "quotationId": "QUO0006",
-      "customerId": "CUS0006",
-      "invoiceDate": "2026-04-30",
-      "paymentTerms": "30 Days",
-      "status": "Paid",
-      "items": [
+      invoiceId: "INV0010",
+      invoiceNumber: "INV-2026-0010",
+      quotationId: "QUO0006",
+      customerId: "CUS0006",
+      invoiceDate: "2026-04-30",
+      paymentTerms: "30 Days",
+      status: "Paid",
+      items: [
         {
-          "itemCode": "PRD009",
-          "description": "Extruded Aluminum Fin Tube",
-          "qty": 300,
-          "rate": 1450,
-          "discount": 8,
-          "gst": 18,
-          "amount": 400200
-        }
+          itemCode: "PRD009",
+          description: "Extruded Aluminum Fin Tube",
+          qty: 300,
+          rate: 1450,
+          discount: 8,
+          gst: 18,
+          amount: 400200,
+        },
       ],
-      "subtotal": 400200,
-      "gstAmount": 72036,
-      "grandTotal": 472236,
-      "payments": [
+      subtotal: 400200,
+      gstAmount: 72036,
+      grandTotal: 472236,
+      payments: [
         {
-          "paymentId": "PAY0010",
-          "date": "2026-05-15",
-          "mode": "RTGS",
-          "amount": 472236,
-          "reference": "RTGS987654"
-        }
-      ]
+          paymentId: "PAY0010",
+          date: "2026-05-15",
+          mode: "RTGS",
+          amount: 472236,
+          reference: "RTGS987654",
+        },
+      ],
     },
     {
-      "invoiceId": "INV0011",
-      "invoiceNumber": "INV-2026-0011",
-      "quotationId": "QUO0002",
-      "customerId": "CUS0002",
-      "invoiceDate": "2026-04-15",
-      "paymentTerms": "45 Days",
-      "status": "Unpaid",
-      "items": [
+      invoiceId: "INV0011",
+      invoiceNumber: "INV-2026-0011",
+      quotationId: "QUO0002",
+      customerId: "CUS0002",
+      invoiceDate: "2026-04-15",
+      paymentTerms: "45 Days",
+      status: "Unpaid",
+      items: [
         {
-          "itemCode": "PRD003",
-          "description": "Aluminum Fin Tube",
-          "qty": 500,
-          "rate": 850,
-          "discount": 3,
-          "gst": 18,
-          "amount": 412250
-        }
+          itemCode: "PRD003",
+          description: "Aluminum Fin Tube",
+          qty: 500,
+          rate: 850,
+          discount: 3,
+          gst: 18,
+          amount: 412250,
+        },
       ],
-      "subtotal": 412250,
-      "gstAmount": 74205,
-      "grandTotal": 486455,
-      "payments": []
-    }
-  ]
-}
-
+      subtotal: 412250,
+      gstAmount: 74205,
+      grandTotal: 486455,
+      payments: [],
+    },
+  ],
+};

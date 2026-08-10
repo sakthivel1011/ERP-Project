@@ -10,8 +10,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
+    <BrowserRouter basename="/ERP-Project">
       <Layout />
       <PrivateRouter />
+      </BrowserRouter>
     </>
   );
 }
