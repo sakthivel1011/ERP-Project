@@ -806,7 +806,7 @@ export const Data = {
         city: "Kochi",
         state: "Kerala",
         country: "India",
-        pincode: "682017",
+        pincode: "682017",  
       },
       shippingAddress: {
         address1: "KINFRA Industrial Park",

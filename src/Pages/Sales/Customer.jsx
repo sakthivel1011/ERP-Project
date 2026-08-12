@@ -3,7 +3,14 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { Box, Stack, Typography, Grid } from "@mui/material"; // Normal table creation
+import {
+  Box,
+  Stack,
+  Typography,
+  Grid,
+  TextField,
+  MenuItem,
+} from "@mui/material"; // Normal table creation
 import { Data } from "../../Data/Data";
 import {
   Button,
@@ -39,6 +46,24 @@ function Customer() {
     ).length;
     return { total, paid, unpaid, overdue, partiallypaid };
   });
+
+  // Filter Fields
+  const [statusfilter, setStatusFilter] = useState("");
+
+  const FilterTable = useMemo(() => {
+    const customer = Data?.customers || [];
+    const invoice = Data?.invoices || [];
+
+    if (!statusfilter || statusfilter === "all") return customer;
+    // status filter la ethuvum click pann la na all customer nu show agum
+    const matchingcustomer = invoice
+      .filter(
+        (inv) =>
+          inv.status?.toLocaleLowerCase() == statusfilter.toLocaleLowerCase(),
+      )
+      .map((inv) => inv.customerId);
+    return customer.filter((c) => matchingcustomer.includes(c.customerId));
+  }, [statusfilter]);
 
   //function handle button click and popup
   const handleActionClick = (title, data) => {
@@ -85,6 +110,20 @@ function Customer() {
         header: "Payments Terms",
         size: 100,
       },
+      // Status Table la show aga 
+        {
+      id: "invoiceStatus",
+      header: "Status",
+      size: 100,
+      Cell: ({ row }) => {
+        const currentCustomerId = row.original.customerId;
+        const matchingInvoice = Data?.invoices?.find(
+          (inv) => inv.customerId === currentCustomerId
+        );
+        const statusValue = matchingInvoice?.status || "-";
+        return <span>{statusValue}</span>;
+      },
+    },
       {
         accessorKey: "creditLimit",
         header: "Credit Limit",
@@ -99,6 +138,7 @@ function Customer() {
           }).format(amount);
         },
       },
+   
 
       // Add new coloumn Action And button
       {
@@ -154,7 +194,7 @@ function Customer() {
   // TABLE INITIAL INITIALIZATION SETUP AND INSERT DATA INTO TABLE
   const table = useMaterialReactTable({
     columns,
-    data: Data?.customers || [],
+    data: FilterTable || [],
     // enableGlobalFilter: true,
     enablePagination: true,
     enableHiding: false,
@@ -274,6 +314,26 @@ function Customer() {
           </Box>
         </Grid>
       </Grid>
+
+      {/*Filter Data*/}
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
+        <TextField
+          select
+          variant="outlined"
+          defaultValue={""}
+          label="Filter Status"
+          size="small"
+          value={statusfilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          sx={{ width: '250px', bgcolor: 'white' }}
+        >
+          <MenuItem value="all">All Status</MenuItem>
+          <MenuItem value="paid">Paid</MenuItem>
+          <MenuItem value="unpaid">UnPaid</MenuItem>
+          <MenuItem value="overdue">Overdue</MenuItem>
+          <MenuItem value="partially Paid">Patially Paid</MenuItem>
+        </TextField>
+      </Box>
 
       <MaterialReactTable table={table} />
 
