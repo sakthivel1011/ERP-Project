@@ -29,33 +29,37 @@ export default function Invoice() {
   };
 
   
-const formattedInvoices = Array.isArray(invoiceData)
-  ? invoiceData.map((invoice) => {
-      
-      
-      const matchedCustomer = Data?.customers?.find(
-        (cust) => cust.customerId === invoice?.customerId
-      );
 
-      return {
-        rawInvoice: invoice, 
-        invoiceNumber: invoice?.quotationNumber || invoice?.invoiceNumber || "-", 
-        companyName: matchedCustomer ? matchedCustomer.companyName : "-", // 
-        invoiceDate: invoice?.quotationDate || invoice?.invoiceDate || "-",
-        paymentTerms: matchedCustomer?.paymentTerms || "-", 
-        amount: invoice?.grandTotal || invoice?.subtotal || 0, 
-        status: invoice?.status || "-",
-      };
-    })
-  : [];
+const filterStatusData = useMemo(() => {
+  const rawInvoices = Array.isArray(invoiceData) ? invoiceData : [];
+  const customerList = Data?.customers || [];
 
-const filterStatusData = statusfilter?.toLowerCase() === "all"
-  ? formattedInvoices
-  : formattedInvoices.filter(
-      (invoice) => invoice?.status?.toLowerCase() === statusfilter?.toLowerCase()
+  const formatted = rawInvoices.map((invoice) => {
+    const matchedCustomer = customerList.find(
+      (cust) => cust.customerId === invoice?.customerId
     );
 
-  console.log("filterStatusData", filterStatusData);
+    return {
+      rawInvoice: invoice, 
+      invoiceNumber: invoice?.quotationNumber || invoice?.invoiceNumber || "-", 
+      companyName: matchedCustomer ? matchedCustomer.companyName : "-", 
+      invoiceDate: invoice?.quotationDate || invoice?.invoiceDate || "-",
+      paymentTerms: matchedCustomer?.paymentTerms || "-", 
+      amount: invoice?.grandTotal || invoice?.subtotal || 0, 
+      status: invoice?.status || "-",
+    };
+  });
+
+ 
+  if (statusfilter?.toLowerCase() === "all" || !statusfilter) {
+    return formatted;
+  }
+  
+  return formatted.filter(
+    (invoice) => invoice?.status?.toLowerCase() === statusfilter?.toLowerCase()
+  );
+
+}, [invoiceData, statusfilter, Data?.customers])
 
 
 
@@ -160,25 +164,25 @@ const filterStatusData = statusfilter?.toLowerCase() === "all"
       </Typography>
 
       <Grid container spacing={10}>
-        <Grid item xs={12} sm={3}>
+        <Grid  xs={12} sm={3}>
           <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
             <Typography color="text.secondary">Total Invoices</Typography>
             <Typography variant="h6">{kpiData.totalInvoices}</Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid  xs={12} sm={3}>
           <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
             <Typography color="text.secondary">Paid Amount</Typography>
             <Typography variant="h6">{kpiData.paidCount}</Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid  xs={12} sm={3}>
           <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
             <Typography color="text.secondary">Unpaid Amount</Typography>
             <Typography variant="h6">{kpiData.unPaidCount}</Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid  xs={12} sm={3}>
           <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
             <Typography color="text.secondary">Over Due</Typography>
             <Typography variant="h6">{kpiData.overDueCount}</Typography>
@@ -211,14 +215,7 @@ const filterStatusData = statusfilter?.toLowerCase() === "all"
         open={modalOpen}
         onClose={handleCloseModal}
         slots={{ backdrop: () => null }}
-        PaperProps={{
-          sx: {
-            boxShadow: 24,
-            border: "1px solid #e0e0e0",
-            width: "100%",
-            maxWidth: 500,
-          },
-        }}
+       
       >
         <DialogTitle sx={{ fontWeight: "bold" }}>
           {modalType === "items" ? "Invoice Item Details" : "Payment Ledger"}
