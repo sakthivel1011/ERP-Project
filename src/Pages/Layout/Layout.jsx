@@ -10,9 +10,9 @@ export default function Layout() {
   const [hr, setHr] = useState(false);
   return (
     <>
-      <h2>ERP ADMIN PANEL</h2>
       <div className="main">
         <nav className="sidebar">
+          <h2>ERP ADMIN </h2>
           <Link to="/"><button className="b1">🏠Dashboard</button></Link>
           <div>
             <button className="b1" onClick={() => setOpen(!open)}>

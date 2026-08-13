@@ -1,7 +1,7 @@
 .main{
     display: flex;
     width: 200px;
-    margin-top: 40px;
+    margin-top: 0px;
     /* overflow-y: hidden; */
     position: fixed;
     height: 90vh;
@@ -36,13 +36,14 @@
     padding-top: 100px;
 }
 .sidebar{
-    margin-left: 10px;
+    margin-left: 0px;
     overflow-y: scroll;
-    height: 90vh;
+    height: 100vh;
     scrollbar-width: none;
-
+    border: 0.5px solid lightgrey;
     border-radius: 5px;
     width: 200px;
+    background-color: white;
  
 }
 .barchart{

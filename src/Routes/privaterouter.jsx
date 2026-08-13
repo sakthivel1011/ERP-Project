@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Customer from "../Pages/Sales/Customer";
+import Customer from "../Pages/Sales/Customer/Customer";
 import Quotations from "../Pages/Sales/Quotations";
 import Salesorder from "../Pages/Sales/Salesorder";
 import Invoice from "../Pages/Sales/invoice/Invoice";

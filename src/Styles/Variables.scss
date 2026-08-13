@@ -3,7 +3,8 @@ $color-primary: #3b82f6;
 $color-text-dark: #1e293b;     
 $color-text-muted: #64748b;    
 $color-border-light: #e2e8f0;  
-$color-bg-light: #f8fafc;    
+$color-bg-light: #f8fafc;   
+
 
 // 2. STATUS TAG COLORS 
 $color-success: #10b981;       
@@ -12,6 +13,7 @@ $color-warning: #f59e0b;
 
 // 3. TYPOGRAPHY SYSTEM
 
+$font-family-base:  'Inter', 'Plus Jakarta Sans', sans-serif;
 $font-weight-normal: 400;
 $font-weight-medium: 500;      
 $font-weight-semibold: 600;  
@@ -19,7 +21,7 @@ $font-family-base:"Inter", system-ui, -apple-system, sans-serif;
 
 // 4. INTERACTIVE COMPONENT PROPERTIES
 $radius-button: 8px;        
-$radius-card: 12px;    
+$radius-card: 12px ;    
 $transition-default: all 0.2s ease-in-out;
 
 
@@ -89,6 +91,18 @@ $font-weight-header: 600;
 
 //kpiData
 $kpi-card-padding: 8px 35px;  
+//table styling
+$table-header-background-color: #f8fafc;
+$table-body-background-color: #ffffff;
+$table-border-radius:5px;
+$table-border-color:#D3D3D3;
+
+
+
+//KPI styling
+//kpiData
+$kpi-card-padding: 8px 35px;
+$kpi-border-black: 1px solid #000000;  
 $spacing-xs: 2px;
 $color-purple:rgb(138, 5, 138);
 $color-blue:rgb(13, 166, 226);
@@ -104,6 +118,10 @@ $color-blue:rgb(13, 166, 226);
 
 //ellipsis
 @mixin single-line-dot($gap-bottom: 30px) {
+}
+
+//ellipsis
+@mixin single-line-dot($gap-bottom: 16px) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
