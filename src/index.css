@@ -1,3 +1,4 @@
+@import url("https://googleapis.com");
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,9 +12,7 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  font-family: "Bangers", "Comic Sans MS", "Comic Neue", Impact, sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -28,6 +27,18 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+}
+* {
+  box-sizing: border-box;
+  font-family:
+    "Poppins",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,7 +68,7 @@ body {
 #root {
   /* width: 1126px; */
   max-width: 100%;
-  margin: 0 ;
+  margin: 0;
   text-align: center;
   border-inline: 1px solid var(--border);
   min-height: 100svh;
@@ -65,10 +76,19 @@ body {
   flex-direction: column;
   box-sizing: border-box;
 }
+h1,
+h2,
+p,
+code,
+.counter {
+  width: fit-content; /* Forces the horizontal boundary to tightly match the text width */
+  max-width: 100%; /* Protects layouts from overflowing on small mobile screens */
+  height: auto; /* Vertically expands naturally if lines wrap */
+  margin-inline: auto; /* Keeps the content centered inside your text-align: center root layout */
+}
 
 h1,
 h2 {
-  font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
 }
@@ -97,7 +117,6 @@ p {
 
 code,
 .counter {
-  font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
   color: var(--text-h);

@@ -3,7 +3,7 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { Data } from "../../Data/Data";
+import { Data } from "../../../Data/Data";
 import { Grid, Box, Typography, Stack } from "@mui/material";
 import {
   Button,
@@ -14,6 +14,7 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
+import "../invoice/invoice.scss";
 
 export default function Invoice() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,40 +29,36 @@ export default function Invoice() {
     setStatusFilter(event.target.value);
   };
 
-  
+  const filterStatusData = useMemo(() => {
+    const rawInvoices = Array.isArray(invoiceData) ? invoiceData : [];
+    const customerList = Data?.customers || [];
 
-const filterStatusData = useMemo(() => {
-  const rawInvoices = Array.isArray(invoiceData) ? invoiceData : [];
-  const customerList = Data?.customers || [];
+    const formatted = rawInvoices.map((invoice) => {
+      const matchedCustomer = customerList.find(
+        (cust) => cust.customerId === invoice?.customerId,
+      );
 
-  const formatted = rawInvoices.map((invoice) => {
-    const matchedCustomer = customerList.find(
-      (cust) => cust.customerId === invoice?.customerId
+      return {
+        rawInvoice: invoice,
+        invoiceNumber:
+          invoice?.quotationNumber || invoice?.invoiceNumber || "-",
+        companyName: matchedCustomer ? matchedCustomer.companyName : "-",
+        invoiceDate: invoice?.quotationDate || invoice?.invoiceDate || "-",
+        paymentTerms: matchedCustomer?.paymentTerms || "-",
+        amount: invoice?.grandTotal || invoice?.subtotal || 0,
+        status: invoice?.status || "-",
+      };
+    });
+
+    if (statusfilter?.toLowerCase() === "all" || !statusfilter) {
+      return formatted;
+    }
+
+    return formatted.filter(
+      (invoice) =>
+        invoice?.status?.toLowerCase() === statusfilter?.toLowerCase(),
     );
-
-    return {
-      rawInvoice: invoice, 
-      invoiceNumber: invoice?.quotationNumber || invoice?.invoiceNumber || "-", 
-      companyName: matchedCustomer ? matchedCustomer.companyName : "-", 
-      invoiceDate: invoice?.quotationDate || invoice?.invoiceDate || "-",
-      paymentTerms: matchedCustomer?.paymentTerms || "-", 
-      amount: invoice?.grandTotal || invoice?.subtotal || 0, 
-      status: invoice?.status || "-",
-    };
-  });
-
- 
-  if (statusfilter?.toLowerCase() === "all" || !statusfilter) {
-    return formatted;
-  }
-  
-  return formatted.filter(
-    (invoice) => invoice?.status?.toLowerCase() === statusfilter?.toLowerCase()
-  );
-
-}, [invoiceData, statusfilter, Data?.customers])
-
-
+  }, [invoiceData, statusfilter, Data?.customers]);
 
   const handleActionClick = (type, rowData) => {
     setModalOpen(true);
@@ -152,45 +149,36 @@ const filterStatusData = useMemo(() => {
         pt: 3,
       }}
     >
-      <Typography
-        variant="h5"
-        sx={{
-          mb: 4,
-          fontWeight: "bold",
-          color: "black",
-        }}
-      >
-        Invoice Management
-      </Typography>
+      <Typography className="invoiceName">Invoice Management</Typography>
 
-      <Grid container spacing={10}>
-        <Grid  xs={12} sm={3}>
-          <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
-            <Typography color="text.secondary">Total Invoices</Typography>
+      <Grid container spacing={10} className="kpi-container">
+        <Grid xs={12} sm={3}>
+          <Box className="kpi-total">
+            <Typography className="status">Total Invoices</Typography>
             <Typography variant="h6">{kpiData.totalInvoices}</Typography>
           </Box>
         </Grid>
-        <Grid  xs={12} sm={3}>
-          <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
-            <Typography color="text.secondary">Paid Amount</Typography>
+        <Grid xs={12} sm={3}>
+          <Box className="kpi-paid">
+            <Typography className="status">Paid Amount</Typography>
             <Typography variant="h6">{kpiData.paidCount}</Typography>
           </Box>
         </Grid>
-        <Grid  xs={12} sm={3}>
-          <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
-            <Typography color="text.secondary">Unpaid Amount</Typography>
+        <Grid xs={12} sm={3}>
+          <Box className="kpi-unpaid">
+            <Typography className="status">Unpaid Amount</Typography>
             <Typography variant="h6">{kpiData.unPaidCount}</Typography>
           </Box>
         </Grid>
-        <Grid  xs={12} sm={3}>
-          <Box sx={{ p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}>
-            <Typography color="text.secondary">Over Due</Typography>
+        <Grid xs={12} sm={3}>
+          <Box className="kpi-over">
+            <Typography className="status">Over Due</Typography>
             <Typography variant="h6">{kpiData.overDueCount}</Typography>
           </Box>
         </Grid>
       </Grid>
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}>
         <TextField
           select
           variant="outlined"
@@ -199,7 +187,7 @@ const filterStatusData = useMemo(() => {
           size="small"
           value={statusfilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          sx={{ width: "250px", bgcolor: "white" }}
+          className="Dropdown"
         >
           <MenuItem value="all">All Status</MenuItem>
           <MenuItem value="paid">Paid</MenuItem>
@@ -207,15 +195,18 @@ const filterStatusData = useMemo(() => {
           <MenuItem value="overdue">Overdue</MenuItem>
           <MenuItem value="partially Paid">Patially Paid</MenuItem>
         </TextField>
+
+        <Button className="invoice">New Invoice</Button>
       </Box>
 
-      <MaterialReactTable table={table} />
+     <Box className="table-container">
+  <MaterialReactTable table={table} />
+</Box>
 
       <Dialog
         open={modalOpen}
         onClose={handleCloseModal}
         slots={{ backdrop: () => null }}
-       
       >
         <DialogTitle sx={{ fontWeight: "bold" }}>
           {modalType === "items" ? "Invoice Item Details" : "Payment Ledger"}

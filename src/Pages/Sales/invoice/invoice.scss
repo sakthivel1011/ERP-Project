@@ -1,0 +1,51 @@
+@use "/src/Styles/Variables.scss" as *;
+
+.kpi-container {
+  font-family: $font-family-base;
+   @include flex-center; 
+}
+
+.kpi-total, .kpi-paid, .kpi-over, .kpi-unpaid{
+  background-color: $color-bg-light;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-card; 
+  padding: $kpi-card-padding; 
+  display: flex;             
+  flex-direction: column;    
+  gap: $spacing-xs;
+  width: 200px;
+  @include flex-center;        
+  @include single-line-dot(30px);
+  &:hover {
+    box-shadow: 0 4px 12px rgb(148, 82, 102); 
+  }
+}
+
+.kpi-total{
+    color:$color-primary;   
+    border: 1px solid rgba($color-primary, 0.5);
+}
+
+.kpi-paid{
+  color:$color-success;
+  border: 1px solid rgba($color-success, 0.5);
+}
+
+.kpi-unpaid{
+  color:$color-warning;
+  border: 1px solid rgba($color-warning, 0.5);
+}
+
+.kpi-over{
+  color:$color-danger;
+  border: 1px solid rgba($color-danger, 0.5);
+}
+
+.Dropdown{
+  @include drop-down
+}
+
+.table-container{
+  @include push-down-5px;
+}
+
