@@ -11,7 +11,8 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material"; // Normal table creation
-import { Data } from "../../Data/Data";
+// import { Data } from "../../Data/Data";
+import { Data } from "../../../Data/Data";
 import {
   Button,
   Dialog,
@@ -19,6 +20,7 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material"; //popup msg and action button ku
+import "./Customer.scss";
 
 function Customer() {
   //popup state
@@ -88,46 +90,46 @@ function Customer() {
       {
         accessorKey: "customerCode",
         header: "Customer Code",
-        size: 100,
+        size: 50,
       },
       {
         accessorKey: "companyName",
         header: "Company Name",
-        size: 100,
+        size: 50,
       },
       {
         accessorKey: "gstNumber",
         header: "GST Number",
-        size: 100,
+        size: 50,
       },
       {
         accessorKey: "customerType",
         header: "Type",
-        size: 100,
+        size: 50,
       },
       {
         accessorKey: "paymentTerms",
         header: "Payments Terms",
-        size: 100,
+        size: 50,
       },
-      // Status Table la show aga 
-        {
-      id: "invoiceStatus",
-      header: "Status",
-      size: 100,
-      Cell: ({ row }) => {
-        const currentCustomerId = row.original.customerId;
-        const matchingInvoice = Data?.invoices?.find(
-          (inv) => inv.customerId === currentCustomerId
-        );
-        const statusValue = matchingInvoice?.status || "-";
-        return <span>{statusValue}</span>;
+      // Status Table la show aga
+      {
+        id: "invoiceStatus",
+        header: "Status",
+        size: 50,
+        Cell: ({ row }) => {
+          const currentCustomerId = row.original.customerId;
+          const matchingInvoice = Data?.invoices?.find(
+            (inv) => inv.customerId === currentCustomerId,
+          );
+          const statusValue = matchingInvoice?.status || "-";
+          return <span>{statusValue}</span>;
+        },
       },
-    },
       {
         accessorKey: "creditLimit",
         header: "Credit Limit",
-        size: 100,
+        size: 50,
         Cell: ({ cell, row }) => {
           const amount = cell.getValue();
           const currency = row.original.currency || "INR";
@@ -138,19 +140,19 @@ function Customer() {
           }).format(amount);
         },
       },
-   
 
       // Add new coloumn Action And button
       {
         accessorKey: "action",
         header: "Actions",
-        size: 300,
+        size: 50,
         Cell: ({ row }) => {
           const customer = row.original; //row.original nu kudutha  antha row la eruka compltet data vum vanthurum step1
           return (
             <Stack direction="row" spacing={1}>
               {/* //user click panra button vanthu handleaction (title and data) top l declare panni eruka handle action click ku pogum step2*/}
               <Button
+                className="contact"
                 variant="contained"
                 size="small"
                 color="primary"
@@ -161,6 +163,7 @@ function Customer() {
                 Contact
               </Button>
               <Button
+                className="Billing"
                 variant="contained"
                 size="small"
                 color="secondary"
@@ -171,6 +174,7 @@ function Customer() {
                 Billing
               </Button>
               <Button
+                className="Shipping"
                 variant="contained"
                 size="small"
                 color="success"
@@ -196,18 +200,39 @@ function Customer() {
     columns,
     data: FilterTable || [],
     // enableGlobalFilter: true,
+    enableGlobalFilter: false,
+    enableTopToolbar: false, 
+    enableFilters: false,
     enablePagination: true,
     enableHiding: false,
     enableColumnActions: false,
     enableFullScreenToggle: false,
     enableDensityToggle: false,
     paginationDisplayMode: "pages",
+    layoutMode: "semantic",
+   
     initialState: {
       density: "compact", // Gaps reduction parameters setup
       pagination: {
         pageIndex: 0,
-        pageSize: 5,
+        pageSize: 10,
       }, // 5 records per page pota height
+    },
+
+    muiTableHeadCellProps: {
+      className: "tableheader",
+    },
+    muiTableProps: {
+      className: "mrt-gapped-table", // Main table wrapper for the spacing
+    },
+    muiTableBodyRowProps: {
+      className: "tablebody",
+    },
+    muiTableContainerProps: {
+      className: "scroll",
+    },
+    muiTablePaperProps: {
+      className: "custom table",
     },
   });
 
@@ -218,7 +243,7 @@ function Customer() {
     if (Array.isArray(popupData)) {
       //Contact data va popup la show panna
       return popupData.map((contact, index) => (
-        <Box key={index} sx={{ mb: 2 }}>
+        <Box key={index}>
           <Typography>
             <strong>Name:</strong>
             {contact.name}
@@ -261,62 +286,54 @@ function Customer() {
   };
 
   return (
-    <Box
-      sx={{
-        width: "calc(100% - 240px)",
-        marginLeft: "auto",
-        marginRight: "20px",
-        padding: "0px",
-        boxSizing: "border-box",
-      }}
-    >
+    <Box className="TableBox">
       <Typography
         variant="h5"
-        sx={{ mb: 3, fontWeight: "bold", textAlign: "left" }}
+        sx={{ mb: 1, fontWeight: "bold", textAlign: "left" }}
       >
         Customer Management
       </Typography>
 
       {/*KPI cards*/}
-      <Grid container spacing={19} sx={{ mb: 3 }}>
+      <Grid container spacing={6} sx={{ mb: 3 }}>
         {/* Total Customer*/}
         <Grid xs={12} sm={3}>
-          <Box>
+          <Box className="total">
             <Typography>Total Customers</Typography>
             <Typography>{kpicard.total}</Typography>
           </Box>
         </Grid>
 
         <Grid xs={12} sm={3}>
-          <Box>
+          <Box className="paid">
             <Typography>Paid</Typography>
             <Typography>{kpicard.paid}</Typography>
           </Box>
         </Grid>
 
         <Grid xs={12} sm={3}>
-          <Box>
+          <Box className="unpaid">
             <Typography>Unpaid</Typography>
             <Typography>{kpicard.unpaid}</Typography>
           </Box>
         </Grid>
 
         <Grid xs={12} sm={3}>
-          <Box>
+          <Box className="overdue">
             <Typography>Overdue</Typography>
             <Typography>{kpicard.overdue}</Typography>
           </Box>
         </Grid>
         <Grid xs={12} sm={3}>
-          <Box>
-            <Typography>Partially Paid</Typography>
+          <Box className="partially paid">
+            <Typography>Partiallypaid</Typography>
             <Typography>{kpicard.partiallypaid}</Typography>
           </Box>
         </Grid>
       </Grid>
 
       {/*Filter Data*/}
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 1 }}>
         <TextField
           select
           variant="outlined"
@@ -325,24 +342,50 @@ function Customer() {
           size="small"
           value={statusfilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          sx={{ width: '250px', bgcolor: 'white' }}
+          sx={{
+            width: "200px",
+            bgcolor: "white",
+            "& .MuiInputBase-root": {
+              height: 32, // Set custom total height
+            },
+            // Targets the actual input text area
+            "& .MuiInputBase-input": {
+              padding: "0 10px",
+              fontSize: "0.85rem",
+            },
+          }}
         >
-          <MenuItem value="all">All Status</MenuItem>
-          <MenuItem value="paid">Paid</MenuItem>
-          <MenuItem value="unpaid">UnPaid</MenuItem>
-          <MenuItem value="overdue">Overdue</MenuItem>
-          <MenuItem value="partially Paid">Patially Paid</MenuItem>
+          <MenuItem sx={{ fontSize: "15px" }} value="all">
+            All Status
+          </MenuItem>
+          <MenuItem sx={{ fontSize: "15px" }} value="paid">
+            Paid
+          </MenuItem>
+          <MenuItem sx={{ fontSize: "15px" }} value="unpaid">
+            UnPaid
+          </MenuItem>
+          <MenuItem sx={{ fontSize: "15px" }} value="overdue">
+            Overdue
+          </MenuItem>
+          <MenuItem sx={{ fontSize: "15px" }} value="partially Paid">
+            Patially Paid
+          </MenuItem>
         </TextField>
+        <Button>Add a New Customer</Button>
       </Box>
 
-      <MaterialReactTable table={table} />
+      <Box className="table-wrapper">
+        <MaterialReactTable table={table} />
+      </Box>
 
       {/*//popup display and popup data show*/}
       {/*//final ah popup la antha data show agum step5*/}
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
-        <DialogTitle sx={{ fontWeight: "bold" }}>{popupTitle}</DialogTitle>
-        <DialogContent dividers>{renderPopupcontent()}</DialogContent>
-        <DialogActions>
+        <DialogTitle className="dialog-title">{popupTitle}</DialogTitle>
+        <DialogContent dividers className="dialog-content">
+          {renderPopupcontent()}
+        </DialogContent>
+        <DialogActions className="dialog-actions">
           <Button onClick={handleClose} variant="outlined" color="inherit">
             Close
           </Button>
