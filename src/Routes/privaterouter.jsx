@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Customer from "../Pages/Sales/Customer";
 import Quotations from "../Pages/Sales/Quotations";
 import Salesorder from "../Pages/Sales/Salesorder";
-import Invoice from "../Pages/Sales/Invoice";
+import Invoice from "../Pages/Sales/invoice/Invoice";
 import Vendor from "../Pages/Purchase/Vendors";
 import Purchaseorder from "../Pages/Purchase/Purchaseorder";
 import Goodreceipt from "../Pages/Purchase/Goodreceipt";
