@@ -1,50 +1,54 @@
-.main{
-    display: flex;
-    width: 200px;
-    margin-top: 0px;
-    /* overflow-y: hidden; */
-    position: fixed;
-    height: 90vh;
+.main {
+  display: flex;
+  width: 200px;
+  margin-top: 0px;
+  /* overflow-y: hidden; */
+  position: fixed;
+  height: 90vh;
 }
-.right{
-    flex: 1;
-    height: 50vh;
-    width: 100vh;
-    overflow-y: visible;
+.right {
+  flex: 1;
+  height: 50vh;
+  width: 100vh;
+  overflow-y: visible;
 }
-.b1{
-    margin-top: 10px;
-    width: 130px;
-    height: 35px;
-    justify-content: space-evenly;
-    background-color: azure;
-    color: black;
-    border-radius: 10px;
-    border-color: black;
+.b1 {
+  margin-top: 10px;
+  width: 130px;
+  height: 35px;
+  justify-content: space-evenly;
+  background-color: azure;
+  color: black;
+  border-radius: 10px;
+  border-color: black;
 }
-.bullet{
-    list-style: none;
+.bullet {
+  list-style: none;
 }
-.body{
-    background-color: white;
+.body {
+  background-color: white;
 }
-.h2{
-    text-align: center;
+.h2 {
+  text-align: center;
 }
-.h1{
-    width: 100px;
-    padding-top: 100px;
+.h1 {
+  width: 100px;
+  padding-top: 100px;
 }
-.sidebar{
-    margin-left: 0px;
-    overflow-y: scroll;
-    height: 100vh;
-    scrollbar-width: none;
-    border: 0.5px solid lightgrey;
-    border-radius: 5px;
-    width: 200px;
-    background-color: white;
- 
+.sidebar {
+  margin-left: 0px;
+  overflow-y: scroll;
+  height: 100vh;
+  scrollbar-width: none;
+  border: 0.5px solid lightgrey;
+  border-radius: 5px;
+  width: 200px;
+  background-color: white;
+}
+.barchart {
+  margin-left: 150px;
+  padding-left: 0px;
+  text-align: center;
 }
 .barchart{
     margin-left: 150px;
