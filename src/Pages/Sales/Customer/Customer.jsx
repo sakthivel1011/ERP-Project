@@ -51,21 +51,41 @@ function Customer() {
 
   // Filter Fields
   const [statusfilter, setStatusFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const FilterTable = useMemo(() => {
-    const customer = Data?.customers || [];
+   const FilterTable = useMemo(() => {
+    // 1. Core data arrays properties fetch components lookups
+    let filtered = Data?.customers || [];
     const invoice = Data?.invoices || [];
 
-    if (!statusfilter || statusfilter === "all") return customer;
-    // status filter la ethuvum click pann la na all customer nu show agum
-    const matchingcustomer = invoice
-      .filter(
-        (inv) =>
-          inv.status?.toLocaleLowerCase() == statusfilter.toLocaleLowerCase(),
-      )
-      .map((inv) => inv.customerId);
-    return customer.filter((c) => matchingcustomer.includes(c.customerId));
-  }, [statusfilter]);
+    // Filter Step A: Status Dropdown select check logic (Handles "all" value smoothly)
+    if (statusfilter && statusfilter !== "all") {
+      const matchingcustomer = invoice
+        .filter(
+          (inv) =>
+            inv.status?.toLowerCase() === statusfilter.toLowerCase(),
+        )
+        .map((inv) => inv.customerId);
+        
+      filtered = filtered.filter((c) => matchingcustomer.includes(c.customerId));
+    }
+
+    // 🔥 Filter Step B: Puthiya Manual Search Input Keyword Matching Logic
+    // Checking across customerCode, companyName, and customerType variables safely
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (c) =>
+          c.customerCode?.toLowerCase().includes(query) ||
+          c.companyName?.toLowerCase().includes(query) ||
+          c.customerType?.toLowerCase().includes(query)
+      );
+    }
+
+    // 2. Returns final computed combined dataset records down to your Material React Table
+    return filtered;
+  }, [statusfilter, searchQuery]); // Tracks both dependencies values changes live to trigger filter pipeline
+
 
   //function handle button click and popup
   const handleActionClick = (title, data) => {
@@ -287,9 +307,7 @@ function Customer() {
 
   return (
     <Box className="TableBox">
-      <Typography
-        variant="h5"
-        sx={{ mb: 1, fontWeight: "bold", textAlign: "left" }}
+      <Typography className="heading"
       >
         Customer Management
       </Typography>
@@ -332,46 +350,50 @@ function Customer() {
         </Grid>
       </Grid>
 
-      {/*Filter Data*/}
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 1 }}>
+           {/*Filter Data*/}
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, width: "100%" }}>
+        
+        {/* Search bar */}
         <TextField
-          select
           variant="outlined"
-          defaultValue={""}
-          label="Filter Status"
+          placeholder="Search Code, Company Name..."
           size="small"
-          value={statusfilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          sx={{
-            width: "200px",
-            bgcolor: "white",
-            "& .MuiInputBase-root": {
-              height: 32, // Set custom total height
-            },
-            // Targets the actual input text area
-            "& .MuiInputBase-input": {
-              padding: "0 10px",
-              fontSize: "0.85rem",
-            },
-          }}
-        >
-          <MenuItem sx={{ fontSize: "15px" }} value="all">
-            All Status
-          </MenuItem>
-          <MenuItem sx={{ fontSize: "15px" }} value="paid">
-            Paid
-          </MenuItem>
-          <MenuItem sx={{ fontSize: "15px" }} value="unpaid">
-            UnPaid
-          </MenuItem>
-          <MenuItem sx={{ fontSize: "15px" }} value="overdue">
-            Overdue
-          </MenuItem>
-          <MenuItem sx={{ fontSize: "15px" }} value="partially Paid">
-            Patially Paid
-          </MenuItem>
-        </TextField>
-        <Button>Add a New Customer</Button>
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="Searchbar"
+        />
+
+        {/* Filter Status */}
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
+
+          
+          <TextField
+            select
+            variant="outlined"
+            label="Filter Status"
+            size="small"
+            value={statusfilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="filterstatus"
+          >
+            <MenuItem sx={{ fontSize: "15px" }} value="all">All Status</MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="paid">Paid</MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="unpaid">UnPaid</MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="overdue">Overdue</MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="partially Paid">Patially Paid</MenuItem>
+          </TextField>
+          {/*Add new customer*/}
+          <Button 
+            variant="contained" 
+            color="primary" 
+            size="small"
+            className="Add-customer"
+            onClick={() => handleActionClick("Add New Customer", null)}
+          >
+            Add a New Customer
+          </Button>
+
+        </Stack>
       </Box>
 
       <Box className="table-wrapper">
