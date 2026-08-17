@@ -1,7 +1,12 @@
 @use "../../../Styles/Variables.scss" as *;
 
 
-  
+
+.heading{
+  color: $heading-color !important;
+  font-size: $font-size-title !important;
+  font-weight: $font-weight-bold !important;
+}
   .MuiTableCell-head {
     font-size: 0.95rem !important;   
     padding: 2px 12px !important;    
@@ -12,10 +17,7 @@
   .MuiTableCell-body {
     font-size: 0.90rem !important; 
     padding: 3px 10px !important;   
-    font-family: $font-family-base !important;
   }
-
-// 2. Ungal existing Table Wrappers matrum classes
 .mrt-gapped-table {
   border-collapse: collapse !important;
   border-spacing: 0px 0px !important; 
@@ -79,8 +81,8 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-xs;
-  width: 90px;
-  height: 40px;
+  width: 160px;
+  height: 50px;
   @include flex-center;
   @include single-line-dot(0px);
   margin-top: 0px;
@@ -88,6 +90,31 @@
   &:hover {
     box-shadow: 0 4px 12px rgb(148, 82, 102);
   }
+}
+
+.total{
+    color:$color-blue;   
+    border: 1px solid rgba($color-blue, 0.5);
+}
+
+.paid{
+  color:$color-danger;
+  border: 1px solid rgba($color-danger, 0.5);
+}
+
+.unpaid{
+  color:$color-success;
+  border: 1px solid rgba($color-success, 0.5);
+}
+
+.overdue{
+  color:$color-purple;
+  border: 1px solid rgba($color-purple, 0.5);
+}
+
+.Partiallypaid{
+  color:$color-text-dark;
+  border: 1px solid rgba($color-text-dark, 0.5);
 }
 
 // Dialog BOX
@@ -118,6 +145,15 @@
       background-color: #115293 !important;
     }
   }
+}
+.Searchbar{
+  @include searchbar;
+}
+.filterstatus{
+  @include filterstatus;
+}
+.Add-customer{
+  @include addcustomer;
 }
 
 // .contact{

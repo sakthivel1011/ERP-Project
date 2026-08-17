@@ -3,7 +3,8 @@ $color-primary: #3b82f6;
 $color-text-dark: #1e293b;     
 $color-text-muted: #64748b;    
 $color-border-light: #e2e8f0;  
-$color-bg-light: #f8fafc;   
+$color-bg-light: #f8fafc;
+$heading-color:#1a1a1e;
 
 
 // 2. STATUS TAG COLORS 
@@ -17,7 +18,7 @@ $font-family-base:  'Inter', 'Plus Jakarta Sans', sans-serif;
 $font-weight-normal: 400;
 $font-weight-medium: 500;      
 $font-weight-semibold: 600;  
-$font-family-base:"Inter", system-ui, -apple-system, sans-serif; 
+// $font-family-base:"Inter", system-ui, -apple-system, sans-serif; 
 
 // 4. INTERACTIVE COMPONENT PROPERTIES
 $radius-button: 8px;        
@@ -28,7 +29,7 @@ $transition-default: all 0.2s ease-in-out;
 // 1. Typography / Font Settings
 
 
-$professional-font: 'Times New Roman', Times, Baskerville, Georgia, serif;
+$professional-font:  'Poppins', -apple-system, BlinkMacSystemFont;
 $font-sans-modern: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 $font-sans-corporate: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
 $font-monospace-data: 'Courier New', Courier, monospace;
@@ -89,8 +90,6 @@ $font-weight-header: 600;
   margin-top: 20px !important;
 }
 
-//kpiData
-$kpi-card-padding: 8px 35px;  
 //table styling
 $table-header-background-color: #f8fafc;
 $table-body-background-color: #ffffff;
@@ -101,9 +100,9 @@ $table-border-color:#D3D3D3;
 
 //KPI styling
 //kpiData
-$kpi-card-padding: 8px 35px;
+$kpi-card-padding: 18px 35px;
 $kpi-border-black: 1px solid #000000;  
-$spacing-xs: 2px;
+$spacing-xs: 3px;
 $color-purple:rgb(138, 5, 138);
 $color-blue:rgb(13, 166, 226);
 
@@ -127,4 +126,39 @@ $color-blue:rgb(13, 166, 226);
   text-overflow: ellipsis;
   margin-bottom: $gap-bottom;
 }
+
+@mixin searchbar {
+  width: 250px;
+  background-color: #FFFFFF;
+
+  .MuiInputBase-root {
+    height: 32px; // added 'px' unit
+  }
+
+  .MuiInputBase-input {
+    padding: 0 10px;
+    font-size: 0.85rem;
+  }
+}
+@mixin filterstatus{
+  width: 200px;
+  background-color:white;
+
+  .MuiInputBase-root {
+    height: 32px; // added 'px' unit
+  }
+
+  .MuiInputBase-input {
+    padding: 0 10px;
+    font-size: 0.85rem;
+  }
+}
+@mixin addcustomer{
+   height: 32;
+   fontSize: "0.85rem";
+   textTransform: "none";
+   whiteSpace: "nowrap" 
+}
+
+
 

@@ -76,13 +76,17 @@ body {
   flex-direction: column;
   box-sizing: border-box;
 }
+*{
+  box-sizing: border-box;
+  font-family: "Poppins",system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,  Helvetica,  Arial,sans-serif !important;
+}
 h1,
 h2,
 p,
 code,
 .counter {
   width: fit-content; /* Forces the horizontal boundary to tightly match the text width */
-  max-width: 100%; /* Protects layouts from overflowing on small mobile screens */
+  max-width: 100%; /* Protects layouts from overflowing xygen, Ubuntu, Cantarellon small mobile screens */
   height: auto; /* Vertically expands naturally if lines wrap */
   margin-inline: auto; /* Keeps the content centered inside your text-align: center root layout */
 }

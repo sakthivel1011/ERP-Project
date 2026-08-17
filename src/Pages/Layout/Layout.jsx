@@ -12,7 +12,7 @@ export default function Layout() {
     <>
       <div className="main">
         <nav className="sidebar">
-          <h2>ERP ADMIN </h2>
+          <h2 className="Erp-admin">ERP ADMIN </h2>
           <Link to="/"><button className="b1">🏠Dashboard</button></Link>
           <div>
             <button className="b1" onClick={() => setOpen(!open)}>
