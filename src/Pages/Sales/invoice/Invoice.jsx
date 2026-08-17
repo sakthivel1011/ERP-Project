@@ -5,6 +5,7 @@ import {
 } from "material-react-table";
 import { Data } from "../../../Data/Data";
 import { Grid, Box, Typography, Stack } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Button,
   Dialog,
@@ -13,6 +14,9 @@ import {
   DialogActions,
   TextField,
   MenuItem,
+  Paper,
+  InputBase,
+  IconButton,
 } from "@mui/material";
 import "../invoice/invoice.scss";
 
@@ -21,6 +25,8 @@ export default function Invoice() {
   const [modalType, setModalType] = useState("");
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [statusfilter, setStatusFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+
   console.log("selectedInvoice", selectedInvoice);
 
   const invoiceData = Data?.invoices;
@@ -50,15 +56,30 @@ export default function Invoice() {
       };
     });
 
-    if (statusfilter?.toLowerCase() === "all" || !statusfilter) {
-      return formatted;
+    let result = formatted;
+    if (statusfilter?.toLowerCase() !== "all" && statusfilter) {
+      result = result.filter(
+        (invoice) =>
+          invoice?.status?.toLowerCase() === statusfilter?.toLowerCase(),
+      );
     }
 
-    return formatted.filter(
-      (invoice) =>
-        invoice?.status?.toLowerCase() === statusfilter?.toLowerCase(),
-    );
-  }, [invoiceData, statusfilter, Data?.customers]);
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase();
+      result = result.filter((invoice) => {
+        return (
+          invoice.invoiceNumber.toLowerCase().includes(query) ||
+          invoice.companyName.toLowerCase().includes(query) ||
+          invoice.invoiceDate.toLowerCase().includes(query) ||
+          invoice.paymentTerms.toLowerCase().includes(query) ||
+          invoice.status.toLowerCase().includes(query) ||
+          String(invoice.amount).toLowerCase().includes(query)
+        );
+      });
+    }
+
+    return result;
+  }, [invoiceData, statusfilter, searchQuery, Data?.customers]);
 
   const handleActionClick = (type, rowData) => {
     setModalOpen(true);
@@ -108,16 +129,13 @@ export default function Invoice() {
         Cell: ({ row }) => (
           <Stack direction="row" spacing={2} sx={{ width: "200px" }}>
             <Button
-              variant="contained"
-              size="small"
+              className="Items"
               onClick={() => handleActionClick("items", row.original)}
             >
               Items
             </Button>
             <Button
-              variant="contained"
-              size="small"
-              color="secondary"
+              className="Payment"
               onClick={() => handleActionClick("payments", row.original)}
             >
               Payments
@@ -133,82 +151,144 @@ export default function Invoice() {
     columns,
     data: filterStatusData,
     // data:tableData,
+    enableGlobalFilter: false,
+    enableTopToolbar: false, 
+    enableFilters: false,
     enablePagination: true,
     enableHiding: false,
     enableColumnActions: false,
+    enableFullScreenToggle: false,
+    enableDensityToggle: false,
+    paginationDisplayMode: "pages",
+    layoutMode: "semantic",
+   
+    initialState: {
+      density: "compact", // Gaps reduction parameters setup
+      pagination: {
+        pageIndex: 0,
+        pageSize: 10,
+      }, // 5 records per page pota height
+    },
+
+    muiTableHeadCellProps: {
+      className: "tableheader",
+    },
+    muiTableProps: {
+      className: "mrt-gapped-table", // Main table wrapper for the spacing
+    },
+    muiTableBodyRowProps: {
+      className: "tablebody",
+    },
+    muiTableContainerProps: {
+      className: "scroll",
+    },
+    muiTablePaperProps: {
+      className: "custom table",
+    },
   });
 
   return (
-    <Box
-      sx={{
-        width: "calc(100% - 270px)",
-        marginLeft: "250px",
-        marginRight: "20px",
-        boxSizing: "border-box",
-        minHeight: "100vh",
-        pt: 3,
-      }}
-    >
+    <Box className="Table">
       <Typography className="invoiceName">Invoice Management</Typography>
 
-      <Grid container spacing={10} className="kpi-container">
-        <Grid xs={12} sm={3}>
+      <Grid className="kpi-container">
+        <Grid>
           <Box className="kpi-total">
             <Typography className="status">Total Invoices</Typography>
-            <Typography variant="h6">{kpiData.totalInvoices}</Typography>
+            <Typography>{kpiData.totalInvoices}</Typography>
           </Box>
         </Grid>
-        <Grid xs={12} sm={3}>
+        <Grid>
           <Box className="kpi-paid">
             <Typography className="status">Paid Amount</Typography>
-            <Typography variant="h6">{kpiData.paidCount}</Typography>
+            <Typography>{kpiData.paidCount}</Typography>
           </Box>
         </Grid>
-        <Grid xs={12} sm={3}>
+        <Grid>
           <Box className="kpi-unpaid">
             <Typography className="status">Unpaid Amount</Typography>
-            <Typography variant="h6">{kpiData.unPaidCount}</Typography>
+            <Typography>{kpiData.unPaidCount}</Typography>
           </Box>
         </Grid>
-        <Grid xs={12} sm={3}>
+        <Grid>
           <Box className="kpi-over">
             <Typography className="status">Over Due</Typography>
-            <Typography variant="h6">{kpiData.overDueCount}</Typography>
+            <Typography>{kpiData.overDueCount}</Typography>
           </Box>
         </Grid>
       </Grid>
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}>
-        <TextField
-          select
-          variant="outlined"
-          defaultValue={""}
-          label="Filter Status"
-          size="small"
-          value={statusfilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="Dropdown"
+      <Box className="NewInv">
+        {/* SEARCH - LEFT */}
+        <Box
+        sx={{display:"flex",justifyContent:"space-between", alignItems:"center", mb:2,width:"100%"}}
         >
-          <MenuItem value="all">All Status</MenuItem>
-          <MenuItem value="paid">Paid</MenuItem>
-          <MenuItem value="unpaid">UnPaid</MenuItem>
-          <MenuItem value="overdue">Overdue</MenuItem>
-          <MenuItem value="partially Paid">Patially Paid</MenuItem>
-        </TextField>
+          <Paper
+          className="search"
+          variant="outlined"
+            // elevation={0}
+            // sx={{
+            //   p: "2px 12px",
+            //   display: "flex",
+            //   alignItems: "center",
+            //   width: "10%",
+            //   height: "40px",
+            //   boxSizing: "border-box",
+            //   border: "1px solid #e5e4e7",
+            //   borderRadius: "4px",
+            //   backgroundColor: "#fff",
+            // }}
+          >
+            <InputBase 
+              placeholder="Search Invoice"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              // sx={{
+              //   ml: 1,
+              //   flex: 1,
+              //   fontSize: "14px",
+              //   fontFamily: "'Poppins', sans-serif !important",
+              // }}
+            />
 
-        <Button className="invoice">New Invoice</Button>
+            <IconButton sx={{ p: "6px", color: "#6b6375" }}>
+              <SearchIcon fontSize="small" />
+            </IconButton>
+          </Paper>
+        
+
+       <Stack direction="row" spacing={1.5} sx={{alignItems:"center"}}>
+          <TextField
+            select
+            variant="outlined"
+            label="Filter Status"
+            size="small"
+            value={statusfilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="Dropdown"
+          >
+            <MenuItem value="all">All Status</MenuItem>
+            <MenuItem value="paid">Paid</MenuItem>
+            <MenuItem value="unpaid">UnPaid</MenuItem>
+            <MenuItem value="overdue">Overdue</MenuItem>
+            <MenuItem value="partially Paid">Partially Paid</MenuItem>
+          </TextField>
+
+          <Button className="invoice">New Invoice</Button>
+       </Stack>
+      </Box>
       </Box>
 
-     <Box className="table-container">
-  <MaterialReactTable table={table} />
-</Box>
+      <Box className="table-wrapper">
+        <MaterialReactTable table={table} />
+      </Box>
 
       <Dialog
         open={modalOpen}
         onClose={handleCloseModal}
         slots={{ backdrop: () => null }}
       >
-        <DialogTitle sx={{ fontWeight: "bold" }}>
+        <DialogTitle>
           {modalType === "items" ? "Invoice Item Details" : "Payment Ledger"}
         </DialogTitle>
 
@@ -329,7 +409,7 @@ export default function Invoice() {
                       <Typography
                         variant="body2"
                         color="error.main"
-                        sx={{ fontStyle: "italic" }}
+                        
                       >
                         No transactions recorded. This invoice remains
                         completely unpaid.

@@ -146,10 +146,9 @@ export default function Layout() {
           </div>
         </nav>
         <div className="right">
-        <Outlet />
+          <Outlet />
+        </div>
       </div>
-      </div>
-      
     </>
   );
 }
