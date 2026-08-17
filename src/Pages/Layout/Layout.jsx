@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router";
 import { useState } from "react";
-import "./layout.css";
+import "./layout.scss";
 export default function Layout() {
   const [open, setOpen] = useState(false);
   const [purchase, setPurchase] = useState(false);
@@ -22,16 +22,16 @@ export default function Layout() {
             {open && (
               <ul className="bullet">
                 <li>
-                  <Link to="/sales/customer">Customer</Link>
+                  <Link className="link-color" to="/sales/customer">Customer</Link>
                 </li>
                 <li>
-                  <Link to="/sales/invoice">Invoice</Link>
+                  <Link className="link-color" to="/sales/invoice">Invoice</Link>
                 </li>
                 <li>
-                  <Link to="/sales/quotations">Quottions</Link>
+                  <Link className="link-color" to="/sales/quotations">Quottions</Link>
                 </li>
                 <li>
-                  <Link to="/sales/salesorder">Salesorder</Link>
+                  <Link className="link-color" to="/sales/salesorder">Salesorder</Link>
                 </li>
               </ul>
             )}
@@ -44,13 +44,13 @@ export default function Layout() {
             {purchase && (
               <ul className="bullet">
                 <li>
-                  <Link to="/Purchase/Good receipt">Good Receipt</Link>
+                  <Link className="link-color" to="/Purchase/Good receipt">Good Receipt</Link>
                 </li>
                 <li>
-                  <Link to="/Purchase/Purchase order">Purchase Order</Link>
+                  <Link className="link-color" to="/Purchase/Purchase order">Purchase Order</Link>
                 </li>
                 <li>
-                  <Link to="/Purchase/Vendors">Vendors</Link>
+                  <Link className="link-color" to="/Purchase/Vendors">Vendors</Link>
                 </li>
               </ul>
             )}
@@ -63,16 +63,16 @@ export default function Layout() {
             {inventory && (
               <ul className="bullet">
                 <li>
-                  <Link to="/inventory/product">Product</Link>
+                  <Link className="link-color" to="/inventory/product">Product</Link>
                 </li>
                 <li>
-                  <Link to="/inventory/Stock">Stock</Link>
+                  <Link className="link-color" to="/inventory/Stock">Stock</Link>
                 </li>
                 <li>
-                  <Link to="/inventory/Transfer">Transfer</Link>
+                  <Link className="link-color" to="/inventory/Transfer">Transfer</Link>
                 </li>
                 <li>
-                  <Link to="/inventory/Warehouse">Warehouse</Link>
+                  <Link className="link-color" to="/inventory/Warehouse">Warehouse</Link>
                 </li>
               </ul>
             )}
@@ -88,15 +88,15 @@ export default function Layout() {
             {manufacturing && (
               <ul className="bullet">
                 <li>
-                  <Link to="/Manufacturing/BOM">BOM</Link>
+                  <Link className="link-color" to="/Manufacturing/BOM">BOM</Link>
                 </li>
                 <li>
-                  <Link to="/Manufacturing/Productionorder">
+                  <Link className="link-color" to="/Manufacturing/Productionorder">
                     Productionorder
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Manufacturing/Workorder">Workorders</Link>
+                  <Link className="link-color" to="/Manufacturing/Workorder">Workorders</Link>
                 </li>
               </ul>
             )}
@@ -109,16 +109,16 @@ export default function Layout() {
             {finance && (
               <ul className="bullet">
                 <li>
-                  <Link to="/Finance/Accounts">Accounts</Link>
+                  <Link className="link-color" to="/Finance/Accounts">Accounts</Link>
                 </li>
                 <li>
-                  <Link to="/Finance/Expenses">Expenses</Link>
+                  <Link className="link-color" to="/Finance/Expenses">Expenses</Link>
                 </li>
                 <li>
-                  <Link to="/Finance/Payments">Payments</Link>
+                  <Link className="link-color" to="/Finance/Payments">Payments</Link>
                 </li>
                 <li>
-                  <Link to="/Finance/Repots">Reports</Link>
+                  <Link className="link-color" to="/Finance/Repots">Reports</Link>
                 </li>
               </ul>
             )}
@@ -130,16 +130,16 @@ export default function Layout() {
             {hr && (
               <ul className="bullet">
                 <li>
-                  <Link to="/HR/Attendence">Attendence</Link>
+                  <Link className="link-color" to="/HR/Attendence">Attendence</Link>
                 </li>
                 <li>
-                  <Link to="/HR/Employess">Employess</Link>
+                  <Link className="link-color" to="/HR/Employess">Employess</Link>
                 </li>
                 <li>
-                  <Link to="/HR/Leave">Leave</Link>
+                  <Link className="link-color" to="/HR/Leave">Leave</Link>
                 </li>
                 <li>
-                  <Link to="/HR/Payroll">Payroll</Link>
+                  <Link className="link-color" to="/HR/Payroll">Payroll</Link>
                 </li>
               </ul>
             )}

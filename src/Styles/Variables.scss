@@ -7,6 +7,7 @@ $color-bg-light: #f8fafc;
 $heading-color:#1a1a1e;
 
 
+
 // 2. STATUS TAG COLORS 
 $color-success: #10b981;       
 $color-danger: #ef4444;       
@@ -159,6 +160,52 @@ $color-blue:rgb(13, 166, 226);
    textTransform: "none";
    whiteSpace: "nowrap" 
 }
+
+//side bar  scss content technology
+
+@mixin main{
+    display: flex;
+    width: 220px;
+    margin-top: 0px;
+    /* overflow-y: hidden; */
+    position: fixed;
+    height: 90vh;
+
+}
+ @mixin s-button{
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 18px; 
+    width: 100%;
+    height: 35px;
+    justify-content: space-evenly;
+    background-color: #191970;
+    color: black;
+    border-radius: 10px;
+    border-color: black;
+    justify-content: space-between;
+    color: white;
+    background-color: transparent !important;
+    border: none !important;    
+    color: rgba(255, 255, 255, 0.85); 
+    box-shadow: none !important;   
+
+      &:hover {
+    background-color: #191970 !important; // லைட்டான கிளாஸ் பேட்ச் மட்டும் தெரியும்
+    color: #ffffff;
+    border-radius: 10px;
+    transform: translateX(4px);
+ }}
+ @mixin s-bar{
+  margin-left: 0px;
+    overflow-y: scroll;
+    height: 100vh;
+    scrollbar-width: none;
+    border: 0.5px solid lightgrey;
+    border-radius: 5px;
+    width: 200px;
+    background-color: #00008B;
+ }
 
 
 

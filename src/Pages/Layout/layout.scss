@@ -1,0 +1,58 @@
+@use "../../../src/Styles/Variables.scss" as *;
+.main{
+    @include main;
+}
+.right{
+    flex: 1;
+    height: 50vh;
+    width: 100vh;
+    overflow-y: visible;
+}
+.b1{
+  @include s-button;
+}
+.bullet{
+    list-style: none;
+    li {
+    a {
+      text-decoration: none !important;
+      color: rgba(255, 255, 255, 0.7); 
+      display: block;
+      padding: 6px 0;
+      font-size: 14.5px;
+      transition: color 0.2s ease;
+     
+
+      
+      &:hover {
+        color: #ffffff; 
+        border-radius: 10px;
+        transition: all 0.2s ease;
+        background-color: orange;
+      }
+    }
+}
+}
+.body{
+    background-color:$color-bg-main ;
+}
+.link-color{
+    color: white
+}
+.sidebar{
+    @include s-bar;
+ 
+}
+.barchart{
+    margin-left: 150px;
+    padding-left: 0px;
+    text-align: center;
+
+  
+}
+.Erp-admin{
+    text-align: center;
+    margin-left: 30px;
+    color: white;
+    font-size: $font-size-title;
+}
