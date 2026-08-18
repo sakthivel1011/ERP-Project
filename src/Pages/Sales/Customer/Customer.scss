@@ -101,7 +101,7 @@
   height: 60px;
   @include flex-center;
   @include single-line-dot(0px);
-  margin-top: 0px;
+  margin-top: 8px;
 
   &:hover {
     box-shadow: 0 4px 12px rgb(148, 82, 102);
