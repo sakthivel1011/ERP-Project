@@ -1,73 +1,115 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
-import Customer from "../Pages/Sales/Customer/Customer";
-import Quotations from "../Pages/Sales/Quotations";
-import Salesorder from "../Pages/Sales/Salesorder";
-import Invoice from "../Pages/Sales/invoice/Invoice";
-import Vendor from "../Pages/Purchase/Vendors";
-import Purchaseorder from "../Pages/Purchase/Purchaseorder";
-import Goodreceipt from "../Pages/Purchase/Goodreceipt";
-import Product from "../Pages/Inventory/Product";
-import Stock from "../Pages/Inventory/Stock";
-import Warehouse from "../Pages/Inventory/Warehouse";
-import Transfer from "../Pages/Inventory/Transfer";
-import Bom from "../Pages/Manufacturing/BOM";
-import Productionorders from "../Pages/Manufacturing/Productionorder";
-import Workorder from "../Pages/Manufacturing/Workorders";
-import Accounts from "../Pages/Finance/Accounts";
-import Payments from "../Pages/Finance/Payments";
-import Expenses from "../Pages/Finance/Expenses";
-import Reports from "../Pages/Finance/Reports";
-import Employees from "../Pages/HR/Employess";
-import Attendence from "../Pages/HR/Attendence";
-import Leave from "../Pages/HR/Leave";
-import Payroll from "../Pages/HR/Payroll";
-import Dashboard from "../Pages/Dashboard/Dashboard";
-import Layout from "../Pages/Layout/Layout";
+import React, { Suspense, lazy } from "react";
+import { Route, Routes } from "react-router";
+
+// லோடிங் டிசைனுக்கான ஸ்டைல்ஸ்
+const styles = {
+  loader: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "80vh",
+    fontSize: "18px",
+    fontWeight: "600",
+    fontFamily: "sans-serif",
+    color: "#003366"
+  }
+};
+
+// 🔄 ஒவ்வொரு பக்கத்திற்கும் தனித்தனியாக Suspense-ஐ சேர்க்கும் எளிய ஃபங்க்ஷன்
+const DynamicPage = ({ component: Component }) => (
+  <Suspense fallback={<div style={styles.loader}>🔄 Loading Page Components...</div>}>
+    <Component />
+  </Suspense>
+);
+
+// Dashboard & Layout
+const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard"));
+const Layout = lazy(() => import("../Pages/Layout/Layout"));
+
+// Sales Components
+const Customer = lazy(() => import("../Pages/Sales/Customer/Customer"));
+const Quotations = lazy(() => import("../Pages/Sales/Quotations"));
+const Salesorder = lazy(() => import("../Pages/Sales/Salesorder"));
+const Invoice = lazy(() => import("../Pages/Sales/invoice/Invoice"));
+
+// Purchase Components
+const Vendor = lazy(() => import("../Pages/Purchase/Vendors"));
+const Purchaseorder = lazy(() => import("../Pages/Purchase/Purchaseorder"));
+const Goodreceipt = lazy(() => import("../Pages/Purchase/Goodreceipt"));
+
+// Inventory Components
+const Product = lazy(() => import("../Pages/Inventory/Product"));
+const Stock = lazy(() => import("../Pages/Inventory/Stock"));
+const Warehouse = lazy(() => import("../Pages/Inventory/Warehouse"));
+const Transfer = lazy(() => import("../Pages/Inventory/Transfer"));
+
+// Manufacturing Components
+const Bom = lazy(() => import("../Pages/Manufacturing/BOM"));
+const Productionorders = lazy(() => import("../Pages/Manufacturing/Productionorder"));
+const Workorder = lazy(() => import("../Pages/Manufacturing/Workorders"));
+
+// Finance Components
+const Accounts = lazy(() => import("../Pages/Finance/Accounts"));
+const Payments = lazy(() => import("../Pages/Finance/Payments"));
+const Expenses = lazy(() => import("../Pages/Finance/Expenses"));
+const Reports = lazy(() => import("../Pages/Finance/Reports"));
+
+// HR Components
+const Employees = lazy(() => import("../Pages/HR/Employess"));
+const Attendence = lazy(() => import("../Pages/HR/Attendence"));
+const Leave = lazy(() => import("../Pages/HR/Leave"));
+const Payroll = lazy(() => import("../Pages/HR/Payroll"));
 
 export default function PrivateRouter() {
   return (
     <Routes>
-      <Route path="dashboard" element={<Dashboard />} />
-      <Route index element={<Dashboard />} />
+      <Route path="dashboard" element={<DynamicPage component={Dashboard} />} />
+      <Route index element={<DynamicPage component={Dashboard} />} />
+
+      {/* Sales Group */}
       <Route path="sales">
-        <Route path="customer" element={<Customer />} />
-        <Route path="invoice" element={<Invoice />} />
-        <Route path="quotations" element={<Quotations />} />
-        <Route path="salesorder" element={<Salesorder />} />
+        <Route path="customer" element={<DynamicPage component={Customer} />} />
+        <Route path="invoice" element={<DynamicPage component={Invoice} />} />
+        <Route path="quotations" element={<DynamicPage component={Quotations} />} />
+        <Route path="salesorder" element={<DynamicPage component={Salesorder} />} />
       </Route>
 
+      {/* Purchase Group */}
       <Route path="purchase">
-        <Route path="good receipt" element={<Goodreceipt />} />
-        <Route path="purchase order" element={<Purchaseorder />} />
-        <Route path="vendors" element={<Vendor />} />
+        <Route path="good receipt" element={<DynamicPage component={Goodreceipt} />} />
+        <Route path="purchase order" element={<DynamicPage component={Purchaseorder} />} />
+        <Route path="vendors" element={<DynamicPage component={Vendor} />} />
       </Route>
 
+      {/* Inventory Group */}
       <Route path="inventory">
-        <Route path="product" element={<Product />} />
-        <Route path="stock" element={<Stock />} />
-        <Route path="warehouse" element={<Warehouse />} />
-        <Route path="transfer" element={<Transfer />} />
+        <Route path="product" element={<DynamicPage component={Product} />} />
+        <Route path="stock" element={<DynamicPage component={Stock} />} />
+        <Route path="warehouse" element={<DynamicPage component={Warehouse} />} />
+        <Route path="transfer" element={<DynamicPage component={Transfer} />} />
       </Route>
 
+      {/* Manufacturing Group */}
       <Route path="manufacturing">
-        <Route path="BOM" element={<Bom />} />
-        <Route path="productionorder" element={<Productionorders />} />
-        <Route path="workorder" element={<Workorder />} />
+        <Route path="BOM" element={<DynamicPage component={Bom} />} />
+        <Route path="productionorder" element={<DynamicPage component={Productionorders} />} />
+        <Route path="workorder" element={<DynamicPage component={Workorder} />} />
       </Route>
 
+      {/* Finance Group */}
       <Route path="finance">
-        <Route path="accounts" element={<Accounts />} />
-        <Route path="expenses" element={<Expenses />} />
-        <Route path="payments" element={<Payments />} />
-        <Route path="repots" element={<Reports />} />
+        <Route path="accounts" element={<DynamicPage component={Accounts} />} />
+        <Route path="expenses" element={<DynamicPage component={Expenses} />} />
+        <Route path="payments" element={<DynamicPage component={Payments} />} />
+        <Route path="repots" element={<DynamicPage component={Reports} />} />
       </Route>
 
+      {/* HR Group */}
       <Route path="hr">
-        <Route path="attendence" element={<Attendence />} />
-        <Route path="employess" element={<Employees />} />
-        <Route path="leave" element={<Leave />} />
-        <Route path="payroll" element={<Payroll />} />
+        <Route path="attendence" element={<DynamicPage component={Attendence} />} />
+        <Route path="employess" element={<DynamicPage component={Employees} />} />
+        <Route path="leave" element={<DynamicPage component={Leave} />} />
+        <Route path="payroll" element={<DynamicPage component={Payroll} />} />
       </Route>
     </Routes>
   );

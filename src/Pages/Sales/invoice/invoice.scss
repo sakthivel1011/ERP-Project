@@ -1,51 +1,166 @@
 @use "/src/Styles/Variables.scss" as *;
 
-.kpi-container {
-  font-family: $font-family-base;
-   @include flex-center; 
+.css-16m94ua {
+  padding-top: 0px !important;
 }
 
-.kpi-total, .kpi-paid, .kpi-over, .kpi-unpaid{
+.kpi-container {
+  font-family: $font-family-base;
+  @include flex-center;
+}
+
+.kpi-total,
+.kpi-paid,
+.kpi-over,
+.kpi-unpaid {
   background-color: $color-bg-light;
   border: 1px solid $color-border-light;
-  border-radius: $radius-card; 
-  padding: $kpi-card-padding; 
-  display: flex;             
-  flex-direction: column;    
+  border-radius: $radius-card;
+  padding: $kpi-card-padding;
+  display: flex;
+  flex-direction: column;
   gap: $spacing-xs;
   width: 200px;
-  @include flex-center;        
+  height: 60px;
+  @include flex-center;
   @include single-line-dot(30px);
   &:hover {
-    box-shadow: 0 4px 12px rgb(148, 82, 102); 
+    box-shadow: 0 4px 12px rgb(148, 82, 102);
   }
 }
 
-.kpi-total{
-    color:$color-primary;   
-    border: 1px solid rgba($color-primary, 0.5);
+.kpi-total {
+  color: $color-primary;
+  border: 1px solid rgba($color-primary, 0.5);
 }
 
-.kpi-paid{
-  color:$color-success;
+.kpi-paid {
+  color: $color-success;
   border: 1px solid rgba($color-success, 0.5);
 }
 
-.kpi-unpaid{
-  color:$color-warning;
+.kpi-unpaid {
+  color: $color-warning;
   border: 1px solid rgba($color-warning, 0.5);
 }
 
-.kpi-over{
-  color:$color-danger;
+.kpi-over {
+  color: $color-danger;
   border: 1px solid rgba($color-danger, 0.5);
 }
 
-.Dropdown{
-  @include drop-down
+.invoiceName {
+  color: $heading-color !important;
+  font-size: $font-size-title !important;
+  font-weight: $font-weight-bold !important;
 }
 
-.table-container{
-  @include push-down-5px;
+.search {
+  @include searchbar;
 }
 
+.Dropdown {
+  @include filterstatus;
+}
+
+.invoice {
+  background-color: $color-primary-blue !important;
+  color: $color-bg-payment-unpaid !important;
+
+  @include round;
+}
+.Items {
+  color: $table-header-background-color !important;
+  background-color: $color-primary !important;
+}
+
+.Payment {
+  color: $table-header-background-color !important;
+  background-color: $color-secondary-purple !important;
+}
+
+.Table {
+  @include table;
+}
+
+.MuiTableCell-head {
+  font-size: 0.95rem !important;
+  padding: 2px 12px !important;
+  font-weight: bold !important;
+  color: black !important;
+}
+
+.heading {
+  color: $heading-color !important;
+  font-size: $font-size-title !important;
+  font-weight: $font-weight-bold !important;
+}
+.MuiTableCell-head {
+  font-size: 0.95rem !important;
+  padding: 2px 12px !important;
+  font-weight: bold !important;
+  color: black !important;
+}
+
+.MuiTableCell-body {
+  font-size: 0.9rem !important;
+  padding: 3px 10px !important;
+}
+.MuiTableCell-body {
+  font-size: 0.9rem !important;
+  padding: 3px 10px !important;
+  font-family: $font-family-base !important;
+}
+
+// 2. Ungal existing Table Wrappers matrum classes
+.mrt-gapped-table {
+  border-collapse: collapse !important;
+  border-spacing: 0px 0px !important;
+
+  .tableheader {
+    background-color: $table-header-background-color !important;
+  }
+
+  .tablebody {
+    background-color: $table-body-background-color !important;
+  }
+}
+
+.scroll {
+  &::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-height: 100px !important;
+  }
+
+  .MuiTableBody-root {
+    .MuiTableCell-root {
+      // Inge ulla font-size overlap-ai neekiyullom
+      //   border-radius: $table-border-radius;
+      background-color: $table-body-background-color;
+    }
+  }
+}
+
+.TableBox {
+  width: calc(100% - 240px) !important;
+  margin-left: auto !important;
+  margin-right: 25px !important;
+  margin-bottom: 35px !important;
+  padding: 0px !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  width: 100% !important;
+  margin-right: 20px !important;
+
+  .custom.table {
+    box-shadow: none !important;
+    border-radius: $table-border-radius !important;
+    overflow: hidden !important;
+    border: 1px solid $table-border-color !important;
+  }
+}

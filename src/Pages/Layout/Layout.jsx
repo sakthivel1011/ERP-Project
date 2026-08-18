@@ -13,11 +13,11 @@ export default function Layout() {
       <div className="main">
         <nav className="sidebar">
           <h2 className="Erp-admin">ERP ADMIN </h2>
-          <Link to="/"><button className="b1">🏠Dashboard</button></Link>
+          <Link to="/"><button className="b1">Dashboard</button></Link>
           <div>
             <button className="b1" onClick={() => setOpen(!open)}>
               {" "}
-              <b>📊Sales</b>
+              <b>Sales</b>
             </button>
             {open && (
               <ul className="bullet">
@@ -39,7 +39,7 @@ export default function Layout() {
 
           <div>
             <button className="b1" onClick={() => setPurchase(!purchase)}>
-              🛒 Purchase
+               Purchase
             </button>
             {purchase && (
               <ul className="bullet">
@@ -58,7 +58,7 @@ export default function Layout() {
 
           <div>
             <button className="b1" onClick={() => setInventory(!inventory)}>
-              📦 Inventory
+               Inventory
             </button>
             {inventory && (
               <ul className="bullet">
@@ -83,7 +83,7 @@ export default function Layout() {
               className="b1"
               onClick={() => setManufacturing(!manufacturing)}
             >
-              🏭 Manufacturing
+               Manufacturing
             </button>
             {manufacturing && (
               <ul className="bullet">
@@ -104,7 +104,7 @@ export default function Layout() {
 
           <div>
             <button className="b1" onClick={() => setFinance(!finance)}>
-              💰 Finance
+               Finance
             </button>
             {finance && (
               <ul className="bullet">
@@ -125,7 +125,7 @@ export default function Layout() {
           </div>
           <div>
             <button className="b1" onClick={() => setHr(!hr)}>
-              👥 HR
+               HR
             </button>
             {hr && (
               <ul className="bullet">
@@ -146,10 +146,9 @@ export default function Layout() {
           </div>
         </nav>
         <div className="right">
-        <Outlet />
+          <Outlet />
+        </div>
       </div>
-      </div>
-      
     </>
   );
 }

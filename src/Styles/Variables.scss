@@ -1,5 +1,11 @@
+$color-primary: #00008B;
+$color-text-dark: #1e293b;
+$color-text-muted: #64748b;
+$color-border-light: #e2e8f0;
+$color-bg-light: #f8fafc;
+$heading-color: #1a1a1e;
 
-$color-primary: #3b82f6;       
+$color-primary:  #00008B;       
 $color-text-dark: #1e293b;     
 $color-text-muted: #64748b;    
 $color-border-light: #e2e8f0;  
@@ -12,20 +18,30 @@ $heading-color:#1a1a1e;
 $color-success: #10b981;       
 $color-danger: #ef4444;       
 $color-warning: #f59e0b;     
+// 2. STATUS TAG COLORS
+$color-success: #10b981;
+$color-danger: #ef4444;
+$color-warning: #f59e0b;
 
 // 3. TYPOGRAPHY SYSTEM
 
-$font-family-base:  'Inter', 'Plus Jakarta Sans', sans-serif;
+$font-family-base: "Inter", "Plus Jakarta Sans", sans-serif;
 $font-weight-normal: 400;
 $font-weight-medium: 500;      
 $font-weight-semibold: 600;  
 // $font-family-base:"Inter", system-ui, -apple-system, sans-serif; 
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-family-base:
+  "Inter",
+  system-ui,
+  -apple-system,
+  sans-serif;
 
 // 4. INTERACTIVE COMPONENT PROPERTIES
-$radius-button: 8px;        
-$radius-card: 12px ;    
+$radius-button: 8px;
+$radius-card: 12px;
 $transition-default: all 0.2s ease-in-out;
-
 
 // 1. Typography / Font Settings
 
@@ -34,6 +50,10 @@ $professional-font:  'Poppins', -apple-system, BlinkMacSystemFont;
 $font-sans-modern: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 $font-sans-corporate: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
 $font-monospace-data: 'Courier New', Courier, monospace;
+$professional-font: "Times New Roman", Times, Baskerville, Georgia, serif;
+$font-sans-modern: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$font-sans-corporate: "Verdana", "Geneva", "Tahoma", sans-serif;
+$font-monospace-data: "Courier New", Courier, monospace;
 
 $font-size-title: 24px;
 $font-size-subtitle: 18px;
@@ -46,7 +66,7 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // 2. Theme Colors
-$color-primary-blue: #1976d2;
+$color-primary-blue:  #00008B;
 $color-secondary-purple: #9c27b0;
 $color-text-dark: #1e293b;
 $color-text-secondary: #64748b;
@@ -58,22 +78,18 @@ $color-bg-item-modal: #f9f9f9;
 $color-bg-payment-success: #f0fdf4;
 $color-bg-payment-unpaid: #fef2f2;
 
-
 $layout-top-origin: 0;
 $layout-left-origin: 0;
 $invoice-padding-gap: 20px; // Safely screen window boundaries gap
 $layer-top-priority: 999;
 
 $layer-top-priority: 999;
-$font-size-data: 16px; 
-$text-color-muted: #555555; 
-$color-table-data-text: #2c3e50; 
+$font-size-data: 16px;
+$text-color-muted: #555555;
+$color-table-data-text: #2c3e50;
 
-$color-table-header-text: #111111; 
-$font-weight-header: 600; 
-
-
-
+$color-table-header-text: #111111;
+$font-weight-header: 600;
 
 @mixin standard-btn {
   width: auto !important;
@@ -81,23 +97,24 @@ $font-weight-header: 600;
   white-space: nowrap !important;
 }
 
-@mixin drop-down{
-    width: 250px !important;
-    bgcolor: "white" !important;
-     margin-right:20px !important;
+@mixin drop-down {
+  width: 200px !important;
+  bgcolor: "white" !important;
+  margin-right: 20px !important;
+ 
 }
 
 @mixin push-down-5px {
   margin-top: 20px !important;
 }
 
+//kpiData
+$kpi-card-padding: 8px 35px;
 //table styling
 $table-header-background-color: #f8fafc;
 $table-body-background-color: #ffffff;
-$table-border-radius:5px;
-$table-border-color:#D3D3D3;
-
-
+$table-border-radius: 5px;
+$table-border-color: #d3d3d3;
 
 //KPI styling
 //kpiData
@@ -107,13 +124,20 @@ $spacing-xs: 3px;
 $color-purple:rgb(138, 5, 138);
 $color-blue:rgb(13, 166, 226);
 
+$kpi-card-padding: 8px 35px;
+$kpi-border-black: 1px solid #000000;
+$spacing-xs: 2px;
+$color-purple: rgb(138, 5, 138);
+$color-blue: rgb(13, 166, 226);
 
 //centre align
 @mixin flex-center {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 3px;
+
+  
 }
 
 //ellipsis
@@ -129,8 +153,9 @@ $color-blue:rgb(13, 166, 226);
 }
 
 @mixin searchbar {
-  width: 250px;
-  background-color: #FFFFFF;
+  width: 250px !important;
+  background-color: #FFFFFF !important;
+  
 
   .MuiInputBase-root {
     height: 32px; // added 'px' unit
@@ -156,9 +181,10 @@ $color-blue:rgb(13, 166, 226);
 }
 @mixin addcustomer{
    height: 32;
-   fontSize: "0.85rem";
-   textTransform: "none";
-   whiteSpace: "nowrap" 
+   font-size: "0.85rem";
+   text-transform: "none";
+   white-space: "nowrap" ;
+   background-color: $color-primary-blue !important;
 }
 
 //side bar  scss content technology
@@ -179,7 +205,7 @@ $color-blue:rgb(13, 166, 226);
     width: 100%;
     height: 35px;
     justify-content: space-evenly;
-    background-color: #191970;
+    background-color:#00E5FF;
     color: black;
     border-radius: 10px;
     border-color: black;
@@ -188,7 +214,9 @@ $color-blue:rgb(13, 166, 226);
     background-color: transparent !important;
     border: none !important;    
     color: rgba(255, 255, 255, 0.85); 
-    box-shadow: none !important;   
+    box-shadow: none !important; 
+    text-align: left;  
+    margin-left: 5px;
 
       &:hover {
     background-color: #191970 !important; // லைட்டான கிளாஸ் பேட்ச் மட்டும் தெரியும்
@@ -203,9 +231,40 @@ $color-blue:rgb(13, 166, 226);
     scrollbar-width: none;
     border: 0.5px solid lightgrey;
     border-radius: 5px;
-    width: 200px;
+    width: 190px;
     background-color: #00008B;
+    border-radius: 20px 0px 0px 10px;
  }
 
 
+@mixin search {
+  justify-content: flex-start !important;
+  margin-left: 0% !important;
+}
+
+@mixin round {
+  width: 120px !important;
+height: 32px !important;
+  
+  border: none !important;
+  cursor: pointer !important;
+}
+
+@mixin table{
+    width: calc(100% - 240px) !important;
+        margin-left: 220px !important ;
+        margin-right: 20px !important;
+        box-sizing: border-box !important;
+        min-height: 100vh !important;
+        pt: 3 !important;
+}
+
+@mixin newinv{
+    display: grid !important;
+         grid-template-columns: 1fr auto !important;
+          align-items: center !important;
+          width: 100% !important;
+          mb: 3 !important;
+          height: 32px !important;
+}
 

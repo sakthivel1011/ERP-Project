@@ -385,7 +385,6 @@ function Customer() {
           {/*Add new customer*/}
           <Button 
             variant="contained" 
-            color="primary" 
             size="small"
             className="Add-customer"
             onClick={() => handleActionClick("Add New Customer", null)}

@@ -1,5 +1,11 @@
 @use "../../../Styles/Variables.scss" as *;
 
+.MuiTableCell-head {
+  font-size: 0.95rem !important;
+  padding: 2px 12px !important;
+  font-weight: bold !important;
+  color: black !important;
+}
 
 
 .heading{
@@ -18,13 +24,19 @@
     font-size: 0.90rem !important; 
     padding: 3px 10px !important;   
   }
+.MuiTableCell-body {
+  font-size: 0.9rem !important;
+  padding: 3px 10px !important;
+  font-family: $font-family-base !important;
+}
+
+// 2. Ungal existing Table Wrappers matrum classes
 .mrt-gapped-table {
   border-collapse: collapse !important;
-  border-spacing: 0px 0px !important; 
+  border-spacing: 0px 0px !important;
 
   .tableheader {
     background-color: $table-header-background-color !important;
-   
   }
 
   .tablebody {
@@ -39,11 +51,11 @@
     height: 0 !important;
     max-height: 100px !important;
   }
-  
+
   .MuiTableBody-root {
     .MuiTableCell-root {
       // Inge ulla font-size overlap-ai neekiyullom
-    //   border-radius: $table-border-radius;
+      //   border-radius: $table-border-radius;
       background-color: $table-body-background-color;
     }
   }
@@ -72,7 +84,11 @@
 }
 
 // KPI State
-.total, .paid, .unpaid, .overdue, .Partiallypaid {
+.total,
+.paid,
+.unpaid,
+.overdue,
+.Partiallypaid {
   background-color: $color-bg-light;
   border: 1px solid $color-border-light;
   border-radius: $radius-card;
@@ -82,10 +98,10 @@
   flex-direction: column;
   gap: $spacing-xs;
   width: 160px;
-  height: 50px;
+  height: 60px;
   @include flex-center;
   @include single-line-dot(0px);
-  margin-top: 0px;
+  margin-top: 8px;
 
   &:hover {
     box-shadow: 0 4px 12px rgb(148, 82, 102);
