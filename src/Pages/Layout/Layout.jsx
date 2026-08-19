@@ -21,6 +21,7 @@ export default function Layout() {
             </button>
             {open && (
               <ul className="bullet">
+                <div className="div">
                 <li>
                   <Link className="link-color" to="/sales/customer">Customer</Link>
                 </li>
@@ -33,6 +34,7 @@ export default function Layout() {
                 <li>
                   <Link className="link-color" to="/sales/salesorder">Salesorder</Link>
                 </li>
+                </div>
               </ul>
             )}
           </div>
