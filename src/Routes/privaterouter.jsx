@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router";
 
-// லோடிங் டிசைனுக்கான ஸ்டைல்ஸ்
 const styles = {
   loader: {
     display: "flex",
@@ -11,13 +10,14 @@ const styles = {
     fontSize: "18px",
     fontWeight: "600",
     fontFamily: "sans-serif",
-    color: "#003366"
-  }
+    color: "#003366",
+  },
 };
 
-// 🔄 ஒவ்வொரு பக்கத்திற்கும் தனித்தனியாக Suspense-ஐ சேர்க்கும் எளிய ஃபங்க்ஷன்
 const DynamicPage = ({ component: Component }) => (
-  <Suspense fallback={<div style={styles.loader}>🔄 Loading Page Components...</div>}>
+  <Suspense fallback={<div style={styles.loader}>
+    
+  </div>}>
     <Component />
   </Suspense>
 );
@@ -45,7 +45,9 @@ const Transfer = lazy(() => import("../Pages/Inventory/Transfer"));
 
 // Manufacturing Components
 const Bom = lazy(() => import("../Pages/Manufacturing/BOM"));
-const Productionorders = lazy(() => import("../Pages/Manufacturing/Productionorder"));
+const Productionorders = lazy(
+  () => import("../Pages/Manufacturing/Productionorder"),
+);
 const Workorder = lazy(() => import("../Pages/Manufacturing/Workorders"));
 
 // Finance Components
@@ -70,14 +72,26 @@ export default function PrivateRouter() {
       <Route path="sales">
         <Route path="customer" element={<DynamicPage component={Customer} />} />
         <Route path="invoice" element={<DynamicPage component={Invoice} />} />
-        <Route path="quotations" element={<DynamicPage component={Quotations} />} />
-        <Route path="salesorder" element={<DynamicPage component={Salesorder} />} />
+        <Route
+          path="quotations"
+          element={<DynamicPage component={Quotations} />}
+        />
+        <Route
+          path="salesorder"
+          element={<DynamicPage component={Salesorder} />}
+        />
       </Route>
 
       {/* Purchase Group */}
       <Route path="purchase">
-        <Route path="good receipt" element={<DynamicPage component={Goodreceipt} />} />
-        <Route path="purchase order" element={<DynamicPage component={Purchaseorder} />} />
+        <Route
+          path="good receipt"
+          element={<DynamicPage component={Goodreceipt} />}
+        />
+        <Route
+          path="purchase order"
+          element={<DynamicPage component={Purchaseorder} />}
+        />
         <Route path="vendors" element={<DynamicPage component={Vendor} />} />
       </Route>
 
@@ -85,15 +99,24 @@ export default function PrivateRouter() {
       <Route path="inventory">
         <Route path="product" element={<DynamicPage component={Product} />} />
         <Route path="stock" element={<DynamicPage component={Stock} />} />
-        <Route path="warehouse" element={<DynamicPage component={Warehouse} />} />
+        <Route
+          path="warehouse"
+          element={<DynamicPage component={Warehouse} />}
+        />
         <Route path="transfer" element={<DynamicPage component={Transfer} />} />
       </Route>
 
       {/* Manufacturing Group */}
       <Route path="manufacturing">
         <Route path="BOM" element={<DynamicPage component={Bom} />} />
-        <Route path="productionorder" element={<DynamicPage component={Productionorders} />} />
-        <Route path="workorder" element={<DynamicPage component={Workorder} />} />
+        <Route
+          path="productionorder"
+          element={<DynamicPage component={Productionorders} />}
+        />
+        <Route
+          path="workorder"
+          element={<DynamicPage component={Workorder} />}
+        />
       </Route>
 
       {/* Finance Group */}
@@ -106,8 +129,14 @@ export default function PrivateRouter() {
 
       {/* HR Group */}
       <Route path="hr">
-        <Route path="attendence" element={<DynamicPage component={Attendence} />} />
-        <Route path="employess" element={<DynamicPage component={Employees} />} />
+        <Route
+          path="attendence"
+          element={<DynamicPage component={Attendence} />}
+        />
+        <Route
+          path="employess"
+          element={<DynamicPage component={Employees} />}
+        />
         <Route path="leave" element={<DynamicPage component={Leave} />} />
         <Route path="payroll" element={<DynamicPage component={Payroll} />} />
       </Route>
