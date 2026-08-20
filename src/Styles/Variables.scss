@@ -5,26 +5,12 @@ $color-border-light: #e2e8f0;
 $color-bg-light: #f8fafc;
 $heading-color: #1a1a1e;
 
-$color-primary:  #00008B;       
-$color-text-dark: #1e293b;     
-$color-text-muted: #64748b;    
-$color-border-light: #e2e8f0;  
-$color-bg-light: #f8fafc;
-$heading-color:#1a1a1e;
-
-
-
 // 2. STATUS TAG COLORS 
 $color-success: #10b981;       
 $color-danger: #ef4444;       
 $color-warning: #f59e0b;     
-// 2. STATUS TAG COLORS
-$color-success: #10b981;
-$color-danger: #ef4444;
-$color-warning: #f59e0b;
 
 // 3. TYPOGRAPHY SYSTEM
-
 $font-family-base: "Inter", "Plus Jakarta Sans", sans-serif;
 $font-weight-normal: 400;
 $font-weight-medium: 500;      
@@ -41,11 +27,12 @@ $font-family-base:
 // 4. INTERACTIVE COMPONENT PROPERTIES
 $radius-button: 8px;
 $radius-card: 12px;
+$radius-button: 8px;        
+$radius-card: 12px ;    
+$radius-card: 20px;    
 $transition-default: all 0.2s ease-in-out;
 
 // 1. Typography / Font Settings
-
-
 $professional-font:  'Poppins', -apple-system, BlinkMacSystemFont;
 $font-sans-modern: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 $font-sans-corporate: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
@@ -126,7 +113,7 @@ $color-blue:rgb(13, 166, 226);
 
 $kpi-card-padding: 8px 35px;
 $kpi-border-black: 1px solid #000000;
-$spacing-xs: 2px;
+$spacing-xs: 1px;
 $color-purple: rgb(138, 5, 138);
 $color-blue: rgb(13, 166, 226);
 
@@ -138,6 +125,7 @@ $color-blue: rgb(13, 166, 226);
   margin-top: 7px;
 
   
+  margin-top: 3px;
 }
 
 //ellipsis
@@ -267,4 +255,5 @@ height: 32px !important;
           mb: 3 !important;
           height: 32px !important;
 }
+
 

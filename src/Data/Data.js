@@ -1093,7 +1093,7 @@ export const Data = {
           amount: 1029600,
         },
       ],
-      subtotal: 1029600,
+      subtotal: 102600,
       tax: 185328,
       grandTotal: 1214928,
     },
