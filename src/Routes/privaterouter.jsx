@@ -28,7 +28,7 @@ const Layout = lazy(() => import("../Pages/Layout/Layout"));
 
 // Sales Components
 const Customer = lazy(() => import("../Pages/Sales/Customer/Customer"));
-const Quotations = lazy(() => import("../Pages/Sales/Quotations"));
+const Quotations = lazy(() => import("../Pages/Sales/Quotation/Quotations"));
 const Salesorder = lazy(() => import("../Pages/Sales/Salesorder"));
 const Invoice = lazy(() => import("../Pages/Sales/invoice/Invoice"));
 

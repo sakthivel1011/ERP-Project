@@ -1,0 +1,81 @@
+@use '/src/Styles/Variables.scss' as *;
+
+
+.kpi-container {
+  font-family: $font-family-base;
+  align-items: center !important;
+}
+
+.kpi-total, .kpi-convt, .kpi-sent, .kpi-draft, .kpi-expired {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-card; 
+  padding: $kpi-card-padding;
+  display: flex; 
+  flex-direction: column;  
+  width: 175px !important;
+  height: 60px;
+  margin-top: 1% !important;
+  @include flex-center;      
+  text-align: center !important;  
+  @include single-line-dot(30px);
+
+
+  &:hover {
+    box-shadow: 0 4px 12px rgb(148, 82, 102); 
+  }
+}
+
+.kpi-total{
+    text-align: center;
+    color:$color-blue !important;   
+    border: 1px solid rgba($color-blue, 0.5) !important;
+}
+
+.kpi-convt{
+  color:$color-danger;
+  border: 1px solid rgba($color-danger, 0.5);
+}
+
+.kpi-sent{
+  color:$color-success;
+  border: 1px solid rgba($color-success, 0.5);
+}
+
+.kpi-draft{
+  color:$color-purple;
+  border: 1px solid rgba($color-purple, 0.5);
+}
+
+.kpi-expired{
+  color:$color-text-dark;
+  border: 1px solid rgba($color-text-dark, 0.5);
+}
+
+.heading {
+  font-size: font-size-title !important;
+  font-weight: $font-weight-bold !important;
+}
+  
+.search{
+@include searchbar;
+}
+ .dropdown{
+  @include filterstatus;
+ }
+
+ .custom-blue-button{
+  background-color: $color-primary-blue !important;
+  color: $color-bg-payment-unpaid !important;
+  height: 32px;
+ }
+
+  .searchbox{
+    width: 100% !important;
+    height: 32px;
+    margin-top: -12% !important;
+  }
+
+ .search{
+  margin-top: -2px;
+ }
