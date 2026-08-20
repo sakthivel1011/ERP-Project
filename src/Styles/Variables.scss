@@ -143,6 +143,7 @@ $color-blue: rgb(13, 166, 226);
 @mixin searchbar {
   width: 250px !important;
   background-color: #FFFFFF !important;
+  height: 32px !important;
   
 
   .MuiInputBase-root {

@@ -19,9 +19,19 @@ import {
   IconButton,
 } from "@mui/material";
 import "../invoice/invoice.scss";
+import CustomButton from "../../../components/CustomButton";
 
 // 📦 React Hook Form packages for standard JavaScript state handling
 import { useForm, useFieldArray, Controller } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import CommonButton from "../../../components/CustomButton";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import ListIcon from "@mui/icons-material/List";
+import { DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import { TRUE } from "sass";
 
 export default function Invoice() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -30,12 +40,12 @@ export default function Invoice() {
   const [statusfilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-
   // ⚡ Master useForm configuration with standard default layouts properties matching ungal matrix keys
   const {
     handleSubmit,
     control,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -59,6 +69,8 @@ export default function Invoice() {
       ],
     },
   });
+
+  console.log("getValues", getValues());
 
   // Dynamic loops tracking hooks parameters mapping inputs variables live
   const {
@@ -184,19 +196,21 @@ export default function Invoice() {
         header: "Action",
         enableSorting: false,
         Cell: ({ row }) => (
-          <Stack direction="row" spacing={2} sx={{ width: "200px" }}>
-            <Button
-              className="Items"
+          <Stack direction="row" spacing={2} sx={{ width: "auto" }}>
+            <CustomButton
+              buttonType="primary"
+              startIcon={<ListIcon />}
               onClick={() => handleActionClick("items", row.original)}
             >
               Items
-            </Button>
-            <Button
-              className="Payment"
+            </CustomButton>
+            <CustomButton
+              buttonType="purple"
+              startIcon={<PaymentsIcon />}
               onClick={() => handleActionClick("payments", row.original)}
             >
               Payments
-            </Button>
+            </CustomButton>
           </Stack>
         ),
       },
@@ -249,12 +263,12 @@ export default function Invoice() {
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={8} sm={10}>
               <TextField
                 select
                 label="Select Company Customer"
                 size="small"
-                fullWidth
+                width="200px"
                 {...control.register("customerId", { required: true })}
               >
                 {(Data?.customers || []).map((c) => (
@@ -264,28 +278,33 @@ export default function Invoice() {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <Controller
-                name="invoiceDate"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    type="date"
-                    label="Invoice Date"
-                    size="small"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                  />
-                )}
-              />
-            </Grid>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+  <Controller
+    name="invoiceDate"
+    control={control}
+    render={({ field }) => (
+      <DatePicker
+        value={field.value ? dayjs(field.value) : null}
+        onChange={(date) =>
+          field.onChange(date ? date.format("YYYY-MM-DD") : "")
+        }
+        label="Invoice Date"
+        slotProps={{
+          textField: {
+            size: "small",
+            fullWidth: false,
+          },
+        }}
+      />
+    )}
+  />
+</LocalizationProvider>
             <Grid item xs={12} sm={6}>
               <TextField
                 select
                 label="Payment Terms"
                 size="small"
-                fullWidth
+                fullWidth:true
                 {...control.register("paymentTerms")}
               >
                 <MenuItem value="15 Days">15 Days</MenuItem>
@@ -323,13 +342,13 @@ export default function Invoice() {
                     Product Row #{index + 1}
                   </Typography>
                   {itemFields.length > 1 && (
-                    <Button
-                      color="error"
-                      size="small"
+                    <CustomButton
+                      buttonType="outlined"
+                      variant="red"
                       onClick={() => removeItem(index)}
                     >
                       Remove
-                    </Button>
+                    </CustomButton>
                   )}
                 </Stack>
                 <Grid container spacing={2}>
@@ -429,10 +448,9 @@ export default function Invoice() {
                 </Grid>
               </Box>
             ))}
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{ textTransform: "none" }}
+            <CustomButton
+             buttonType="purple"
+              
               onClick={() =>
                 appendItem({
                   description: "",
@@ -445,7 +463,7 @@ export default function Invoice() {
               }
             >
               + Add Item
-            </Button>
+            </CustomButton>
           </Box>
         </form>
       );
@@ -628,15 +646,9 @@ export default function Invoice() {
           <Paper
             className="search"
             variant="outlined"
-            sx={{
-              p: "2px 4px",
-              display: "flex",
-              alignItems: "center",
-              width: 250,
-            }}
+            
           >
             <InputBase
-              sx={{ ml: 1, flex: 1 }}
               placeholder="Search Invoice"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -662,12 +674,12 @@ export default function Invoice() {
               <MenuItem value="partially Paid">Partially Paid</MenuItem>
             </TextField>
 
-            <Button
+            <CustomButton
               variant="contained"
               onClick={() => handleActionClick("addInvoice", null)}
             >
               Add Invoice
-            </Button>
+            </CustomButton>
           </Stack>
         </Box>
       </Box>
@@ -694,19 +706,25 @@ export default function Invoice() {
         <DialogContent dividers>{renderPopupcontent()}</DialogContent>
 
         <DialogActions sx={{ p: 2, gap: 1.5 }}>
-          <Button onClick={handleCloseModal} variant="outlined" color="inherit">
+          <CustomButton
+            buttonType="outlined"
+            onClick={handleCloseModal}
+            variant="outlined"
+            color="inherit"
+          >
             Close
-          </Button>
+          </CustomButton>
           {/* Linked Form Save Trigger button mapped safely utilizing form structural identification keys */}
           {modalType === "addInvoice" && (
-            <Button
-              form="add-invoice-form"
-              type="submit"
-              variant="contained"
-              color="primary"
+            <CustomButton
+              onClick={() => {
+                console.log(
+                  `Button clicked! Target Invoice Number value is: ${FormData}`,
+                );
+              }}
             >
               Save Invoice
-            </Button>
+            </CustomButton>
           )}
         </DialogActions>
       </Dialog>
