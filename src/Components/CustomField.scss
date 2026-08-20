@@ -1,0 +1,103 @@
+// --- Theme Variables ---
+$primary-color:  #00008B;       
+$text-primary: #1a1f36;          
+$text-secondary: #697386;        
+$border-color-default: #d9e2ec;  
+$border-color-hover: #9fb3c8;   
+$error-color: #df2c2c;           
+$bg-disabled: #f7fafc;          
+$shadow-focus: rgba(0, 0, 128, 0.08); 
+
+.custom-textfield-wrapper {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  vertical-align: top;
+
+  // --- Core Material UI Input Overrides ---
+  .MuiInputBase-root {
+    background-color: #ffffff;
+    border-radius: 6px; 
+    transition: all 0.2s ease-in-out;
+    color: $text-primary;
+    font-size: 14px; 
+
+    // Default Outlined Border
+    .MuiOutlinedInput-notchedOutline {
+      border-color: $border-color-default;
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    // Hover State Logic
+    &:hover {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $border-color-hover;
+      }
+    }
+
+    // Focused State (When clicking inside)
+    &.Mui-focused {
+      // box-shadow: 0 0 0 3px $shadow-focus; 
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $primary-color !important;
+        border-width: 1px !important; 
+      }
+    }
+
+    // Disabled Input Layout Styling
+    &.Mui-disabled {
+      background-color: $bg-disabled;
+      color: $text-secondary;
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $border-color-default !important;
+      }
+    }
+  }
+
+  // --- Dynamic Floating Label States ---
+  .MuiInputLabel-root {
+    color: $text-secondary;
+    font-size: 14px;
+    font-weight: 500;
+    
+    &.Mui-focused {
+      color: $primary-color !important;
+    }
+
+    &.Mui-error {
+      color: $error-color !important;
+    }
+  }
+
+  // --- Inside Placeholder Text Accent ---
+  input::placeholder {
+    color: #a5adba !important;
+    opacity: 1;
+    font-size: 13.5px;
+  }
+
+  // --- Error State Validation Highlights ---
+  .Mui-error {
+    .MuiOutlinedInput-notchedOutline {
+      border-color: $error-color !important;
+    }
+    
+    &.Mui-focused {
+      // box-shadow: 0 0 0 3px rgba(223, 44, 44, 0.12);
+    }
+  }
+
+  // Form Validation Message Text (Underneath input)
+  .MuiFormHelperText-root {
+    font-size: 12px;
+    margin: 4px 0 0 4px;
+    font-weight: 500;
+    
+    &.Mui-error {
+      color: $error-color;
+    }
+  }
+}

@@ -12,6 +12,7 @@ import {
   MenuItem,
 } from "@mui/material"; // Normal table creation
 // import { Data } from "../../Data/Data";
+import { useForm, useFieldArray, Controller } from "react-hook-form"; // form for add new customer
 import { Data } from "../../../Data/Data";
 import {
   Button,
@@ -21,6 +22,7 @@ import {
   DialogActions,
 } from "@mui/material"; //popup msg and action button ku
 import "./Customer.scss";
+import CustomTextField from "../../../Components/CustomField";
 
 function Customer() {
   //popup state
@@ -53,7 +55,39 @@ function Customer() {
   const [statusfilter, setStatusFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-   const FilterTable = useMemo(() => {
+  ///form creation for add customer
+  const {
+    handleSubmit,
+    control,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      customerCode: "",
+      companyName: "",
+      gstNumber: "",
+      panNumber: "",
+      customerType: "Corporate",
+      creditLimit: 0,
+      paymentTerms: "30 Days",
+      currency: "INR",
+      contacts: [{ name: "", designation: "", email: "", mobile: "" }],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "contacts",
+  });
+
+  const onFormSubmit = (formData) => {
+    console.log("getvalue", getValues());
+    console.log("New Customer Added Sucessfully:", formData);
+    handleClose(); // Save panna pin popup close aagum
+  };
+
+  const FilterTable = useMemo(() => {
     // 1. Core data arrays properties fetch components lookups
     let filtered = Data?.customers || [];
     const invoice = Data?.invoices || [];
@@ -62,30 +96,27 @@ function Customer() {
     if (statusfilter && statusfilter !== "all") {
       const matchingcustomer = invoice
         .filter(
-          (inv) =>
-            inv.status?.toLowerCase() === statusfilter.toLowerCase(),
+          (inv) => inv.status?.toLowerCase() === statusfilter.toLowerCase(),
         )
         .map((inv) => inv.customerId);
-        
-      filtered = filtered.filter((c) => matchingcustomer.includes(c.customerId));
+
+      filtered = filtered.filter((c) =>
+        matchingcustomer.includes(c.customerId),
+      );
     }
 
-    // 🔥 Filter Step B: Puthiya Manual Search Input Keyword Matching Logic
-    // Checking across customerCode, companyName, and customerType variables safely
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
       filtered = filtered.filter(
         (c) =>
           c.customerCode?.toLowerCase().includes(query) ||
           c.companyName?.toLowerCase().includes(query) ||
-          c.customerType?.toLowerCase().includes(query)
+          c.customerType?.toLowerCase().includes(query),
       );
     }
 
-    // 2. Returns final computed combined dataset records down to your Material React Table
     return filtered;
-  }, [statusfilter, searchQuery]); // Tracks both dependencies values changes live to trigger filter pipeline
-
+  }, [statusfilter, searchQuery]);
 
   //function handle button click and popup
   const handleActionClick = (title, data) => {
@@ -97,6 +128,7 @@ function Customer() {
   const handleClose = () => {
     setOpen(false);
     setPopupData(null);
+    reset();
   };
 
   //CREATE COLOUMNS NAME FOR TABLE
@@ -176,6 +208,8 @@ function Customer() {
                 variant="contained"
                 size="small"
                 color="primary"
+                sx={{ paddingY: '4px', minHeight: 'unset', height: '25px' }}
+    
                 onClick={() =>
                   handleActionClick("Contact Details", customer.contacts)
                 }
@@ -187,8 +221,10 @@ function Customer() {
                 variant="contained"
                 size="small"
                 color="secondary"
+                sx={{ paddingY: '4px', minHeight: 'unset', height: '25px' }}
                 onClick={() =>
                   handleActionClick("Billing Address", customer.billingAddress)
+                
                 }
               >
                 Billing
@@ -198,6 +234,7 @@ function Customer() {
                 variant="contained"
                 size="small"
                 color="success"
+                sx={{ paddingY: '4px', minHeight: 'unset', height: '25px' }}
                 onClick={() =>
                   handleActionClick(
                     "Shipping Address",
@@ -221,7 +258,7 @@ function Customer() {
     data: FilterTable || [],
     // enableGlobalFilter: true,
     enableGlobalFilter: false,
-    enableTopToolbar: false, 
+    enableTopToolbar: false,
     enableFilters: false,
     enablePagination: true,
     enableHiding: false,
@@ -230,7 +267,7 @@ function Customer() {
     enableDensityToggle: false,
     paginationDisplayMode: "pages",
     layoutMode: "semantic",
-   
+
     initialState: {
       density: "compact", // Gaps reduction parameters setup
       pagination: {
@@ -259,6 +296,184 @@ function Customer() {
   // popup data show panna
   const renderPopupcontent = () => {
     //check data contact or  address ah step4
+    if (popupTitle === "Add New Customer") {
+      return (
+        <form id="add-customer-form" onSubmit={handleSubmit(onFormSubmit)}>
+          <Grid container spacing={2} sx={{ pt: 1 }}>
+            <Grid xs={12} sm={6}>
+              <Controller
+                name="customerCode"
+                control={control}
+                rules={{ required: "Required" }}
+                render={({ field }) => (
+                  <CustomTextField
+                    {...field}
+                    label="Customer Code"
+                    size="small"
+                    width="200px"
+                    error={!!errors.customerCode}
+                    helperText={errors.customerCode?.message}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <Controller
+                name="companyName"
+                control={control}
+                rules={{ required: "Required" }}
+                render={({ field }) => (
+                  <CustomTextField
+                    {...field}
+                    label="Company Name"
+                    size="small"
+                    fullWidth
+                    error={!!errors.companyName}
+                    helperText={errors.companyName?.message}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <Controller
+                name="gstNumber"
+                control={control}
+                render={({ field }) => (
+                  <CustomTextField
+                    {...field}
+                    label="GST Number"
+                    size="small"
+                    fullWidth
+                  />
+                )}
+              />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <Controller
+                name="panNumber"
+                control={control}
+                render={({ field }) => (
+                  <CustomTextField
+                    {...field}
+                    label="PAN Number"
+                    size="small"
+                    fullWidth
+                  />
+                )}
+              />
+            </Grid>
+          </Grid>
+
+          <Box sx={{ mt: 3 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 1 }}>
+              Contacts List
+            </Typography>
+            {fields.map((item, index) => (
+              <Box
+                key={item.id}
+                sx={{
+                  p: 2,
+                  border: "1px solid #e0e0e0",
+                  borderRadius: 1,
+                  mb: 2,
+                  bgcolor: "#fafafa",
+                }}
+              >
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  sx={{ mb: 1 }}
+                >
+                  <Typography variant="body2">
+                    Contact Person #{index + 1}
+                  </Typography>
+                  {fields.length > 1 && (
+                    <Button
+                      color="error"
+                      size="small"
+                      onClick={() => remove(index)}
+                    >
+                      Remove
+                    </Button>
+                  )}
+                </Stack>
+                <Grid container spacing={2}>
+                  <Grid xs={12} sm={6}>
+                    <Controller
+                      name={`contacts.${index}.name`}
+                      control={control}
+                      rules={{ required: true }}
+                      render={({ field }) => (
+                        <CustomTextField
+                          {...field}
+                          label="Name"
+                          size="small"
+                          fullWidth
+                        />
+                      )}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name={`contacts.${index}.designation`}
+                      control={control}
+                      render={({ field: desigField }) => (
+                        <CustomTextField
+                          {...desigField}
+                          label="Designation"
+                          size="small"
+                          fullWidth
+                        />
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name={`contacts.${index}.email`}
+                      control={control}
+                      render={({ field: emailField }) => (
+                        <CustomTextField
+                          {...emailField}
+                          type="email"
+                          label="Email"
+                          size="small"
+                          fullWidth
+                        />
+                      )}
+                    />
+                  </Grid>
+                  <Grid xs={12} sm={6}>
+                    <Controller
+                      name={`contacts.${index}.mobile`}
+                      control={control}
+                      render={({ field }) => (
+                        <CustomTextField
+                          {...field}
+                          label="Mobile"
+                          size="small"
+                          fullWidth
+                        />
+                      )}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            ))}
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={() =>
+                append({ name: "", designation: "", email: "", mobile: "" })
+              }
+            >
+              + Add Contact
+            </Button>
+          </Box>
+        </form>
+      );
+    }
+
     if (!popupData) return null;
     if (Array.isArray(popupData)) {
       //Contact data va popup la show panna
@@ -307,13 +522,10 @@ function Customer() {
 
   return (
     <Box className="TableBox">
-      <Typography className="heading"
-      >
-        Customer Management
-      </Typography>
+      <Typography className="heading">Customer Management</Typography>
 
       {/*KPI cards*/}
-      <Grid container spacing={6} sx={{ mb: 3 }}>
+      <Grid container spacing={2} className="kpi-container" sx={{ mb: 3 }}>
         {/* Total Customer*/}
         <Grid xs={12} sm={3}>
           <Box className="total">
@@ -350,48 +562,66 @@ function Customer() {
         </Grid>
       </Grid>
 
-           {/*Filter Data*/}
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, width: "100%" }}>
-        
+      {/*Filter Data*/}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
+          width: "100%",
+        }}
+      >
         {/* Search bar */}
-        <TextField
+        <CustomTextField
           variant="outlined"
           placeholder="Search Code, Company Name..."
           size="small"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="Searchbar"
+          width="250px"
+          height="32px"
+          
         />
 
         {/* Filter Status */}
         <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
-
-          
-          <TextField
+          <CustomTextField
             select
             variant="outlined"
             label="Filter Status"
-            size="small"
+            // size="small"
+            height="32px"
             value={statusfilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="filterstatus"
           >
-            <MenuItem sx={{ fontSize: "15px" }} value="all">All Status</MenuItem>
-            <MenuItem sx={{ fontSize: "15px" }} value="paid">Paid</MenuItem>
-            <MenuItem sx={{ fontSize: "15px" }} value="unpaid">UnPaid</MenuItem>
-            <MenuItem sx={{ fontSize: "15px" }} value="overdue">Overdue</MenuItem>
-            <MenuItem sx={{ fontSize: "15px" }} value="partially Paid">Patially Paid</MenuItem>
-          </TextField>
+            <MenuItem sx={{ fontSize: "15px" }} value="all">
+              All Status
+            </MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="paid">
+              Paid
+            </MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="unpaid">
+              UnPaid
+            </MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="overdue">
+              Overdue
+            </MenuItem>
+            <MenuItem sx={{ fontSize: "15px" }} value="partially Paid">
+              Patially Paid
+            </MenuItem>
+          </CustomTextField>
           {/*Add new customer*/}
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             size="small"
             className="Add-customer"
             onClick={() => handleActionClick("Add New Customer", null)}
           >
-            Add a New Customer
+            Add Customer
           </Button>
-
         </Stack>
       </Box>
 
@@ -401,7 +631,12 @@ function Customer() {
 
       {/*//popup display and popup data show*/}
       {/*//final ah popup la antha data show agum step5*/}
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth
+        maxWidth={popupTitle === "Add New Customer" ? "md" : "xs"}
+      >
         <DialogTitle className="dialog-title">{popupTitle}</DialogTitle>
         <DialogContent dividers className="dialog-content">
           {renderPopupcontent()}
@@ -410,6 +645,18 @@ function Customer() {
           <Button onClick={handleClose} variant="outlined" color="inherit">
             Close
           </Button>
+          <DialogActions className="dialog-actions">
+            {popupTitle === "Add New Customer" && (
+              <Button
+                form="add-customer-form"
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Save Customer
+              </Button>
+            )}
+          </DialogActions>
         </DialogActions>
       </Dialog>
     </Box>
