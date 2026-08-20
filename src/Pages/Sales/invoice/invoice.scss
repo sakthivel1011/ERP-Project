@@ -23,7 +23,6 @@
   width: 200px;
   height: 60px;
   @include flex-center;
-  @include single-line-dot(30px);
   &:hover {
     box-shadow: 0 4px 12px rgb(148, 82, 102);
   }
