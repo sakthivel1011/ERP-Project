@@ -120,7 +120,7 @@ $color-blue: rgb(13, 166, 226);
 //centre align
 @mixin flex-center {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin-top: 7px;
 
