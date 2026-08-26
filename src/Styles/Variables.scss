@@ -34,13 +34,13 @@ $transition-default: all 0.2s ease-in-out;
 
 // 1. Typography / Font Settings
 $professional-font:  'Poppins', -apple-system, BlinkMacSystemFont;
-$font-sans-modern: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-$font-sans-corporate: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
-$font-monospace-data: 'Courier New', Courier, monospace;
-$professional-font: "Times New Roman", Times, Baskerville, Georgia, serif;
-$font-sans-modern: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$font-sans-corporate: "Verdana", "Geneva", "Tahoma", sans-serif;
-$font-monospace-data: "Courier New", Courier, monospace;
+// $font-sans-modern: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+// $font-sans-corporate: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+// $font-monospace-data: 'Courier New', Courier, monospace;
+// // $professional-font: "Times New Roman", Times, Baskerville, Georgia, serif;
+// $font-sans-modern: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+// $font-sans-corporate: "Verdana", "Geneva", "Tahoma", sans-serif;
+// $font-monospace-data: "Courier New", Courier, monospace;
 
 $font-size-title: 24px;
 $font-size-subtitle: 18px;
@@ -194,7 +194,7 @@ $color-blue: rgb(13, 166, 226);
     width: 100%;
     height: 35px;
     justify-content: space-evenly;
-    background-color:#00E5FF;
+    background-color:#0654d1;
     color: black;
     border-radius: 10px;
     border-color: black;
@@ -256,5 +256,3 @@ height: 32px !important;
           mb: 3 !important;
           height: 32px !important;
 }
-
-

@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { Data } from "../../../Data/Data";
+// import { Data } from "../../../Data/Data";
 import { Grid, Box, Typography, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -30,10 +30,28 @@ import PaymentsIcon from "@mui/icons-material/Payments";
 import ListIcon from "@mui/icons-material/List";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TRUE } from "sass";
+import { useAppDispatch, useAppSelector } from "../../../Redux/hooks";
+import { fetchAllUsers } from "../../../Redux/userSlice"; //get data from redux
 
 export default function Invoice() {
+  //get the data from store
+  const dispatch = useAppDispatch();
+
+  const {
+    list: liveData,
+    loading,
+    error,
+  } = useAppSelector((state) => state.users);
+
+  useEffect(() => {
+    const promise = dispatch(fetchAllUsers());
+       return () => {
+         promise.abort();
+       };
+  }, [dispatch]);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [selectedInvoice, setSelectedInvoice] = useState(null);
@@ -91,14 +109,14 @@ export default function Invoice() {
     name: "payments",
   });
 
-  const invoiceData = Data?.invoices;
+  const invoiceData = liveData?.invoices;
 
   const handleDropDownChange = (event) => {
     setStatusFilter(event.target.value);
   };
   const filterStatusData = useMemo(() => {
     const rawInvoices = Array.isArray(invoiceData) ? invoiceData : [];
-    const customerList = Data?.customers || [];
+    const customerList = liveData?.customers || [];
 
     const formatted = rawInvoices.map((invoice) => {
       const matchedCustomer = customerList.find(
@@ -140,7 +158,7 @@ export default function Invoice() {
     }
 
     return result;
-  }, [invoiceData, statusfilter, searchQuery, Data?.customers]);
+  }, [invoiceData, statusfilter, searchQuery, liveData]);
 
   const handleActionClick = (type, rowData) => {
     setModalOpen(true);
@@ -164,7 +182,7 @@ export default function Invoice() {
   };
 
   const kpiData = useMemo(() => {
-    const invoiceList = Data?.invoices || [];
+    const invoiceList = liveData?.invoices || [];
     const totalInvoices = invoiceList.length;
     const paidCount = invoiceList.filter(
       (inv) => inv.status?.toLowerCase() === "paid",
@@ -181,7 +199,7 @@ export default function Invoice() {
       unPaidCount,
       overDueCount,
     };
-  }, [Data?.invoices]);
+  }, [liveData]);
 
   const columns = useMemo(
     () => [
@@ -271,7 +289,7 @@ export default function Invoice() {
                 width="200px"
                 {...control.register("customerId", { required: true })}
               >
-                {(Data?.customers || []).map((c) => (
+                {(liveData?.customers || []).map((c) => (
                   <MenuItem key={c.customerId} value={c.customerId}>
                     {c.companyName}
                   </MenuItem>
@@ -279,26 +297,26 @@ export default function Invoice() {
               </TextField>
             </Grid>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-  <Controller
-    name="invoiceDate"
-    control={control}
-    render={({ field }) => (
-      <DatePicker
-        value={field.value ? dayjs(field.value) : null}
-        onChange={(date) =>
-          field.onChange(date ? date.format("YYYY-MM-DD") : "")
-        }
-        label="Invoice Date"
-        slotProps={{
-          textField: {
-            size: "small",
-            fullWidth: false,
-          },
-        }}
-      />
-    )}
-  />
-</LocalizationProvider>
+              <Controller
+                name="invoiceDate"
+                control={control}
+                render={({ field }) => (
+                  <DatePicker
+                    value={field.value ? dayjs(field.value) : null}
+                    onChange={(date) =>
+                      field.onChange(date ? date.format("YYYY-MM-DD") : "")
+                    }
+                    label="Invoice Date"
+                    slotProps={{
+                      textField: {
+                        size: "small",
+                        fullWidth: false,
+                      },
+                    }}
+                  />
+                )}
+              />
+            </LocalizationProvider>
             <Grid item xs={12} sm={6}>
               <TextField
                 select
@@ -449,8 +467,7 @@ export default function Invoice() {
               </Box>
             ))}
             <CustomButton
-             buttonType="purple"
-              
+              buttonType="purple"
               onClick={() =>
                 appendItem({
                   description: "",
@@ -643,11 +660,7 @@ export default function Invoice() {
             width: "100%",
           }}
         >
-          <Paper
-            className="search"
-            variant="outlined"
-            
-          >
+          <Paper className="search" variant="outlined">
             <InputBase
               placeholder="Search Invoice"
               value={searchQuery}

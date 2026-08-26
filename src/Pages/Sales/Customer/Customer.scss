@@ -27,7 +27,7 @@
 .MuiTableCell-body {
   font-size: 0.9rem !important;
   padding: 3px 10px !important;
-  font-family: $font-family-base !important;
+  font-family:$professional-font !important;
 }
 
 // 2. Ungal existing Table Wrappers matrum classes
@@ -118,23 +118,23 @@
 }
 
 .paid{
-  color:$color-danger;
-  border: 1px solid rgba($color-danger, 0.5);
-}
-
-.unpaid{
   color:$color-success;
   border: 1px solid rgba($color-success, 0.5);
 }
 
-.overdue{
+.unpaid{
   color:$color-purple;
   border: 1px solid rgba($color-purple, 0.5);
 }
 
+.overdue{
+  color:$color-danger;
+  border: 1px solid rgba($color-danger, 0.5);
+}
+
 .Partiallypaid{
-  color:$color-text-dark;
-  border: 1px solid rgba($color-text-dark, 0.5);
+  color:$color-danger;
+  border: 1px solid rgba($color-danger, 0.5);
 }
 
 // Dialog BOX
