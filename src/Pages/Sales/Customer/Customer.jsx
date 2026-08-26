@@ -13,7 +13,7 @@ import {
 } from "@mui/material"; // Normal table creation
 // import { Data } from "../../Data/Data";
 import { useForm, useFieldArray, Controller } from "react-hook-form"; // form for add new customer
-import { Data } from "../../../Data/Data";
+// import { Data } from "../../../Data/Data";
 import {
   Button,
   Dialog,
@@ -23,8 +23,34 @@ import {
 } from "@mui/material"; //popup msg and action button ku
 import "./Customer.scss";
 import CustomTextField from "../../../Components/CustomField";
+import CustomButton from "../../../components/CustomButton";
+
+import ContactsIcon from "@mui/icons-material/Contacts";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+// import { customerService } from "../../../Services/customer";
+
+import { useAppDispatch, useAppSelector } from "../../../Redux/hooks";
+import { fetchAllUsers } from "../../../Redux/userSlice"; //get data from redux
 
 function Customer() {
+  //fetch Api from redux
+
+  const dispatch = useAppDispatch();
+
+  const {
+    list: liveData,
+    loading,
+    error,
+  } = useAppSelector((state) => state.users);
+
+  useEffect(() => {
+    const promise = dispatch(fetchAllUsers());
+    return () => {
+      promise.abort();
+    };
+  }, []);
+
   //popup state
   const [open, setOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState("");
@@ -32,9 +58,9 @@ function Customer() {
 
   //KPI card
   const kpicard = useMemo(() => {
-    const rawdata = Data?.customers || [];
+    const rawdata = liveData?.customers || [];
     const total = rawdata.length;
-    const invoicedata = Data?.invoices || [];
+    const invoicedata = liveData?.invoices || [];
 
     const paid = invoicedata.filter(
       (i) => i.status?.toLowerCase() == "paid",
@@ -49,7 +75,7 @@ function Customer() {
       (i) => i.status?.toLowerCase() == "partially paid",
     ).length;
     return { total, paid, unpaid, overdue, partiallypaid };
-  });
+  }, [liveData]);
 
   // Filter Fields
   const [statusfilter, setStatusFilter] = useState("");
@@ -89,8 +115,8 @@ function Customer() {
 
   const FilterTable = useMemo(() => {
     // 1. Core data arrays properties fetch components lookups
-    let filtered = Data?.customers || [];
-    const invoice = Data?.invoices || [];
+    let filtered = liveData?.customers || [];
+    const invoice = liveData?.invoices || [];
 
     // Filter Step A: Status Dropdown select check logic (Handles "all" value smoothly)
     if (statusfilter && statusfilter !== "all") {
@@ -116,7 +142,7 @@ function Customer() {
     }
 
     return filtered;
-  }, [statusfilter, searchQuery]);
+  }, [statusfilter, searchQuery, liveData]);
 
   //function handle button click and popup
   const handleActionClick = (title, data) => {
@@ -166,16 +192,16 @@ function Customer() {
       },
       // Status Table la show aga
       {
-        id: "invoiceStatus",
         header: "Status",
+        id: "status",
         size: 50,
         Cell: ({ row }) => {
           const currentCustomerId = row.original.customerId;
-          const matchingInvoice = Data?.invoices?.find(
+          console.log("currentCustomerId", liveData);
+          const matchingInvoice = liveData?.invoices?.find(
             (inv) => inv.customerId === currentCustomerId,
           );
-          const statusValue = matchingInvoice?.status || "-";
-          return <span>{statusValue}</span>;
+          return <span>{matchingInvoice?.status || "-"}</span>;
         },
       },
       {
@@ -203,38 +229,39 @@ function Customer() {
           return (
             <Stack direction="row" spacing={1}>
               {/* //user click panra button vanthu handleaction (title and data) top l declare panni eruka handle action click ku pogum step2*/}
-              <Button
+              <CustomButton
                 className="contact"
                 variant="contained"
                 size="small"
                 color="primary"
-                sx={{ paddingY: '4px', minHeight: 'unset', height: '25px' }}
-    
+                sx={{ paddingY: "4px", minHeight: "unset", height: "25px" }}
+                startIcon={<ContactsIcon />}
                 onClick={() =>
                   handleActionClick("Contact Details", customer.contacts)
                 }
               >
                 Contact
-              </Button>
-              <Button
+              </CustomButton>
+              <CustomButton
                 className="Billing"
                 variant="contained"
                 size="small"
                 color="secondary"
-                sx={{ paddingY: '4px', minHeight: 'unset', height: '25px' }}
+                sx={{ paddingY: "4px", minHeight: "unset", height: "25px" }}
+                startIcon={<ReceiptLongIcon />}
                 onClick={() =>
                   handleActionClick("Billing Address", customer.billingAddress)
-                
                 }
               >
                 Billing
-              </Button>
-              <Button
+              </CustomButton>
+              <CustomButton
                 className="Shipping"
                 variant="contained"
                 size="small"
                 color="success"
-                sx={{ paddingY: '4px', minHeight: 'unset', height: '25px' }}
+                sx={{ paddingY: "4px", minHeight: "unset", height: "25px" }}
+                startIcon={<LocalShippingIcon />}
                 onClick={() =>
                   handleActionClick(
                     "Shipping Address",
@@ -243,13 +270,13 @@ function Customer() {
                 }
               >
                 Shipping
-              </Button>
+              </CustomButton>
             </Stack>
           );
         },
       },
     ],
-    [],
+    [liveData],
   );
 
   // TABLE INITIAL INITIALIZATION SETUP AND INSERT DATA INTO TABLE
@@ -267,6 +294,7 @@ function Customer() {
     enableDensityToggle: false,
     paginationDisplayMode: "pages",
     layoutMode: "semantic",
+    state: { isLoading: loading },
 
     initialState: {
       density: "compact", // Gaps reduction parameters setup
@@ -385,16 +413,17 @@ function Customer() {
                   sx={{ mb: 1 }}
                 >
                   <Typography variant="body2">
-                    Contact Person #{index + 1}
+                    Contact Person {index + 1}
                   </Typography>
                   {fields.length > 1 && (
-                    <Button
+                    <CustomButton
                       color="error"
                       size="small"
+                      style={{ marginLeft: "auto" }}
                       onClick={() => remove(index)}
                     >
                       Remove
-                    </Button>
+                    </CustomButton>
                   )}
                 </Stack>
                 <Grid container spacing={2}>
@@ -460,7 +489,7 @@ function Customer() {
                 </Grid>
               </Box>
             ))}
-            <Button
+            <CustomButton
               variant="outlined"
               size="small"
               onClick={() =>
@@ -468,7 +497,7 @@ function Customer() {
               }
             >
               + Add Contact
-            </Button>
+            </CustomButton>
           </Box>
         </form>
       );
@@ -582,7 +611,6 @@ function Customer() {
           className="Searchbar"
           width="250px"
           height="32px"
-          
         />
 
         {/* Filter Status */}
@@ -614,14 +642,14 @@ function Customer() {
             </MenuItem>
           </CustomTextField>
           {/*Add new customer*/}
-          <Button
+          <CustomButton
             variant="contained"
             size="small"
             className="Add-customer"
             onClick={() => handleActionClick("Add New Customer", null)}
           >
             Add Customer
-          </Button>
+          </CustomButton>
         </Stack>
       </Box>
 
@@ -641,20 +669,27 @@ function Customer() {
         <DialogContent dividers className="dialog-content">
           {renderPopupcontent()}
         </DialogContent>
-        <DialogActions className="dialog-actions">
-          <Button onClick={handleClose} variant="outlined" color="inherit">
+        <DialogActions
+          className="dialog-actions"
+          sx={{ p: 2, gap: 0, justifyContent: "flex-end" }}
+        >
+          <CustomButton
+            onClick={handleClose}
+            variant="outlined"
+            color="inherit"
+          >
             Close
-          </Button>
+          </CustomButton>
           <DialogActions className="dialog-actions">
             {popupTitle === "Add New Customer" && (
-              <Button
+              <CustomButton
                 form="add-customer-form"
                 type="submit"
                 variant="contained"
                 color="primary"
               >
                 Save Customer
-              </Button>
+              </CustomButton>
             )}
           </DialogActions>
         </DialogActions>
