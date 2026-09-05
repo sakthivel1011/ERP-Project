@@ -1,35 +1,35 @@
-$color-primary: #00008B;
+$color-primary: #00008b;
 $color-text-dark: #1e293b;
 $color-text-muted: #64748b;
 $color-border-light: #e2e8f0;
 $color-bg-light: #f8fafc;
 $heading-color: #1a1a1e;
 
-// 2. STATUS TAG COLORS 
-$color-success: #10b981;       
-$color-danger: #ef4444;       
-$color-warning: #f59e0b;     
+// 2. STATUS TAG COLORS
+$color-success: #10b981;
+$color-danger: #ef4444;
+$color-warning: #f59e0b;
 
 // 3. TYPOGRAPHY SYSTEM
 $font-family-base: "Inter", "Plus Jakarta Sans", sans-serif;
 $font-weight-normal: 400;
-$font-weight-medium: 500;      
-$font-weight-semibold: 600;  
-// $font-family-base:"Inter", system-ui, -apple-system, sans-serif; 
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
-$font-family-base:
-  "Inter",
-  system-ui,
-  -apple-system,
-  sans-serif;
+// $font-family-base:"Inter", system-ui, -apple-system, sans-serif;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+// $font-family-base:
+//   "Inter",
+//   system-ui,
+//   -apple-system,
+//   sans-serif;
 
 // 4. INTERACTIVE COMPONENT PROPERTIES
 $radius-button: 8px;
 $radius-card: 12px;
-$radius-button: 8px;        
-$radius-card: 12px ;    
-$radius-card: 20px;    
+$radius-button: 8px;
+$radius-card: 12px;
+$radius-card: 20px;
 $transition-default: all 0.2s ease-in-out;
 
 // 1. Typography / Font Settings
@@ -53,7 +53,7 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // 2. Theme Colors
-$color-primary-blue:  #00008B;
+$color-primary-blue: #00008b;
 $color-secondary-purple: #9c27b0;
 $color-text-dark: #1e293b;
 $color-text-secondary: #64748b;
@@ -88,7 +88,6 @@ $font-weight-header: 600;
   width: 200px !important;
   bgcolor: "white" !important;
   margin-right: 20px !important;
- 
 }
 
 @mixin push-down-5px {
@@ -106,10 +105,10 @@ $table-border-color: #d3d3d3;
 //KPI styling
 //kpiData
 $kpi-card-padding: 18px 35px;
-$kpi-border-black: 1px solid #000000;  
+$kpi-border-black: 1px solid #000000;
 $spacing-xs: 3px;
-$color-purple:rgb(138, 5, 138);
-$color-blue:rgb(13, 166, 226);
+$color-purple: rgb(138, 5, 138);
+$color-blue: rgb(13, 166, 226);
 
 $kpi-card-padding: 8px 35px;
 $kpi-border-black: 1px solid #000000;
@@ -120,17 +119,12 @@ $color-blue: rgb(13, 166, 226);
 //centre align
 @mixin flex-center {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly !important;
   align-items: center;
-  margin-top: 7px;
-
-  
-  margin-top: 3px;
-}
+  margin-top: 7px !important;
+  }
 
 //ellipsis
-@mixin single-line-dot($gap-bottom: 30px) {
-}
 
 //ellipsis
 @mixin single-line-dot($gap-bottom: 16px) {
@@ -155,9 +149,9 @@ $color-blue: rgb(13, 166, 226);
     font-size: 0.85rem;
   }
 }
-@mixin filterstatus{
+@mixin filterstatus {
   width: 200px;
-  background-color:white;
+  background-color: white;
 
   .MuiInputBase-root {
     height: 32px; // added 'px' unit
@@ -168,24 +162,23 @@ $color-blue: rgb(13, 166, 226);
     font-size: 0.85rem;
   }
 }
-@mixin addcustomer{
-   height: 32;
-   font-size: "0.85rem";
-   text-transform: "none";
-   white-space: "nowrap" ;
-   background-color: $color-primary-blue !important;
+@mixin addcustomer {
+  height: 32;
+  font-size: "0.85rem";
+  text-transform: "none";
+  white-space: "nowrap";
+  background-color: $color-primary-blue !important;
 }
 
 //side bar  scss content technology
 
-@mixin main{
-    display: flex;
-    width: 220px;
-    margin-top: 0px;
-    /* overflow-y: hidden; */
-    position: fixed;
-    height: 90vh;
-
+@mixin main {
+  display: flex;
+  width: 220px;
+  margin-top: 0px;
+  /* overflow-y: hidden; */
+  position: fixed;
+  height: 90vh;
 }
  @mixin s-button{
     font-size: 15px;
@@ -207,24 +200,24 @@ $color-blue: rgb(13, 166, 226);
     text-align: left;  
     margin-left: 5px;
 
-      &:hover {
+  &:hover {
     background-color: #191970 !important; // லைட்டான கிளாஸ் பேட்ச் மட்டும் தெரியும்
     color: #ffffff;
     border-radius: 10px;
     transform: translateX(4px);
- }}
- @mixin s-bar{
+  }
+}
+@mixin s-bar {
   margin-left: 0px;
-    overflow-y: scroll;
-    height: 100vh;
-    scrollbar-width: none;
-    border: 0.5px solid lightgrey;
-    border-radius: 5px;
-    width: 190px;
-    background-color: #00008B;
-    border-radius: 20px 0px 0px 10px;
- }
-
+  overflow-y: scroll;
+  height: 100vh;
+  scrollbar-width: none;
+  border: 0.5px solid lightgrey;
+  border-radius: 5px;
+  width: 190px;
+  background-color: #00008b;
+  border-radius: 20px 0px 0px 10px;
+}
 
 @mixin search {
   justify-content: flex-start !important;
@@ -233,19 +226,19 @@ $color-blue: rgb(13, 166, 226);
 
 @mixin round {
   width: 120px !important;
-height: 32px !important;
-  
+  height: 32px !important;
+
   border: none !important;
   cursor: pointer !important;
 }
 
-@mixin table{
-    width: calc(100% - 240px) !important;
-        margin-left: 220px !important ;
-        margin-right: 20px !important;
-        box-sizing: border-box !important;
-        min-height: 100vh !important;
-        pt: 3 !important;
+@mixin table {
+  width: calc(100% - 240px) !important;
+  margin-left: 220px !important ;
+  margin-right: 20px !important;
+  box-sizing: border-box !important;
+  min-height: 100vh !important;
+  pt: 3 !important;
 }
 
 @mixin newinv{

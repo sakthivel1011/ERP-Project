@@ -9,10 +9,22 @@
   @include flex-center;
 }
 
-.kpi-total,
+.total{
+ background-color: $color-bg-light;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-card;
+  padding: $kpi-card-padding;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 200px !important;
+  height: 60px;
+   @include flex-center;
+}
 .kpi-paid,
 .kpi-over,
-.kpi-unpaid {
+.kpi-unpaid,
+.kpi-partially {
   background-color: $color-bg-light;
   border: 1px solid $color-border-light;
   border-radius: $radius-card;
@@ -28,9 +40,10 @@
   }
 }
 
-.kpi-total {
+.total {
   color: $color-primary;
   border: 1px solid rgba($color-primary, 0.5);
+ 
 }
 
 .kpi-paid {
@@ -46,6 +59,11 @@
 .kpi-over {
   color: $color-danger;
   border: 1px solid rgba($color-danger, 0.5);
+}
+
+.kpi-partially{
+   color: $color-blue;
+  border: 1px solid rgba($color-blue, 0.5);
 }
 
 .invoiceName {
@@ -82,34 +100,6 @@
   @include table;
 }
 
-.MuiTableCell-head {
-  font-size: 0.95rem !important;
-  padding: 2px 12px !important;
-  font-weight: bold !important;
-  color: black !important;
-}
-
-.heading {
-  color: $heading-color !important;
-  font-size: $font-size-title !important;
-  font-weight: $font-weight-bold !important;
-}
-.MuiTableCell-head {
-  font-size: 0.95rem !important;
-  padding: 2px 12px !important;
-  font-weight: bold !important;
-  color: black !important;
-}
-
-.MuiTableCell-body {
-  font-size: 0.9rem !important;
-  padding: 3px 10px !important;
-}
-.MuiTableCell-body {
-  font-size: 0.9rem !important;
-  padding: 3px 10px !important;
-  font-family: $font-family-base !important;
-}
 
 // 2. Ungal existing Table Wrappers matrum classes
 .mrt-gapped-table {

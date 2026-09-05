@@ -28,7 +28,7 @@ function CustomTextField({
       type={type}
       error={error}
       helperText={helperText}
-      value={value ?? ""}
+      value={value ?? ''}
       onChange={onChange}
       sx={{
         width: width || "200px", // Default width

@@ -9,5 +9,11 @@ export const customerService = {
 
   getUserById: (id,signal) => {
     return api.get(`/users/${id}, { signal }`);
+  },
+
+   createInvoice: (invoiceData) => {
+    console.log("service:",invoiceData);
+   
+    return api.post('/posts/add', invoiceData);
   }
 };
