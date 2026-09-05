@@ -19,13 +19,10 @@ import {
   IconButton,
 } from "@mui/material";
 import "../invoice/invoice.scss";
-import CustomButton from "../../../components/CustomButton";
-
-// 📦 React Hook Form packages for standard JavaScript state handling
+import CustomButton from "../../../Components/CustomButton";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
-import CommonButton from "../../../components/CustomButton";
+import CommonButton from "../../../Components/CustomButton";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import ListIcon from "@mui/icons-material/List";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -33,8 +30,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TRUE } from "sass";
 import { useAppDispatch, useAppSelector } from "../../../Redux/hooks";
-import { fetchAllUsers } from "../../../Redux/userSlice"; //get data from redux
-
+import { fetchAllUsers, createInvoiceThunk } from "../../../Redux/userSlice"; //get data from redux
+import CustomTextField from "../../../Components/CustomField";
+import dayjs from "dayjs";
 export default function Invoice() {
   //get the data from store
   const dispatch = useAppDispatch();
@@ -42,14 +40,16 @@ export default function Invoice() {
   const {
     list: liveData,
     loading,
+    createLoading,
     error,
   } = useAppSelector((state) => state.users);
+  console.log("🔍 Current LiveData in Invoice Component:", liveData);
 
   useEffect(() => {
     const promise = dispatch(fetchAllUsers());
-       return () => {
-         promise.abort();
-       };
+    return () => {
+      promise.abort();
+    };
   }, [dispatch]);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -58,7 +58,6 @@ export default function Invoice() {
   const [statusfilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // ⚡ Master useForm configuration with standard default layouts properties matching ungal matrix keys
   const {
     handleSubmit,
     control,
@@ -72,11 +71,9 @@ export default function Invoice() {
       invoiceDate: "",
       paymentTerms: "30 Days",
       status: "Unpaid",
-      // Multiple items deep nested object templates schema tracking array
       items: [
         { description: "", itemCode: "", qty: 1, rate: 0, discount: 0, gst: 0 },
       ],
-      // Multiple payments nested array list templates schemas tracking tracking references
       payments: [
         {
           paymentId: `PAY-${Math.floor(1000 + Math.random() * 9000)}`,
@@ -88,9 +85,6 @@ export default function Invoice() {
     },
   });
 
-  console.log("getValues", getValues());
-
-  // Dynamic loops tracking hooks parameters mapping inputs variables live
   const {
     fields: itemFields,
     append: appendItem,
@@ -114,6 +108,7 @@ export default function Invoice() {
   const handleDropDownChange = (event) => {
     setStatusFilter(event.target.value);
   };
+
   const filterStatusData = useMemo(() => {
     const rawInvoices = Array.isArray(invoiceData) ? invoiceData : [];
     const customerList = liveData?.customers || [];
@@ -160,26 +155,46 @@ export default function Invoice() {
     return result;
   }, [invoiceData, statusfilter, searchQuery, liveData]);
 
-  const handleActionClick = (type, rowData) => {
+  const handleActionClick = (actionType, data) => {
+    setModalType(actionType);
+    setSelectedInvoice(data);
     setModalOpen(true);
-    setModalType(type);
-    setSelectedInvoice(rowData);
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedInvoice(null);
-    reset(); // Core form cleanup function triggered smoothly on exit
+    reset();
   };
 
-  const onFormSubmit = (formData) => {
-    console.log(
-      "SUCCESS! React Hook Form - Invoice Payload Object Data:",
-      formData,
-    );
-    alert("Invoice Form Saved Successfully! No: " + formData.invoiceNumber);
-    handleCloseModal();
+const onFormSubmit = (formData) => {
+  const payload = {
+    ...formData,
+    userId: 1,
+    title: formData.invoiceNumber || "New Invoice",
+    body: JSON.stringify(formData),
   };
+
+  console.log("FINAL Payload:", payload);
+
+  
+  dispatch(createInvoiceThunk(payload))
+    .unwrap()
+    .then((response) => {
+      console.log("Success:", response);
+
+      dispatch(fetchAllUsers());
+      handleCloseModal();
+    })
+    .catch((backendError) => {
+      console.error("Form submit failed:", backendError);
+
+      alert(
+        "Server Reject Error: " +
+        JSON.stringify(backendError)
+      );
+    });
+};
 
   const kpiData = useMemo(() => {
     const invoiceList = liveData?.invoices || [];
@@ -193,11 +208,17 @@ export default function Invoice() {
     const overDueCount = invoiceList.filter(
       (inv) => inv.status?.toLowerCase() === "overdue",
     ).length;
+
+    const partiallyPaidCount = invoiceList.filter(
+      (inv) => inv.status?.toLowerCase() === "partially paid",
+    ).length;
+
     return {
       totalInvoices,
       paidCount,
       unPaidCount,
       overDueCount,
+      partiallyPaidCount,
     };
   }, [liveData]);
 
@@ -264,13 +285,13 @@ export default function Invoice() {
       return (
         <form id="add-invoice-form" onSubmit={handleSubmit(onFormSubmit)}>
           <Grid container spacing={2} sx={{ pt: 1 }}>
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="invoiceNumber"
                 control={control}
                 rules={{ required: "Invoice Number required" }}
                 render={({ field }) => (
-                  <TextField
+                  <CustomTextField
                     {...field}
                     label="Invoice Number"
                     size="small"
@@ -281,21 +302,31 @@ export default function Invoice() {
                 )}
               />
             </Grid>
-            <Grid item xs={8} sm={10}>
-              <TextField
-                select
-                label="Select Company Customer"
-                size="small"
-                width="200px"
-                {...control.register("customerId", { required: true })}
-              >
-                {(liveData?.customers || []).map((c) => (
-                  <MenuItem key={c.customerId} value={c.customerId}>
-                    {c.companyName}
-                  </MenuItem>
-                ))}
-              </TextField>
+            <Grid xs={8} sm={10}>
+              <Controller
+                name="customerId"
+                control={control}
+                rules={{ required: "Customer selection required" }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    select
+                    label="Select Company Customer"
+                    size="small"
+                    fullWidth
+                    error={!!errors.customerId}
+                    helperText={errors.customerId?.message}
+                  >
+                    {(liveData?.customers || []).map((c) => (
+                      <MenuItem key={c.customerId} value={c.customerId}>
+                        {c.companyName}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              />
             </Grid>
+
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Controller
                 name="invoiceDate"
@@ -317,18 +348,24 @@ export default function Invoice() {
                 )}
               />
             </LocalizationProvider>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                select
-                label="Payment Terms"
-                size="small"
-                fullWidth:true
-                {...control.register("paymentTerms")}
-              >
-                <MenuItem value="15 Days">15 Days</MenuItem>
-                <MenuItem value="30 Days">30 Days</MenuItem>
-                <MenuItem value="45 Days">45 Days</MenuItem>
-              </TextField>
+            <Grid xs={12} sm={6}>
+              <Controller
+                name="paymentTerms"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    select
+                    label="Payment Terms"
+                    size="small"
+                    fullWidth
+                  >
+                    <MenuItem value="15 Days">15 Days</MenuItem>
+                    <MenuItem value="30 Days">30 Days</MenuItem>
+                    <MenuItem value="45 Days">45 Days</MenuItem>
+                  </TextField>
+                )}
+              />
             </Grid>
           </Grid>
 
@@ -370,13 +407,13 @@ export default function Invoice() {
                   )}
                 </Stack>
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid xs={12} sm={6}>
                     <Controller
                       name={`items.${index}.description`}
                       control={control}
                       rules={{ required: true }}
                       render={({ field: d }) => (
-                        <TextField
+                        <CustomTextField
                           {...d}
                           label="Description Name"
                           size="small"
@@ -385,12 +422,12 @@ export default function Invoice() {
                       )}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid xs={12} sm={6}>
                     <Controller
                       name={`items.${index}.itemCode`}
                       control={control}
                       render={({ field: c }) => (
-                        <TextField
+                        <CustomTextField
                           {...c}
                           label="Item Code"
                           size="small"
@@ -399,12 +436,12 @@ export default function Invoice() {
                       )}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid xs={12} sm={4}>
                     <Controller
                       name={`items.${index}.qty`}
                       control={control}
                       render={({ field: q }) => (
-                        <TextField
+                        <CustomTextField
                           {...q}
                           type="number"
                           label="Qty"
@@ -415,12 +452,12 @@ export default function Invoice() {
                       )}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  <Grid xs={12} sm={4}>
                     <Controller
                       name={`items.${index}.rate`}
                       control={control}
                       render={({ field: r }) => (
-                        <TextField
+                        <CustomTextField
                           {...r}
                           type="number"
                           label="Rate Price"
@@ -431,12 +468,12 @@ export default function Invoice() {
                       )}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={2}>
+                  <Grid xs={12} sm={2}>
                     <Controller
                       name={`items.${index}.discount`}
                       control={control}
                       render={({ field: ds }) => (
-                        <TextField
+                        <CustomTextField
                           {...ds}
                           type="number"
                           label="Disc %"
@@ -447,12 +484,12 @@ export default function Invoice() {
                       )}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={2}>
+                  <Grid xs={12} sm={2}>
                     <Controller
                       name={`items.${index}.gst`}
                       control={control}
                       render={({ field: g }) => (
-                        <TextField
+                        <CustomTextField
                           {...g}
                           type="number"
                           label="GST %"
@@ -545,7 +582,6 @@ export default function Invoice() {
       );
     }
 
-    //  C) Payments Ledger Viewing Block Setup
     if (modalType === "payments") {
       return (
         <Box>
@@ -618,129 +654,140 @@ export default function Invoice() {
     return null;
   };
   return (
-    <Box className="Table">
-      <Typography className="invoiceName">Invoice Management</Typography>
+    <>
+      <Box className="Table">
+        <Typography className="invoiceName">Invoice Management</Typography>
 
-      {/* KPI Display Metrics Panels Blocks */}
-      <Grid container spacing={2} className="kpi-container" sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={3}>
-          <Box className="kpi-total">
-            <Typography className="status">Total Invoices</Typography>
-            <Typography>{kpiData.totalInvoices}</Typography>
-          </Box>
+        {/* KPI Display Metrics Panels Blocks */}
+        <Grid container spacing={2} className="kpi-container" sx={{ mb: 3 }}>
+          <Grid xs={12} sm={3}>
+            <Box className="total">
+              <Typography className="status">Total Invoices</Typography>
+              <Typography>{kpiData.totalInvoices}</Typography>
+            </Box>
+          </Grid>
+          <Grid xs={12} sm={3}>
+            <Box className="kpi-paid">
+              <Typography className="status">Paid Amount</Typography>
+              <Typography>{kpiData.paidCount}</Typography>
+            </Box>
+          </Grid>
+          <Grid xs={12} sm={3}>
+            <Box className="kpi-unpaid">
+              <Typography className="status">Unpaid Amount</Typography>
+              <Typography>{kpiData.unPaidCount}</Typography>
+            </Box>
+          </Grid>
+          <Grid xs={12} sm={3}>
+            <Box className="kpi-over">
+              <Typography className="status">Over Due</Typography>
+              <Typography>{kpiData.overDueCount}</Typography>
+            </Box>
+          </Grid>
+          <Grid xs={12} sm={3}>
+            <Box className="kpi-partially">
+              <Typography className="status">Partially Paid</Typography>
+              <Typography>{kpiData.partiallyPaidCount}</Typography>
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={3}>
-          <Box className="kpi-paid">
-            <Typography className="status">Paid Amount</Typography>
-            <Typography>{kpiData.paidCount}</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Box className="kpi-unpaid">
-            <Typography className="status">Unpaid Amount</Typography>
-            <Typography>{kpiData.unPaidCount}</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Box className="kpi-over">
-            <Typography className="status">Over Due</Typography>
-            <Typography>{kpiData.overDueCount}</Typography>
-          </Box>
-        </Grid>
-      </Grid>
 
-      {/* Action Controllers and Filter Status Dropdowns */}
-      <Box className="NewInv">
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            mb: 1,
-            width: "100%",
-          }}
-        >
-          <Paper className="search" variant="outlined">
-            <InputBase
-              placeholder="Search Invoice"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <IconButton sx={{ p: "6px", color: "#6b6375" }}></IconButton>
-          </Paper>
-
-          <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
-            <TextField
-              select
-              variant="outlined"
-              label="Filter Status"
-              size="small"
-              value={statusfilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="Dropdown"
-              sx={{ minWidth: "140px" }}
-            >
-              <MenuItem value="all">All Status</MenuItem>
-              <MenuItem value="paid">Paid</MenuItem>
-              <MenuItem value="unpaid">UnPaid</MenuItem>
-              <MenuItem value="overdue">Overdue</MenuItem>
-              <MenuItem value="partially Paid">Partially Paid</MenuItem>
-            </TextField>
-
-            <CustomButton
-              variant="contained"
-              onClick={() => handleActionClick("addInvoice", null)}
-            >
-              Add Invoice
-            </CustomButton>
-          </Stack>
-        </Box>
-      </Box>
-
-      {/* Main Datagrid Core View Table Wrapper */}
-      <Box className="table-wrapper">
-        <MaterialReactTable table={table} />
-      </Box>
-
-      {/* Shared Popup Window Dialog Layout Component */}
-      <Dialog
-        open={modalOpen}
-        onClose={handleCloseModal}
-        slots={{ backdrop: () => null }}
-        fullWidth
-        maxWidth={modalType === "addInvoice" ? "md" : "xs"} // Form expanding size adjustment parameters live
-      >
-        <DialogTitle sx={{ fontWeight: "bold" }}>
-          {modalType === "addInvoice" && "Add New Invoice"}
-          {modalType === "items" && "Invoice Item Details"}
-          {modalType === "payments" && "Payment Ledger"}
-        </DialogTitle>
-
-        <DialogContent dividers>{renderPopupcontent()}</DialogContent>
-
-        <DialogActions sx={{ p: 2, gap: 1.5 }}>
-          <CustomButton
-            buttonType="outlined"
-            onClick={handleCloseModal}
-            variant="outlined"
-            color="inherit"
+        {/* Action Controllers and Filter Status Dropdowns */}
+        <Box className="NewInv">
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 1,
+              width: "100%",
+            }}
           >
-            Close
-          </CustomButton>
-          {/* Linked Form Save Trigger button mapped safely utilizing form structural identification keys */}
-          {modalType === "addInvoice" && (
+            <Paper className="search" variant="outlined">
+              <InputBase
+                placeholder="Search Invoice"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <IconButton sx={{ p: "6px", color: "#6b6375" }}></IconButton>
+            </Paper>
+
+            <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
+              <CustomTextField
+                select
+                variant="outlined"
+                label="Filter Status"
+                size="small"
+                value={statusfilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="Dropdown"
+                sx={{ minWidth: "140px" }}
+              >
+                <MenuItem value="all">All Status</MenuItem>
+                <MenuItem value="paid">Paid</MenuItem>
+                <MenuItem value="unpaid">UnPaid</MenuItem>
+                <MenuItem value="overdue">Overdue</MenuItem>
+                <MenuItem value="partially Paid">Partially Paid</MenuItem>
+              </CustomTextField>
+
+              <CustomButton
+                variant="contained"
+                onClick={() => handleActionClick("addInvoice", null)}
+                disabled={createLoading || loading}
+              >
+                {createLoading ? "Creating..." : "Add Invoice"}
+              </CustomButton>
+              {error &&
+                console.log("Silent API Handshake Error Blocked:", error)}
+            </Stack>
+          </Box>
+        </Box>
+
+        {/* Main Datagrid Core View Table Wrapper */}
+        <Box className="table-wrapper">
+          <MaterialReactTable table={table} />
+        </Box>
+
+        {/* Shared Popup Window Dialog Layout Component */}
+        <Dialog
+          open={modalOpen}
+          onClose={handleCloseModal}
+          slots={{ backdrop: () => null }}
+          fullWidth
+          maxWidth={modalType === "addInvoice" ? "md" : "xs"} // Form expanding size adjustment parameters live
+        >
+          <DialogTitle sx={{ fontWeight: "bold" }}>
+            {modalType === "addInvoice" && "Add New Invoice"}
+            {modalType === "items" && "Invoice Item Details"}
+            {modalType === "payments" && "Payment Ledger"}
+          </DialogTitle>
+
+          <DialogContent dividers>{renderPopupcontent()}</DialogContent>
+
+          <DialogActions sx={{ p: 2, gap: 1.5 }}>
             <CustomButton
-              onClick={() => {
-                console.log(
-                  `Button clicked! Target Invoice Number value is: ${FormData}`,
-                );
-              }}
+              buttonType="outlined"
+              onClick={handleCloseModal}
+              variant="outlined"
+              color="inherit"
             >
-              Save Invoice
+              Close
             </CustomButton>
-          )}
-        </DialogActions>
-      </Dialog>
-    </Box>
+            {/* Linked Form Save Trigger button mapped safely utilizing form structural identification keys */}
+
+            {modalType === "addInvoice" && (
+              <CustomButton
+                type="submit"
+                form="add-invoice-form"
+                variant="contained"
+                color="primary"
+              >
+                Save Invoice
+              </CustomButton>
+            )}
+          </DialogActions>
+        </Dialog>
+      </Box>
+    </>
   );
 }

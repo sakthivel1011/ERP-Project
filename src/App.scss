@@ -1,4 +1,6 @@
+@use "/src/Styles/Variables.scss" as *;
 .counter {
+
   font-size: 16px;
   /* padding: 5px 10px; */
   border-radius: 5px;
@@ -167,7 +169,7 @@
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4.5px;
     border: 5px solid transparent;
@@ -181,31 +183,28 @@
     right: 0;
     border-right-color: var(--border);
   }
-  .main{
+  .main {
     display: flex;
     height: 300vh;
   }
-  .sidebar{
-    width:250px;
+  .sidebar {
+    width: 250px;
     overflow-y: auto;
     color: white;
     padding: 20px;
-    background-color:gray;
+    background-color: gray;
   }
-  .content{
+  .content {
     flex: 1;
     padding: 25px;
-    overflow-y:auto;
-
+    overflow-y: auto;
   }
-
 }
 
 .barchart.recharts-wrapper {
   width: 300px !important;
-  height: 300px !important; 
+  height: 300px !important;
   margin-left: 200px;
-  
 }
 
 .barchart.recharts-wrapper svg {
@@ -214,3 +213,45 @@
   margin-left: 0px;
 }
 
+.MuiTableCell-body {
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif !important;
+}
+
+
+.MuiTableCell-head {
+  font-size: 0.95rem !important;
+  padding: 2px 12px !important;
+  font-weight: bold !important;
+  color: black !important;
+}
+
+.heading {
+  color: $heading-color !important;
+  font-size: $font-size-title !important;
+  font-weight: $font-weight-bold !important;
+}
+.MuiTableCell-head {
+  font-size: 0.95rem !important;
+  padding: 2px 12px !important;
+  font-weight: bold !important;
+  color: black !important;
+}
+
+.MuiTableCell-body {
+  font-size: 0.9rem !important;
+  padding: 3px 10px !important;
+}
+.MuiTableCell-body {
+  font-size: 0.9rem !important;
+  padding: 3px 10px !important;
+  /* // font-family: $font-family-base !important; */
+}

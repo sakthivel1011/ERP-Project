@@ -23,7 +23,7 @@ import {
 } from "@mui/material"; //popup msg and action button ku
 import "./Customer.scss";
 import CustomTextField from "../../../Components/CustomField";
-import CustomButton from "../../../components/CustomButton";
+import CustomButton from "../../../Components/CustomButton";
 
 import ContactsIcon from "@mui/icons-material/Contacts";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -197,7 +197,7 @@ function Customer() {
         size: 50,
         Cell: ({ row }) => {
           const currentCustomerId = row.original.customerId;
-          console.log("currentCustomerId", liveData);
+          // console.log("currentCustomerId", liveData);
           const matchingInvoice = liveData?.invoices?.find(
             (inv) => inv.customerId === currentCustomerId,
           );
