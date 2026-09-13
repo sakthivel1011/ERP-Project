@@ -1,13 +1,13 @@
-import api from './api'; 
+import api from "./api";
 
 export const customerService = {
-  
-  getUsers: (signal) => {
-  
-    return api.get(import.meta.env.VITE_COMPLETE_DATA_URL,{signal}); 
+  getUsers: async (signal) => {
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    return api.get(import.meta.env.VITE_COMPLETE_DATA_URL, { signal });
   },
 
-  getUserById: (id,signal) => {
-    return api.get(`/users/${id}, { signal }`);
-  }
+  // getUserById: (id,signal) => {
+  //   return api.get(`/users/${id}`, { signal });
+  // }
 };

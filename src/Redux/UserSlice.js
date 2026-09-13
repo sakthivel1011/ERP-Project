@@ -1,28 +1,27 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { customerService } from "../Services/customer";
 
-
 export const fetchAllUsers = createAsyncThunk(
-  'users/fetchAll',
-  async (_, { rejectWithValue ,signal}) => {
+  "users/fetchAll",
+  async (_, { rejectWithValue, signal }) => {
     try {
       const response = await customerService.getUsers(signal);
 
       return response.data.users || response.data;
     } catch (error) {
-      if (error.name === 'AbortError' || error.message === 'canceled') {
-        throw error; 
+      if (error.name === "AbortError" || error.message === "canceled") {
+        throw error;
       }
       return rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 const userSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState: {
     list: [],
-    loading: false, 
+    loading: false,
     error: null,
   },
   reducers: {},
@@ -34,16 +33,16 @@ const userSlice = createSlice({
       })
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = action.payload; 
+        state.list = action.payload;
       })
       .addCase(fetchAllUsers.rejected, (state, action) => {
-        state.loading = false;
-         if (action.meta.aborted) {
-          return; 
+        state.loading = true;
+        if (action.meta.aborted) {
+          state.error = "Request Aborted/Canceled Successfully"; 
+          return;
         }
         state.error = action.payload || "Something went wrong";
       });
-      
   },
 });
 

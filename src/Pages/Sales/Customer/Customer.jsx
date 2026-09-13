@@ -25,6 +25,9 @@ import "./Customer.scss";
 import CustomTextField from "../../../Components/CustomField";
 import CustomButton from "../../../components/CustomButton";
 
+import { customerSchema } from "../../../Validation/CustomerSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import ContactsIcon from "@mui/icons-material/Contacts";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
@@ -47,9 +50,10 @@ function Customer() {
   useEffect(() => {
     const promise = dispatch(fetchAllUsers());
     return () => {
+      
       promise.abort();
     };
-  }, []);
+  }, [dispatch]);
 
   //popup state
   const [open, setOpen] = useState(false);
@@ -88,7 +92,7 @@ function Customer() {
     reset,
     getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm({  resolver: yupResolver(customerSchema),
     defaultValues: {
       customerCode: "",
       companyName: "",
@@ -332,7 +336,7 @@ function Customer() {
               <Controller
                 name="customerCode"
                 control={control}
-                rules={{ required: "Required" }}
+              
                 render={({ field }) => (
                   <CustomTextField
                     {...field}
@@ -349,7 +353,7 @@ function Customer() {
               <Controller
                 name="companyName"
                 control={control}
-                rules={{ required: "Required" }}
+              
                 render={({ field }) => (
                   <CustomTextField
                     {...field}
@@ -431,7 +435,7 @@ function Customer() {
                     <Controller
                       name={`contacts.${index}.name`}
                       control={control}
-                      rules={{ required: true }}
+                     
                       render={({ field }) => (
                         <CustomTextField
                           {...field}

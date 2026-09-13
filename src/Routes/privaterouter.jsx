@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 
 const styles = {
   loader: {
@@ -15,56 +15,93 @@ const styles = {
 };
 
 const DynamicPage = ({ component: Component }) => (
-  <Suspense fallback={<div style={styles.loader}>
-    
-  </div>}>
+  <Suspense fallback={<div style={styles.loader}></div>}>
     <Component />
   </Suspense>
 );
 
-// Dashboard & Layout
-const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard"));
-const Layout = lazy(() => import("../Pages/Layout/Layout"));
+// // Dashboard & Layout
+// const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard"));
+// const Layout = lazy(() => import("../Pages/Layout/Layout"));
 
-// Sales Components
-const Customer = lazy(() => import("../Pages/Sales/Customer/Customer"));
-const Quotations = lazy(() => import("../Pages/Sales/Quotation/Quotations"));
-const Salesorder = lazy(() => import("../Pages/Sales/Salesorder"));
-const Invoice = lazy(() => import("../Pages/Sales/invoice/Invoice"));
+// // Sales Components
+// const Customer = lazy(() => import("../Pages/Sales/Customer/Customer"));
+// const Quotations = lazy(() => import("../Pages/Sales/Quotation/Quotations"));
+// const Salesorder = lazy(() => import("../Pages/Sales/Salesorder/Salesorder"))
+// const Invoice = lazy(() => import("../Pages/Sales/invoice/Invoice"));
 
-// Purchase Components
-const Vendor = lazy(() => import("../Pages/Purchase/Vendors"));
-const Purchaseorder = lazy(() => import("../Pages/Purchase/Purchaseorder"));
-const Goodreceipt = lazy(() => import("../Pages/Purchase/Goodreceipt"));
+// // Purchase Components
+// const Vendor = lazy(() => import("../Pages/Purchase/Vendors"));
+// const Purchaseorder = lazy(() => import("../Pages/Purchase/Purchaseorder"));
+// const Goodreceipt = lazy(() => import("../Pages/Purchase/Goodreceipt"));
 
-// Inventory Components
-const Product = lazy(() => import("../Pages/Inventory/Product"));
-const Stock = lazy(() => import("../Pages/Inventory/Stock"));
-const Warehouse = lazy(() => import("../Pages/Inventory/Warehouse"));
-const Transfer = lazy(() => import("../Pages/Inventory/Transfer"));
+// // Inventory Components
+// const Product = lazy(() => import("../Pages/Inventory/Product"));
+// const Stock = lazy(() => import("../Pages/Inventory/Stock"));
+// const Warehouse = lazy(() => import("../Pages/Inventory/Warehouse"));
+// const Transfer = lazy(() => import("../Pages/Inventory/Transfer"));
 
-// Manufacturing Components
-const Bom = lazy(() => import("../Pages/Manufacturing/BOM"));
-const Productionorders = lazy(
-  () => import("../Pages/Manufacturing/Productionorder"),
-);
-const Workorder = lazy(() => import("../Pages/Manufacturing/Workorders"));
+// // Manufacturing Components
+// const Bom = lazy(() => import("../Pages/Manufacturing/BOM"));
+// const Productionorders = lazy(
+//   () => import("../Pages/Manufacturing/Productionorder"),
+// );
+// const Workorder = lazy(() => import("../Pages/Manufacturing/Workorders"));
 
-// Finance Components
-const Accounts = lazy(() => import("../Pages/Finance/Accounts"));
-const Payments = lazy(() => import("../Pages/Finance/Payments"));
-const Expenses = lazy(() => import("../Pages/Finance/Expenses"));
-const Reports = lazy(() => import("../Pages/Finance/Reports"));
+// // Finance Components
+// const Accounts = lazy(() => import("../Pages/Finance/Accounts"));
+// const Payments = lazy(() => import("../Pages/Finance/Payments"));
+// const Expenses = lazy(() => import("../Pages/Finance/Expenses"));
+// const Reports = lazy(() => import("../Pages/Finance/Reports"));
 
-// HR Components
-const Employees = lazy(() => import("../Pages/HR/Employess"));
-const Attendence = lazy(() => import("../Pages/HR/Attendence"));
-const Leave = lazy(() => import("../Pages/HR/Leave"));
-const Payroll = lazy(() => import("../Pages/HR/Payroll"));
+// // HR Components
+// const Employees = lazy(() => import("../Pages/HR/Employess"));
+// const Attendence = lazy(() => import("../Pages/HR/Attendence"));
+// const Leave = lazy(() => import("../Pages/HR/Leave"));
+// const Payroll = lazy(() => import("../Pages/HR/Payroll"));
+
+// Dashboard & Layout Direct Imports
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import Layout from "../Pages/Layout/Layout";
+
+// Sales Components Direct Imports
+import Customer from "../Pages/Sales/Customer/Customer";
+import Quotations from "../Pages/Sales/Quotation/Quotations";
+import Salesorder from "../Pages/Sales/Salesorder/Salesorder";
+import Invoice from "../Pages/Sales/invoice/Invoice";
+
+// Purchase Components Direct Imports
+import Vendor from "../Pages/Purchase/Vendors";
+import Purchaseorder from "../Pages/Purchase/PurchaseOrder/Purchaseorder";
+import Goodreceipt from "../Pages/Purchase/GoodReceipt/Goodreceipt";
+
+// Inventory Components Direct Imports
+import Product from "../Pages/Inventory/Product";
+import Stock from "../Pages/Inventory/Stock";
+import Warehouse from "../Pages/Inventory/Warehouse";
+import Transfer from "../Pages/Inventory/Transfer";
+
+// Manufacturing Components Direct Imports
+import Bom from "../Pages/Manufacturing/BOM";
+import Productionorders from "../Pages/Manufacturing/Productionorder";
+import Workorder from "../Pages/Manufacturing/Workorders";
+
+// Finance Components Direct Imports
+import Accounts from "../Pages/Finance/Accounts";
+import Payments from "../Pages/Finance/Payments";
+import Expenses from "../Pages/Finance/Expenses";
+import Reports from "../Pages/Finance/Reports";
+
+// HR Components Direct Imports
+import Employees from "../Pages/HR/Employess";
+import Attendence from "../Pages/HR/Attendence";
+import Leave from "../Pages/HR/Leave";
+import Payroll from "../Pages/HR/Payroll";
 
 export default function PrivateRouter() {
   return (
     <Routes>
+      
       <Route path="dashboard" element={<DynamicPage component={Dashboard} />} />
       <Route index element={<DynamicPage component={Dashboard} />} />
 
