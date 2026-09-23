@@ -1,0 +1,85 @@
+@use "../../../Styles/Variables.scss" as *;
+.TableBoxG {
+  width: calc(100% - 240px) !important;
+  margin-left: auto !important;
+  margin-right: 25px !important;
+  margin-bottom: 35px !important;
+  padding: 0px !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+.custom.table {
+    box-shadow: none !important;
+    border-radius: $table-border-radius !important;
+    overflow: hidden !important;
+    border: 1px solid $table-border-color !important;
+  }
+
+    .MuiTableCell-head {
+    font-size: 0.95rem !important;   
+    padding: 2px 12px !important;    
+    font-weight: bold !important;
+    color: black !important;
+  }
+
+  .MuiTableCell-body {
+    font-size: 0.90rem !important; 
+    padding: 3px 10px !important;   
+  }
+.MuiTableCell-body {
+  font-size: 0.9rem !important;
+  padding: 3px 10px !important;
+//   font-family:$professional-font !important;
+}
+// KPI State
+.totalorder,
+.Received,
+.totalaccepted,
+.totalrejected,.totalpending {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-card;
+  padding: $kpi-card-padding;
+  border: $kpi-border-black;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 180px;
+  height: 60px;
+  @include flex-center;
+  @include single-line-dot(0px);
+  margin-top: 8px;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgb(148, 82, 102);
+  }
+}
+//KPI Cards
+.kpi-container{
+@include flex-center;
+}
+.totalorder{
+    color:#0ea5e9;   
+    border: 1px solid rgba(#0ea5e9, 0.5);
+   
+}
+
+.totalaccepted{
+  color:$color-success;
+  border: 1px solid rgba($color-success, 0.5);
+}
+
+.Received{
+  color:$color-purple;
+  border: 1px solid rgba($color-purple, 0.5);
+}
+
+.totalpending{
+  color:$color-warning;
+  border: 1px solid rgba($color-warning, 0.5);
+}
+
+.totalrejected{
+  color:$color-danger;
+  border: 1px solid rgba($color-danger, 0.5);
+}

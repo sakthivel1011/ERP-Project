@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./layout.scss";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -148,6 +148,17 @@ export default function Layout() {
               </ul>
             )}
           </div>
+
+          <div>
+            <button  className="b1" 
+              onClick={() => {
+                window.location.reload(); 
+              }}
+              >
+               LogOut
+            </button>
+            </div>
+
         </nav>
         <div className="right">
           <Outlet />
